@@ -1,0 +1,59 @@
+name: Windows smoke test
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Release tag (build-N)'
+        required: true
+
+permissions:
+  contents: write
+
+jobs:
+  smoke:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install hub, then Dota Draft and KBJU through the same installers the hub uses
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path out | Out-Null
+          Add-Type -AssemblyName System.Windows.Forms,System.Drawing
+          $b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds
+          $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
+          $g = [System.Drawing.Graphics]::FromImage($bmp)
+          function Shot($name) { $g.CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size); $bmp.Save("out\$name.png") }
+          gh release download "${{ github.event.inputs.tag }}" -p "Winter-Hub-Setup.exe"
+          $p = Start-Process ".\Winter-Hub-Setup.exe" -ArgumentList "/VERYSILENT","/SUPPRESSMSGBOXES","/NORESTART" -PassThru
+          $p.WaitForExit(180000) | Out-Null
+          "hub_installer=$($p.ExitCode) exe=$(Test-Path "$env:LOCALAPPDATA\Programs\Winter Hub\winter_hub.exe")" | Out-File out\status.txt
+          Start-Sleep 25
+          "hub_running=$([bool](Get-Process winter_hub -ErrorAction SilentlyContinue))" | Out-File -Append out\status.txt
+          Shot "hub_fresh"
+          # Ставим приложения так же, как хаб (тихий установщик), и проверяем, что хаб видит версии.
+          gh release download -R Wateroflord/dota-draft -p "Dota-Draft-Setup.exe"
+          $d = Start-Process ".\Dota-Draft-Setup.exe" -ArgumentList "/VERYSILENT","/SUPPRESSMSGBOXES","/NORESTART" -PassThru
+          $d.WaitForExit(180000) | Out-Null
+          "dota_installer=$($d.ExitCode)" | Out-File -Append out\status.txt
+          reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Uninstall\{8F3C2A51-5D7B-4E1A-9C64-2B7D1E9A0F11}_is1" /v DisplayVersion | Out-File -Append out\status.txt
+          Start-Sleep 15
+          Get-Process dota_draft -ErrorAction SilentlyContinue | Stop-Process -Force
+          Get-Process winter_hub -ErrorAction SilentlyContinue | Stop-Process -Force
+          Start-Process "$env:LOCALAPPDATA\Programs\Winter Hub\winter_hub.exe"
+          Start-Sleep 20
+          Shot "hub_with_dota"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Save
+        if: always()
+        shell: bash
+        run: |
+          git config user.name "winter-hub-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git checkout --orphan winsmoke-out
+          git rm -rf --cached . > /dev/null
+          git add -f out
+          git commit -m "smoke" > /dev/null
+          git push -f origin winsmoke-out

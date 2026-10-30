@@ -5,6 +5,7 @@ on:
     paths-ignore:
       - 'catalog.json'
       - 'README.md'
+      - '.github/workflows/winsmoke.yml'
   workflow_dispatch:
 
 permissions:
