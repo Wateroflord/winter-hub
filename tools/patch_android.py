@@ -14,7 +14,7 @@ for p in [
     if p not in text:
         text = re.sub(r"(<manifest[^>]*>)", rf'\1\n    <uses-permission android:name="{p}"/>', text, count=1)
 
-packages = ["com.dotadraft.dota_draft", "com.kbju.kbju_tracker"]
+packages = ["com.dotadraft.dota_draft", "com.kbju.kbju_tracker", "com.winterhub.winter_chess", "com.winterhub.winter_mines", "com.winterhub.winter_paint", "com.winterhub.draw_school", "com.winterhub.winter_music", "com.winterhub.forest_survival"]
 inner = "".join(f'        <package android:name="{p}"/>\n' for p in packages)
 if "<queries>" in text:
     text = text.replace("<queries>", "<queries>\n" + inner.rstrip("\n"), 1)

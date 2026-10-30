@@ -67,7 +67,7 @@ jobs:
           flutter create --project-name winter_hub --org com.winterhub --platforms windows .
           rm -rf test
           flutter pub get
-          dart run flutter_launcher_icons || true
+          dart run flutter_launcher_icons -f icons_windows.yaml || true
           sed -i 's/L"winter_hub"/L"Winter Hub"/' windows/runner/main.cpp || true
           sed -i 's/Win32Window::Size size(1280, 720);/Win32Window::Size size(900, 820);/' windows/runner/main.cpp || true
       - name: Build Windows app

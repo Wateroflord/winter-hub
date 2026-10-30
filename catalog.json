@@ -1,6 +1,13 @@
 {
   "hubNews": [
-    {"date": "2026-10-30", "text": "Первая версия Winter Hub: установка, обновление, запуск и удаление Dota Draft и КБЖУ Трекера на телефоне и ПК."}
+    {
+      "date": "2026-10-30",
+      "text": "В хабе 6 новых приложений: Шахматы, Сапёр, Winter Paint, Уроки рисования, Winter Music и Выживание в лесу."
+    },
+    {
+      "date": "2026-10-30",
+      "text": "Первая версия Winter Hub: установка, обновление, запуск и удаление Dota Draft и КБЖУ Трекера на телефоне и ПК."
+    }
   ],
   "apps": [
     {
@@ -11,12 +18,28 @@
       "repo": "Wateroflord/dota-draft",
       "color": "#E04848",
       "icon": "https://raw.githubusercontent.com/Wateroflord/dota-draft/main/assets/icon/icon.png",
-      "android": {"package": "com.dotadraft.dota_draft", "asset": "Dota-Draft.apk"},
-      "windows": {"asset": "Dota-Draft-Setup.exe", "appId": "{8F3C2A51-5D7B-4E1A-9C64-2B7D1E9A0F11}", "exe": "Dota Draft\\dota_draft.exe"},
+      "android": {
+        "package": "com.dotadraft.dota_draft",
+        "asset": "Dota-Draft.apk"
+      },
+      "windows": {
+        "asset": "Dota-Draft-Setup.exe",
+        "appId": "{8F3C2A51-5D7B-4E1A-9C64-2B7D1E9A0F11}",
+        "exe": "Dota Draft\\dota_draft.exe"
+      },
       "news": [
-        {"date": "2026-10-30", "text": "Исправлен запуск на Windows 10 (приложение закрывалось сразу после открытия)."},
-        {"date": "2026-10-30", "text": "Живые подсказки во время матча, маршрут фарма для керри, мида и хардлейнера, разбор маршрута после игры."},
-        {"date": "2026-10-30", "text": "Windows: драфт с экрана по Ctrl+Shift+D, полоса таймеров, свои горячие клавиши, значок в трее, установщик."}
+        {
+          "date": "2026-10-30",
+          "text": "Исправлен запуск на Windows 10 (приложение закрывалось сразу после открытия)."
+        },
+        {
+          "date": "2026-10-30",
+          "text": "Живые подсказки во время матча, маршрут фарма для керри, мида и хардлейнера, разбор маршрута после игры."
+        },
+        {
+          "date": "2026-10-30",
+          "text": "Windows: драфт с экрана по Ctrl+Shift+D, полоса таймеров, свои горячие клавиши, значок в трее, установщик."
+        }
       ]
     },
     {
@@ -27,11 +50,168 @@
       "repo": "Wateroflord/kbju-tracker",
       "color": "#5B9DFF",
       "icon": "https://raw.githubusercontent.com/Wateroflord/kbju-tracker/main/assets/icon/icon.png",
-      "android": {"package": "com.kbju.kbju_tracker", "asset": "KBJU-Tracker.apk"},
-      "windows": {"asset": "KBJU-Tracker-Setup.exe", "appId": "{3C1B7E62-9A4D-4F8B-B2E7-6D0A5C9F1E24}", "exe": "KBJU Tracker\\kbju_tracker.exe"},
+      "android": {
+        "package": "com.kbju.kbju_tracker",
+        "asset": "KBJU-Tracker.apk"
+      },
+      "windows": {
+        "asset": "KBJU-Tracker-Setup.exe",
+        "appId": "{3C1B7E62-9A4D-4F8B-B2E7-6D0A5C9F1E24}",
+        "exe": "KBJU Tracker\\kbju_tracker.exe"
+      },
       "news": [
-        {"date": "2026-10-30", "text": "Появилась версия для Windows."},
-        {"date": "2026-10-30", "text": "Синхронизация телефон ↔ ПК по Wi-Fi: QR-код на экране ПК, данные и фото становятся одинаковыми."}
+        {
+          "date": "2026-10-30",
+          "text": "Появилась версия для Windows."
+        },
+        {
+          "date": "2026-10-30",
+          "text": "Синхронизация телефон ↔ ПК по Wi-Fi: QR-код на экране ПК, данные и фото становятся одинаковыми."
+        }
+      ]
+    },
+    {
+      "id": "chess",
+      "name": "Шахматы",
+      "tagline": "Игра с ботом на Stockfish, задачи и уроки",
+      "description": "Играй против бота от новичка до полной силы Stockfish за белых или чёрных, вдвоём на одном устройстве с часами, решай задачи (мат в 1–3 хода, вилки, связки), проходи уроки и смотри разбор партии с ошибками и лучшими ходами.",
+      "repo": "Wateroflord/winter-chess",
+      "color": "#B8E8FF",
+      "icon": "https://raw.githubusercontent.com/Wateroflord/winter-chess/main/assets/icon/icon.png",
+      "android": {
+        "package": "com.winterhub.winter_chess",
+        "asset": "Winter-Chess.apk"
+      },
+      "windows": {
+        "asset": "Winter-Chess-Setup.exe",
+        "appId": "{6451DB50-190C-4D27-9D54-2C8D1091C157}",
+        "exe": "Winter Chess\\winter_chess.exe"
+      },
+      "news": [
+        {
+          "date": "2026-10-30",
+          "text": "Первая версия."
+        }
+      ]
+    },
+    {
+      "id": "mines",
+      "name": "Сапёр",
+      "tagline": "Классика с режимом без угадывания",
+      "description": "Три уровня сложности и своё поле, флажки, быстрые открытия по цифре, рекорды и режим «без угадывания», где поле всегда решается логикой.",
+      "repo": "Wateroflord/winter-mines",
+      "color": "#7FD8FF",
+      "icon": "https://raw.githubusercontent.com/Wateroflord/winter-mines/main/assets/icon/icon.png",
+      "android": {
+        "package": "com.winterhub.winter_mines",
+        "asset": "Winter-Mines.apk"
+      },
+      "windows": {
+        "asset": "Winter-Mines-Setup.exe",
+        "appId": "{5614E2F0-AD1C-4A3A-89AB-1F576F0A9991}",
+        "exe": "Winter Mines\\winter_mines.exe"
+      },
+      "news": [
+        {
+          "date": "2026-10-30",
+          "text": "Первая версия."
+        }
+      ]
+    },
+    {
+      "id": "paint",
+      "name": "Winter Paint",
+      "tagline": "Рисование и пиксель-арт с анимацией",
+      "description": "Холст с кистями, слоями и нажимом пера, плюс редактор пиксель-арта: палитра, заливка, линии, зеркало, кадры анимации с луковой кожурой, экспорт в PNG, спрайт-лист и GIF.",
+      "repo": "Wateroflord/winter-paint",
+      "color": "#BE8CFF",
+      "icon": "https://raw.githubusercontent.com/Wateroflord/winter-paint/main/assets/icon/icon.png",
+      "android": {
+        "package": "com.winterhub.winter_paint",
+        "asset": "Winter-Paint.apk"
+      },
+      "windows": {
+        "asset": "Winter-Paint-Setup.exe",
+        "appId": "{1C99F9EE-7957-4E42-B843-4200C98651BE}",
+        "exe": "Winter Paint\\winter_paint.exe"
+      },
+      "news": [
+        {
+          "date": "2026-10-30",
+          "text": "Первая версия."
+        }
+      ]
+    },
+    {
+      "id": "draw",
+      "name": "Уроки рисования",
+      "tagline": "Курс с упражнениями на обводку",
+      "description": "Линии, круги, штриховка, объём, свет и тень, перспектива, лицо и фигура, цвет, пиксель-арт и анимация. Упражнения на обводку с оценкой точности, задание дня и наброски на время.",
+      "repo": "Wateroflord/draw-school",
+      "color": "#FFAA5A",
+      "icon": "https://raw.githubusercontent.com/Wateroflord/draw-school/main/assets/icon/icon.png",
+      "android": {
+        "package": "com.winterhub.draw_school",
+        "asset": "Draw-School.apk"
+      },
+      "windows": {
+        "asset": "Draw-School-Setup.exe",
+        "appId": "{29BF7331-9242-4449-AD80-C28BBE0B2AFE}",
+        "exe": "Draw School\\draw_school.exe"
+      },
+      "news": [
+        {
+          "date": "2026-10-30",
+          "text": "Первая версия."
+        }
+      ]
+    },
+    {
+      "id": "music",
+      "name": "Winter Music",
+      "tagline": "Твоя музыка, бесплатные альбомы и радио",
+      "description": "Музыка с телефона или ПК, бесплатные альбомы с открытыми лицензиями (Internet Archive) и тысячи радиостанций. Лайки, свои плейлисты, перемешивание, повтор и таймер сна.",
+      "repo": "Wateroflord/winter-music",
+      "color": "#FF78AA",
+      "icon": "https://raw.githubusercontent.com/Wateroflord/winter-music/main/assets/icon/icon.png",
+      "android": {
+        "package": "com.winterhub.winter_music",
+        "asset": "Winter-Music.apk"
+      },
+      "windows": {
+        "asset": "Winter-Music-Setup.exe",
+        "appId": "{F2EC6217-D5FB-47DF-B8F7-44D668024860}",
+        "exe": "Winter Music\\winter_music.exe"
+      },
+      "news": [
+        {
+          "date": "2026-10-30",
+          "text": "Первая версия."
+        }
+      ]
+    },
+    {
+      "id": "forest",
+      "name": "Выживание в лесу",
+      "tagline": "Офлайн-гайд, компас и сигнал SOS",
+      "description": "Что делать, если потерялся: укрытие, вода, огонь, ориентирование, сигналы, первая помощь, опасные животные и растения. Компас, SOS-фонарик азбукой Морзе, чек-лист снаряжения, экстренные номера и тест.",
+      "repo": "Wateroflord/forest-survival",
+      "color": "#6ED28C",
+      "icon": "https://raw.githubusercontent.com/Wateroflord/forest-survival/main/assets/icon/icon.png",
+      "android": {
+        "package": "com.winterhub.forest_survival",
+        "asset": "Forest-Survival.apk"
+      },
+      "windows": {
+        "asset": "Forest-Survival-Setup.exe",
+        "appId": "{7D813F57-23C8-4BD3-94A0-8D3A1B827D82}",
+        "exe": "Forest Survival\\forest_survival.exe"
+      },
+      "news": [
+        {
+          "date": "2026-10-30",
+          "text": "Первая версия."
+        }
       ]
     }
   ]
