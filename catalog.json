@@ -1,0 +1,38 @@
+{
+  "hubNews": [
+    {"date": "2026-10-30", "text": "Первая версия Winter Hub: установка, обновление, запуск и удаление Dota Draft и КБЖУ Трекера на телефоне и ПК."}
+  ],
+  "apps": [
+    {
+      "id": "dota",
+      "name": "Dota Draft",
+      "tagline": "Пики, контрпики и шанс победы в Dota 2",
+      "description": "Подсказывает, кого пикать против врагов и с союзниками, считает шанс победы. На ПК — оверлей поверх игры, живой матч, маршрут фарма, разбор матчей.",
+      "repo": "Wateroflord/dota-draft",
+      "color": "#E04848",
+      "icon": "https://raw.githubusercontent.com/Wateroflord/dota-draft/main/assets/icon/icon.png",
+      "android": {"package": "com.dotadraft.dota_draft", "asset": "Dota-Draft.apk"},
+      "windows": {"asset": "Dota-Draft-Setup.exe", "appId": "{8F3C2A51-5D7B-4E1A-9C64-2B7D1E9A0F11}", "exe": "Dota Draft\\dota_draft.exe"},
+      "news": [
+        {"date": "2026-10-30", "text": "Исправлен запуск на Windows 10 (приложение закрывалось сразу после открытия)."},
+        {"date": "2026-10-30", "text": "Живые подсказки во время матча, маршрут фарма для керри, мида и хардлейнера, разбор маршрута после игры."},
+        {"date": "2026-10-30", "text": "Windows: драфт с экрана по Ctrl+Shift+D, полоса таймеров, свои горячие клавиши, значок в трее, установщик."}
+      ]
+    },
+    {
+      "id": "kbju",
+      "name": "КБЖУ Трекер",
+      "tagline": "Калории и БЖУ по фото еды",
+      "description": "Фото еды — и ИИ считает калории, белки, жиры и углеводы. Вес, вода, привычки, тренировки, сон, изучение языков. Теперь и на ПК, с синхронизацией с телефоном по Wi-Fi.",
+      "repo": "Wateroflord/kbju-tracker",
+      "color": "#5B9DFF",
+      "icon": "https://raw.githubusercontent.com/Wateroflord/kbju-tracker/main/assets/icon/icon.png",
+      "android": {"package": "com.kbju.kbju_tracker", "asset": "KBJU-Tracker.apk"},
+      "windows": {"asset": "KBJU-Tracker-Setup.exe", "appId": "{3C1B7E62-9A4D-4F8B-B2E7-6D0A5C9F1E24}", "exe": "KBJU Tracker\\kbju_tracker.exe"},
+      "news": [
+        {"date": "2026-10-30", "text": "Появилась версия для Windows."},
+        {"date": "2026-10-30", "text": "Синхронизация телефон ↔ ПК по Wi-Fi: QR-код на экране ПК, данные и фото становятся одинаковыми."}
+      ]
+    }
+  ]
+}
