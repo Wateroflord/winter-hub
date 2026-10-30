@@ -6,6 +6,8 @@ on:
       - 'catalog.json'
       - 'README.md'
       - '.github/workflows/winsmoke.yml'
+      - '.github/workflows/apps-smoke.yml'
+      - 'tools/apps_smoke.sh'
   workflow_dispatch:
 
 permissions:

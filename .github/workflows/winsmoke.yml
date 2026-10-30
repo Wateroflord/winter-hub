@@ -2,10 +2,6 @@ name: Windows smoke test
 
 on:
   workflow_dispatch:
-    inputs:
-      tag:
-        description: 'Release tag (build-N)'
-        required: true
 
 permissions:
   contents: write
@@ -16,7 +12,7 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
-      - name: Install hub, then Dota Draft and KBJU through the same installers the hub uses
+      - name: Install every app with its own installer and start it
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path out | Out-Null
@@ -25,37 +21,28 @@ jobs:
           $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height
           $g = [System.Drawing.Graphics]::FromImage($bmp)
           function Shot($name) { $g.CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size); $bmp.Save("out\$name.png") }
-          gh release download "${{ github.event.inputs.tag }}" -p "Winter-Hub-Setup.exe"
-          $p = Start-Process ".\Winter-Hub-Setup.exe" -ArgumentList "/VERYSILENT","/SUPPRESSMSGBOXES","/NORESTART" -PassThru
-          $p.WaitForExit(180000) | Out-Null
-          "hub_installer=$($p.ExitCode) exe=$(Test-Path "$env:LOCALAPPDATA\Programs\Winter Hub\winter_hub.exe")" | Out-File out\status.txt
-          Start-Sleep 25
-          "hub_running=$([bool](Get-Process winter_hub -ErrorAction SilentlyContinue))" | Out-File -Append out\status.txt
-          Shot "hub_fresh"
-          # Ставим приложения так же, как хаб (тихий установщик), и проверяем, что хаб видит версии.
-          gh release download -R Wateroflord/dota-draft -p "Dota-Draft-Setup.exe"
-          $d = Start-Process ".\Dota-Draft-Setup.exe" -ArgumentList "/VERYSILENT","/SUPPRESSMSGBOXES","/NORESTART" -PassThru
-          $d.WaitForExit(180000) | Out-Null
-          "dota_installer=$($d.ExitCode)" | Out-File -Append out\status.txt
-          reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Uninstall\{8F3C2A51-5D7B-4E1A-9C64-2B7D1E9A0F11}_is1" /v DisplayVersion | Out-File -Append out\status.txt
-          Start-Sleep 15
-          Get-Process dota_draft -ErrorAction SilentlyContinue | Stop-Process -Force
-          Get-Process winter_hub -ErrorAction SilentlyContinue | Stop-Process -Force
-          Start-Process "$env:LOCALAPPDATA\Programs\Winter Hub\winter_hub.exe"
-          Start-Sleep 20
-          Shot "hub_with_dota"
-          Get-Process winter_hub -ErrorAction SilentlyContinue | Stop-Process -Force
-          gh release download -R Wateroflord/kbju-tracker -p "KBJU-Tracker-Setup.exe"
-          $k = Start-Process ".\KBJU-Tracker-Setup.exe" -ArgumentList "/VERYSILENT","/SUPPRESSMSGBOXES","/NORESTART" -PassThru
-          $k.WaitForExit(180000) | Out-Null
-          "kbju_installer=$($k.ExitCode)" | Out-File -Append out\status.txt
-          Start-Sleep 25
-          "kbju_running=$([bool](Get-Process kbju_tracker -ErrorAction SilentlyContinue))" | Out-File -Append out\status.txt
-          Shot "kbju"
-          Get-Process kbju_tracker -ErrorAction SilentlyContinue | Stop-Process -Force
-          Start-Process "$env:LOCALAPPDATA\Programs\Winter Hub\winter_hub.exe"
-          Start-Sleep 20
-          Shot "hub_all"
+          $apps = @(
+            @("winter-hub","Winter-Hub","Winter Hub","winter_hub"),
+            @("winter-chess","Winter-Chess","Winter Chess","winter_chess"),
+            @("winter-mines","Winter-Mines","Winter Mines","winter_mines"),
+            @("winter-paint","Winter-Paint","Winter Paint","winter_paint"),
+            @("draw-school","Draw-School","Draw School","draw_school"),
+            @("winter-music","Winter-Music","Winter Music","winter_music"),
+            @("forest-survival","Forest-Survival","Forest Survival","forest_survival")
+          )
+          foreach ($a in $apps) {
+            $repo=$a[0]; $asset=$a[1]; $dir=$a[2]; $exe=$a[3]
+            gh release download -R "Wateroflord/$repo" -p "$asset-Setup.exe" --clobber
+            if (-not (Test-Path "$asset-Setup.exe")) { "$asset no-setup" | Out-File -Append out\status.txt; continue }
+            $p = Start-Process ".\$asset-Setup.exe" -ArgumentList "/VERYSILENT","/SUPPRESSMSGBOXES","/NORESTART" -PassThru
+            $p.WaitForExit(240000) | Out-Null
+            Start-Sleep 20
+            $running = [bool](Get-Process $exe -ErrorAction SilentlyContinue)
+            "$asset installer=$($p.ExitCode) running=$running" | Out-File -Append out\status.txt
+            Shot $asset
+            Get-Process $exe -ErrorAction SilentlyContinue | Stop-Process -Force
+          }
+          Get-ChildItem "$env:LOCALAPPDATA\Programs\Winter Chess" -ErrorAction SilentlyContinue | Select-Object Name,Length | Out-File -Append out\status.txt
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Save
