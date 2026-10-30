@@ -44,6 +44,18 @@ jobs:
           Start-Process "$env:LOCALAPPDATA\Programs\Winter Hub\winter_hub.exe"
           Start-Sleep 20
           Shot "hub_with_dota"
+          Get-Process winter_hub -ErrorAction SilentlyContinue | Stop-Process -Force
+          gh release download -R Wateroflord/kbju-tracker -p "KBJU-Tracker-Setup.exe"
+          $k = Start-Process ".\KBJU-Tracker-Setup.exe" -ArgumentList "/VERYSILENT","/SUPPRESSMSGBOXES","/NORESTART" -PassThru
+          $k.WaitForExit(180000) | Out-Null
+          "kbju_installer=$($k.ExitCode)" | Out-File -Append out\status.txt
+          Start-Sleep 25
+          "kbju_running=$([bool](Get-Process kbju_tracker -ErrorAction SilentlyContinue))" | Out-File -Append out\status.txt
+          Shot "kbju"
+          Get-Process kbju_tracker -ErrorAction SilentlyContinue | Stop-Process -Force
+          Start-Process "$env:LOCALAPPDATA\Programs\Winter Hub\winter_hub.exe"
+          Start-Sleep 20
+          Shot "hub_all"
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Save
