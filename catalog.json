@@ -1,6 +1,10 @@
 {
   "hubNews": [
     {
+      "date": "2026-10-31",
+      "text": "Новое приложение: Winter Chat — чаты и звонки с друзьями на своём сервере, с камерой и демонстрацией экрана."
+    },
+    {
       "date": "2026-10-30",
       "text": "В хабе 6 новых приложений: Шахматы, Сапёр, Winter Paint, Уроки рисования, Winter Music и Выживание в лесу."
     },
@@ -10,6 +14,30 @@
     }
   ],
   "apps": [
+    {
+      "id": "chat",
+      "name": "Winter Chat",
+      "tagline": "Чаты и звонки для своих",
+      "description": "Мессенджер для друзей на своём сервере: личные чаты и группы, фото, видео и файлы, голосовые и видеозвонки с демонстрацией экрана. Сервер ставится на один компьютер — скачай его из Releases на странице приложения.",
+      "repo": "Wateroflord/winter-chat",
+      "color": "#7FD8FF",
+      "icon": "https://raw.githubusercontent.com/Wateroflord/winter-chat/main/assets/icon/icon.png",
+      "android": {
+        "package": "com.winterhub.winter_chat",
+        "asset": "Winter-Chat.apk"
+      },
+      "windows": {
+        "asset": "Winter-Chat-Setup.exe",
+        "appId": "{A7C3E1D4-6B2F-4E8A-9D51-3F0B7C2E8A64}",
+        "exe": "Winter Chat\\winter_chat.exe"
+      },
+      "news": [
+        {
+          "date": "2026-10-31",
+          "text": "Первая версия: регистрация по коду приглашения, чаты и группы, файлы, звонки с камерой и демонстрацией экрана."
+        }
+      ]
+    },
     {
       "id": "dota",
       "name": "Dota Draft",
