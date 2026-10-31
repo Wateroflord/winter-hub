@@ -2,6 +2,10 @@
   "hubNews": [
     {
       "date": "2026-10-31",
+      "text": "Новое приложение: Mog Battle — ИИ оценивает внешность, стиль одежды и их синергию, батл двух фото и советы, как стать лучше."
+    },
+    {
+      "date": "2026-10-31",
       "text": "Новое приложение: Winter Chat — чаты и звонки с друзьями на своём сервере, с камерой и демонстрацией экрана."
     },
     {
@@ -14,6 +18,30 @@
     }
   ],
   "apps": [
+    {
+      "id": "mog",
+      "name": "Mog Battle",
+      "tagline": "Оценка внешности и стиля, батл фото",
+      "description": "Мог-батл: твоё фото против соперника — кто где сильнее и почему. Отдельная оценка внешности, стиля одежды и синергии (как одежда подходит именно тебе), потенциал и конкретные советы, как стать лучше. История с графиком прогресса. Нужен бесплатный ключ Gemini.",
+      "repo": "Wateroflord/mog-battle",
+      "color": "#F5B942",
+      "icon": "https://raw.githubusercontent.com/Wateroflord/mog-battle/main/assets/icon/icon.png",
+      "android": {
+        "package": "com.winterhub.mog_battle",
+        "asset": "Mog-Battle.apk"
+      },
+      "windows": {
+        "asset": "Mog-Battle-Setup.exe",
+        "appId": "{93FB0EED-F0D2-42C9-B17B-AD65A6880E2D}",
+        "exe": "Mog Battle\\mog_battle.exe"
+      },
+      "news": [
+        {
+          "date": "2026-10-31",
+          "text": "Первая версия: мог-батл, оценка внешности, стиля и синергии, советы, история с прогрессом."
+        }
+      ]
+    },
     {
       "id": "chat",
       "name": "Winter Chat",
