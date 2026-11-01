@@ -28,7 +28,8 @@ jobs:
             @("winter-paint","Winter-Paint","Winter Paint","winter_paint"),
             @("draw-school","Draw-School","Draw School","draw_school"),
             @("winter-music","Winter-Music","Winter Music","winter_music"),
-            @("forest-survival","Forest-Survival","Forest Survival","forest_survival")
+            @("forest-survival","Forest-Survival","Forest Survival","forest_survival"),
+            @("winter-walks","Winter-Walks","Winter Walks","winter_walks")
           )
           foreach ($a in $apps) {
             $repo=$a[0]; $asset=$a[1]; $dir=$a[2]; $exe=$a[3]

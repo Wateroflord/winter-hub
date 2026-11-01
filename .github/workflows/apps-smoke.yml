@@ -20,7 +20,7 @@ jobs:
       - name: Download APKs
         run: |
           mkdir -p apks out
-          for a in winter-chess:Winter-Chess winter-mines:Winter-Mines winter-paint:Winter-Paint draw-school:Draw-School winter-music:Winter-Music forest-survival:Forest-Survival mog-battle:Mog-Battle winter-hub:Winter-Hub; do
+          for a in winter-chess:Winter-Chess winter-mines:Winter-Mines winter-paint:Winter-Paint draw-school:Draw-School winter-music:Winter-Music forest-survival:Forest-Survival mog-battle:Mog-Battle winter-walks:Winter-Walks winter-hub:Winter-Hub; do
             repo=${a%%:*}; asset=${a##*:}
             gh release download -R Wateroflord/$repo -p "$asset.apk" -D apks || echo "no $asset" >> out/status.txt
           done
