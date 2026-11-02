@@ -1,0 +1,20 @@
+Winter-Hub installer=0 running=True
+Winter-Chess installer=0 running=True
+Winter-Mines installer=0 running=True
+Winter-Paint installer=0 running=True
+Draw-School installer=0 running=True
+Winter-Music installer=0 running=True
+Forest-Survival installer=0 running=True
+Winter-Walks installer=0 running=True
+
+Name                  Length
+----                  ------
+data                  
+dartjni.dll           58368
+flutter_windows.dll   21289472
+Stockfish-LICENSE.txt 35149
+stockfish.exe         103046300
+unins000.dat          11535
+unins000.exe          4379906
+winter_chess.exe      72704
+
