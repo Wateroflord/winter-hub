@@ -1,7 +1,7 @@
 # Общие CI-инструменты приложений Winter
 
 Все приложения (`winter-mines`, `kbju-tracker`, `dota-draft`, …) берут эти скрипты отсюда
-шагом `actions/checkout` с `repository: Wateroflord/winter-hub`, `path: .winter`, `sparse-checkout: ci`.
+шагом `actions/checkout` с `repository: Wateroflord/winter-hub`, `path: .winter`, `sparse-checkout: /ci/` (без cone-режима).
 Исправил здесь — исправилось во всех сборках.
 
 | Файл | Что делает |
