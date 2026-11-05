@@ -30,7 +30,9 @@ jobs:
           keytool -genkeypair -keystore t/new.p12 -storetype PKCS12 -alias winter -keyalg RSA -keysize 2048 -validity 1000 -storepass $PW -keypass $PW -dname "CN=Test" >/dev/null 2>&1
           export WINTER_SIGNING=$(python3 -c "import base64,json;print(base64.b64encode(json.dumps({'alias':'winter','password':'$PW','keystore':base64.b64encode(open('t/new.p12','rb').read()).decode()}).encode()).decode())")
           python3 ci/sign_apk.py t/rotated.apk shared
+          WINTER_SIGNING= python3 ci/sign_apk.py t/old.apk shared
           WINTER_SIGNING= python3 ci/sign_apk.py t/attacker.apk shared
+          cp t/Winter-Mines.apk t/fresh-random.apk
           BT=$(ls -d $ANDROID_HOME/build-tools/* | sort -V | tail -1)
           $BT/apksigner lineage --in t/rotated.apk --print-certs || true
       - name: Enable KVM
@@ -50,3 +52,7 @@ jobs:
             adb install -r t/rotated.apk && echo "RESULT rotated-over-old: OK" || echo "RESULT rotated-over-old: FAIL"
             adb install -r t/attacker.apk && echo "RESULT attacker-over-rotated: INSTALLED (BAD)" || echo "RESULT attacker-over-rotated: REJECTED (GOOD)"
             adb shell dumpsys package com.winterhub.winter_mines | grep -i -E "signatures|versionCode" | head -5 || true
+            adb uninstall com.winterhub.winter_mines
+            adb install t/rotated.apk && echo "RESULT fresh-rotated: OK"
+            adb install -r t/attacker.apk && echo "RESULT attacker-over-fresh: INSTALLED (BAD)" || echo "RESULT attacker-over-fresh: REJECTED (GOOD)"
+            adb install -r t/rotated.apk && echo "RESULT rotated-again: OK" || echo "RESULT rotated-again: FAIL"
