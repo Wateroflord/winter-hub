@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     // Вернулись из окна установки/удаления — обновить состояние.
-    if (state == AppLifecycleState.resumed) hub.refreshInstalled();
+    if (state == AppLifecycleState.resumed) hub.onResume();
   }
 
   void _toast(String? msg) {
@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             builder: (context, _) => RefreshIndicator(
               color: W.ice,
               backgroundColor: W.surface,
-              onRefresh: hub.refresh,
+              onRefresh: () => hub.refresh(manual: true),
               child: Center(
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 760),
@@ -105,7 +105,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                       if (hub.loading)
                         const Padding(padding: EdgeInsets.all(40), child: Center(child: CircularProgressIndicator()))
                       else
-                        for (final a in hub.catalog.apps) _appCard(a),
+                        for (final a in hub.catalog.apps)
+                          if (hub.assetOf(a) != null) _appCard(a),
                       if (hub.catalog.hubNews.isNotEmpty) ...[
                         const SizedBox(height: 18),
                         const Text('Новости хаба', style: W.h2),
@@ -151,7 +152,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         ),
         IconButton(
           tooltip: 'Обновить',
-          onPressed: hub.loading ? null : hub.refresh,
+          onPressed: hub.loading ? null : () => hub.refresh(manual: true),
           icon: const Icon(Icons.refresh, color: W.ice),
         ),
       ]);
@@ -244,6 +245,19 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             ]),
           ),
           const SizedBox(height: 12),
+          if (hub.stuck.contains(a.id) && job == null) ...[
+            Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(color: W.warn.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(10)),
+              child: Text(
+                'Обновление не встало? Если телефон пишет «Приложение не установлено», у старой версии другая подпись. '
+                'Нажми «Удалить», потом «Установить» — это нужно один раз. Данные приложения при этом сотрутся, '
+                'поэтому сначала сохрани их, если в приложении есть экспорт.',
+                style: W.small.copyWith(color: W.warn),
+              ),
+            ),
+            const SizedBox(height: 10),
+          ],
           if (job != null) ...[
             Text(job.text, style: W.small.copyWith(color: W.ice)),
             const SizedBox(height: 6),

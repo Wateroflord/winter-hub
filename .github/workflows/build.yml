@@ -7,6 +7,8 @@ on:
       - 'ci/**'
       - '.github/workflows/sign-test.yml'
       - 'catalog.json'
+      - 'versions.json'
+      - '.github/workflows/versions.yml'
       - 'README.md'
       - '.github/workflows/winsmoke.yml'
       - '.github/workflows/apps-smoke.yml'
@@ -32,21 +34,33 @@ jobs:
       - name: Create Android project
         run: |
           flutter create --project-name winter_hub --org com.winterhub --platforms android .
-          rm -rf test
+          rm -f test/widget_test.dart
           python3 tools/patch_android.py
-          mkdir -p ~/.android
-          cp tools/debug.keystore ~/.android/debug.keystore
           flutter pub get
           dart run flutter_launcher_icons || true
       - name: Analyze
         run: |
-          flutter analyze --no-fatal-infos --no-fatal-warnings > analyze.txt 2>&1 || true
+          rc=0
+          flutter analyze --no-fatal-infos --no-fatal-warnings > analyze.txt 2>&1 || rc=$?
           cat analyze.txt
           python3 ci/annotate.py analyze.txt "analyze"
+          exit $rc
+      - name: Tests
+        run: |
+          set -o pipefail
+          if ls test/*_test.dart >/dev/null 2>&1; then
+            flutter test test 2>&1 | tee test.txt || { python3 ci/annotate.py test.txt "tests"; exit 1; }
+          else
+            echo "Тестов нет"
+          fi
       - name: Build APK
         run: |
           set -o pipefail
           flutter build apk --release --dart-define=BUILD=${{ github.run_number }} --build-number=${{ github.run_number }} --build-name=1.0.${{ github.run_number }} 2>&1 | tee build.txt || { python3 ci/annotate.py build.txt "build"; exit 1; }
+      - name: Sign APK
+        env:
+          WINTER_SIGNING: ${{ secrets.WINTER_SIGNING }}
+        run: python3 ci/sign_apk.py build/app/outputs/flutter-apk/app-release.apk
       - name: Release
         run: |
           cp build/app/outputs/flutter-apk/app-release.apk Winter-Hub.apk
@@ -70,7 +84,7 @@ jobs:
         shell: bash
         run: |
           flutter create --project-name winter_hub --org com.winterhub --platforms windows .
-          rm -rf test
+          rm -f test/widget_test.dart
           flutter pub get
           dart run flutter_launcher_icons -f icons_windows.yaml || true
           sed -i 's/L"winter_hub"/L"Winter Hub"/' windows/runner/main.cpp || true

@@ -148,30 +148,104 @@ class Release {
       );
 }
 
-/// Ищем свежий выпуск, где уже есть нужный файл (Windows-файлы появляются на несколько минут позже APK).
-Future<Release?> latestRelease(String repo, String? asset) async {
+const _versionsUrl = 'https://raw.githubusercontent.com/$hubRepo/main/versions.json';
+
+/// Сводка свежих сборок всех приложений (ключ «repo|файл»).
+/// Её раз в 15 минут собирает GitHub Actions в репозитории хаба, поэтому хаб
+/// делает один запрос вместо 13 к GitHub API (без ключа там лимит 60 в час).
+class Versions {
+  final DateTime? updated;
+  final Map<String, Release> releases;
+  const Versions(this.updated, this.releases);
+
+  Release? of(String repo, String? asset) => asset == null ? null : releases['$repo|$asset'];
+
+  static Versions parse(Map j) => Versions(
+        DateTime.tryParse('${j['updated'] ?? ''}'),
+        {
+          for (final e in ((j['releases'] as Map?) ?? const {}).entries)
+            if (e.value is Map) '${e.key}': Release.fromJson(e.value as Map),
+        },
+      );
+}
+
+Future<Versions?> loadVersions() async {
   try {
-    final r = await http.get(Uri.parse('https://api.github.com/repos/$repo/releases?per_page=5'),
-        headers: {'Accept': 'application/vnd.github+json'}).timeout(const Duration(seconds: 15));
-    if (r.statusCode != 200) throw Exception('HTTP ${r.statusCode}');
-    final list = jsonDecode(utf8.decode(r.bodyBytes)) as List;
-    for (final rel in list.whereType<Map>()) {
-      if (rel['draft'] == true || rel['prerelease'] == true) continue;
-      final assets = <String, String>{}, sizes = <String, int>{};
-      for (final a in (rel['assets'] as List? ?? const []).whereType<Map>()) {
-        assets['${a['name']}'] = '${a['browser_download_url']}';
-        sizes['${a['name']}'] = (a['size'] as num?)?.toInt() ?? 0;
+    final r = await http
+        .get(Uri.parse('$_versionsUrl?t=${DateTime.now().millisecondsSinceEpoch ~/ 60000}'))
+        .timeout(const Duration(seconds: 12));
+    if (r.statusCode == 200) return Versions.parse(jsonDecode(utf8.decode(r.bodyBytes)) as Map);
+  } catch (_) {}
+  return null;
+}
+
+/// Ищем свежий выпуск через GitHub API, где уже есть нужный файл
+/// (Windows-файлы появляются на несколько минут позже APK).
+/// Запрос условный (ETag): если ничего не изменилось, GitHub отвечает 304,
+/// и такой ответ не тратит лимит запросов.
+Future<Release?> latestRelease(String repo, String? asset) async {
+  final cacheName = 'rel_${repo.replaceAll('/', '_')}_$asset.json';
+  final etagName = 'etag_${repo.replaceAll('/', '_')}.json';
+  try {
+    final etag = (await readCache(etagName))?['etag']?.toString();
+    final cachedList = await readCache('list_${repo.replaceAll('/', '_')}.json');
+    final r = await http.get(Uri.parse('https://api.github.com/repos/$repo/releases?per_page=5'), headers: {
+      'Accept': 'application/vnd.github+json',
+      if (etag != null && cachedList != null) 'If-None-Match': etag,
+    }).timeout(const Duration(seconds: 15));
+    List list;
+    if (r.statusCode == 304 && cachedList != null) {
+      list = (cachedList['l'] as List?) ?? const [];
+    } else if (r.statusCode == 200) {
+      list = jsonDecode(utf8.decode(r.bodyBytes)) as List;
+      final tag = r.headers['etag'];
+      if (tag != null) {
+        await writeCache(etagName, {'etag': tag});
+        await writeCache('list_${repo.replaceAll('/', '_')}.json', {'l': _slim(list)});
       }
-      if (asset != null && !assets.containsKey(asset)) continue;
-      final tag = '${rel['tag_name'] ?? ''}';
-      final b = int.tryParse(RegExp(r'(\d+)$').firstMatch(tag)?.group(1) ?? '') ?? 0;
-      final out = Release(b, '${rel['published_at'] ?? ''}'.split('T').first, assets, sizes);
-      await writeCache('rel_${repo.replaceAll('/', '_')}_$asset.json', out.toJson());
+    } else {
+      throw Exception('HTTP ${r.statusCode}');
+    }
+    final out = pickRelease(list, asset);
+    if (out != null) {
+      await writeCache(cacheName, out.toJson());
       return out;
     }
   } catch (_) {
-    final c = await readCache('rel_${repo.replaceAll('/', '_')}_$asset.json');
+    final c = await readCache(cacheName);
     if (c != null) return Release.fromJson(c);
+  }
+  return null;
+}
+
+/// Только нужные поля ответа GitHub (чтобы кэш был маленьким).
+List _slim(List list) => [
+      for (final rel in list.whereType<Map>())
+        {
+          'tag_name': rel['tag_name'],
+          'published_at': rel['published_at'],
+          'draft': rel['draft'],
+          'prerelease': rel['prerelease'],
+          'assets': [
+            for (final a in (rel['assets'] as List? ?? const []).whereType<Map>())
+              {'name': a['name'], 'browser_download_url': a['browser_download_url'], 'size': a['size']},
+          ],
+        },
+    ];
+
+/// Самый свежий выпуск, в котором есть нужный файл.
+Release? pickRelease(List list, String? asset) {
+  for (final rel in list.whereType<Map>()) {
+    if (rel['draft'] == true || rel['prerelease'] == true) continue;
+    final assets = <String, String>{}, sizes = <String, int>{};
+    for (final a in (rel['assets'] as List? ?? const []).whereType<Map>()) {
+      assets['${a['name']}'] = '${a['browser_download_url']}';
+      sizes['${a['name']}'] = (a['size'] as num?)?.toInt() ?? 0;
+    }
+    if (asset != null && !assets.containsKey(asset)) continue;
+    final tag = '${rel['tag_name'] ?? ''}';
+    final b = int.tryParse(RegExp(r'(\d+)$').firstMatch(tag)?.group(1) ?? '') ?? 0;
+    return Release(b, '${rel['published_at'] ?? ''}'.split('T').first, assets, sizes);
   }
   return null;
 }

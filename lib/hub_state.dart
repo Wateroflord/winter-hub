@@ -17,6 +17,12 @@ class HubState extends ChangeNotifier {
   final Map<String, Release?> releases = {};
   final Map<String, int?> installed = {};
   final Map<String, Job> jobs = {};
+
+  /// Обновления, запущенные на телефоне: id → ожидаемая сборка.
+  final Map<String, int> _pending = {};
+
+  /// Приложения, обновление которых не встало (старая версия подписана другим ключом).
+  final Set<String> stuck = {};
   Release? hubRelease;
   bool loading = true;
   bool offline = false;
@@ -38,18 +44,46 @@ class HubState extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> refresh() async {
+  /// [manual] — пользователь сам нажал «обновить»: тогда дополнительно
+  /// спрашиваем GitHub напрямую (сводка versions.json отстаёт до ~15 минут).
+  Future<void> refresh({bool manual = false}) async {
     catalog = await loadCatalog();
-    var anyOnline = false;
-    for (final a in catalog.apps) {
-      final r = await latestRelease(a.repo, assetOf(a));
-      releases[a.id] = r;
-      anyOnline = anyOnline || r != null;
+    final v = await loadVersions();
+    final fresh = v?.updated != null && DateTime.now().toUtc().difference(v!.updated!) < const Duration(hours: 3);
+    Future<Release?> get(AppEntry a) async {
+      final fromSummary = v?.of(a.repo, assetOf(a));
+      if (fromSummary != null && fresh && !manual) return fromSummary;
+      final direct = await latestRelease(a.repo, assetOf(a));
+      if (direct == null) return fromSummary;
+      if (fromSummary == null) return direct;
+      return direct.build >= fromSummary.build ? direct : fromSummary;
     }
-    hubRelease = await latestRelease(hubEntry.repo, assetOf(hubEntry));
+
+    final list = await Future.wait([for (final a in catalog.apps) get(a)]);
+    var anyOnline = false;
+    for (var i = 0; i < catalog.apps.length; i++) {
+      releases[catalog.apps[i].id] = list[i];
+      anyOnline = anyOnline || list[i] != null;
+    }
+    hubRelease = await get(hubEntry);
     offline = !anyOnline;
     loading = false;
     await refreshInstalled();
+  }
+
+  /// Вернулись в хаб (например, из системного окна установки).
+  Future<void> onResume() async {
+    await refreshInstalled();
+    for (final id in _pending.keys.toList()) {
+      final now = installed[id];
+      if (now == null || now >= _pending[id]!) {
+        _pending.remove(id);
+        stuck.remove(id);
+      } else {
+        stuck.add(id);
+      }
+    }
+    notifyListeners();
   }
 
   bool hasUpdate(AppEntry a) {
@@ -78,6 +112,7 @@ class HubState extends ChangeNotifier {
       _job(a.id, const Job('Скачиваю…', 0));
       final f = await download(url, asset!, (p) => _job(a.id, Job('Скачиваю… ${(p * 100).round()}%', p)));
       _job(a.id, const Job('Устанавливаю…'));
+      if (isAndroid && installed[a.id] != null && r != null) _pending[a.id] = r.build;
       final err = await installFile(f);
       return err;
     } catch (e) {
@@ -89,6 +124,8 @@ class HubState extends ChangeNotifier {
   }
 
   Future<String?> remove(AppEntry a) async {
+    _pending.remove(a.id);
+    stuck.remove(a.id);
     _job(a.id, const Job('Удаляю…'));
     final err = await uninstall(a);
     _job(a.id, null);

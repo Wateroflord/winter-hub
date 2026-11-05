@@ -1,0 +1,40 @@
+name: Update versions.json
+
+# Каждые 15 минут записывает свежие сборки всех приложений в versions.json,
+# чтобы хаб делал 1 запрос вместо 13 к GitHub API.
+on:
+  schedule:
+    - cron: '7,22,37,52 * * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'catalog.json'
+      - 'ci/make_versions.py'
+      - '.github/workflows/versions.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: versions
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build versions.json
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 ci/make_versions.py
+      - name: Commit
+        run: |
+          git diff --quiet -- versions.json && git ls-files --error-unmatch versions.json >/dev/null 2>&1 && exit 0
+          git config user.name "winter-hub-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add versions.json
+          git commit -m "Update versions.json"
+          for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 5; done
