@@ -55,12 +55,16 @@ def main():
                     out[f"{repo}|{asset}"] = r
     if errors and not out:
         sys.exit(1)
-    old = {}
+    old, old_time = {}, None
     try:
-        old = json.load(open("versions.json", encoding="utf-8")).get("releases", {})
+        prev = json.load(open("versions.json", encoding="utf-8"))
+        old = prev.get("releases", {})
+        old_time = datetime.strptime(prev.get("updated", ""), "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
     except Exception:  # noqa: BLE001
         pass
-    if old == out:
+    # Без изменений файл всё равно обновляется раз в 6 часов: по полю updated хаб
+    # понимает, что сводка живая (если GitHub перестанет её обновлять — хаб спросит API сам).
+    if old == out and old_time and (datetime.now(timezone.utc) - old_time).total_seconds() < 6 * 3600:
         print("Без изменений")
         return
     json.dump({"updated": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"), "releases": out},

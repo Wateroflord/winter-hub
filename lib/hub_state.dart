@@ -49,7 +49,7 @@ class HubState extends ChangeNotifier {
   Future<void> refresh({bool manual = false}) async {
     catalog = await loadCatalog();
     final v = await loadVersions();
-    final fresh = v?.updated != null && DateTime.now().toUtc().difference(v!.updated!) < const Duration(minutes: 40);
+    final fresh = v?.updated != null && DateTime.now().toUtc().difference(v!.updated!) < const Duration(hours: 7);
     Future<Release?> get(AppEntry a) async {
       final fromSummary = v?.of(a.repo, assetOf(a));
       if (fromSummary != null && fresh && !manual) return fromSummary;
