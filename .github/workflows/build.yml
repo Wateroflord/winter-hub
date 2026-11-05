@@ -2,7 +2,10 @@ name: Build Winter Hub
 
 on:
   push:
+    branches: [main]
     paths-ignore:
+      - 'ci/**'
+      - '.github/workflows/sign-test.yml'
       - 'catalog.json'
       - 'README.md'
       - '.github/workflows/winsmoke.yml'
@@ -39,11 +42,11 @@ jobs:
         run: |
           flutter analyze --no-fatal-infos --no-fatal-warnings > analyze.txt 2>&1 || true
           cat analyze.txt
-          python3 tools/annotate.py analyze.txt "analyze"
+          python3 ci/annotate.py analyze.txt "analyze"
       - name: Build APK
         run: |
           set -o pipefail
-          flutter build apk --release --dart-define=BUILD=${{ github.run_number }} --build-number=${{ github.run_number }} --build-name=1.0.${{ github.run_number }} 2>&1 | tee build.txt || { python3 tools/annotate.py build.txt "build"; exit 1; }
+          flutter build apk --release --dart-define=BUILD=${{ github.run_number }} --build-number=${{ github.run_number }} --build-name=1.0.${{ github.run_number }} 2>&1 | tee build.txt || { python3 ci/annotate.py build.txt "build"; exit 1; }
       - name: Release
         run: |
           cp build/app/outputs/flutter-apk/app-release.apk Winter-Hub.apk
@@ -76,7 +79,7 @@ jobs:
         shell: bash
         run: |
           set -o pipefail
-          flutter build windows --release --dart-define=BUILD=${{ github.run_number }} --build-number=${{ github.run_number }} --build-name=1.0.${{ github.run_number }} 2>&1 | tee build.txt || { python3 tools/annotate.py build.txt "windows"; exit 1; }
+          flutter build windows --release --dart-define=BUILD=${{ github.run_number }} --build-number=${{ github.run_number }} --build-name=1.0.${{ github.run_number }} 2>&1 | tee build.txt || { python3 ci/annotate.py build.txt "windows"; exit 1; }
       - name: Build installer
         shell: pwsh
         env:

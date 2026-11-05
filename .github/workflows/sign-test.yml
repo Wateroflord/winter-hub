@@ -1,0 +1,52 @@
+name: Signing test
+
+# Проверка новой подписи на эмуляторе: старая версия → новая (должна встать поверх),
+# затем APK со старым публичным ключом (должен быть отклонён).
+on:
+  push:
+    branches: [ci-sign-test]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Prepare APKs
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -e
+          mkdir -p t
+          gh release download -R Wateroflord/winter-mines -p Winter-Mines.apk -D t
+          cp t/Winter-Mines.apk t/old.apk
+          cp t/Winter-Mines.apk t/rotated.apk
+          cp t/Winter-Mines.apk t/attacker.apk
+          PW=TestPass12345
+          keytool -genkeypair -keystore t/new.p12 -storetype PKCS12 -alias winter -keyalg RSA -keysize 2048 -validity 1000 -storepass $PW -keypass $PW -dname "CN=Test" >/dev/null 2>&1
+          export WINTER_SIGNING=$(python3 -c "import base64,json;print(base64.b64encode(json.dumps({'alias':'winter','password':'$PW','keystore':base64.b64encode(open('t/new.p12','rb').read()).decode()}).encode()).decode())")
+          python3 ci/sign_apk.py t/rotated.apk shared
+          WINTER_SIGNING= python3 ci/sign_apk.py t/attacker.apk shared
+          BT=$(ls -d $ANDROID_HOME/build-tools/* | sort -V | tail -1)
+          $BT/apksigner lineage --in t/rotated.apk --print-certs || true
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Install chain on emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          arch: x86_64
+          target: google_apis
+          disable-animations: true
+          script: |
+            adb install t/old.apk && echo "RESULT old: OK"
+            adb install -r t/rotated.apk && echo "RESULT rotated-over-old: OK" || echo "RESULT rotated-over-old: FAIL"
+            adb install -r t/attacker.apk && echo "RESULT attacker-over-rotated: INSTALLED (BAD)" || echo "RESULT attacker-over-rotated: REJECTED (GOOD)"
+            adb shell dumpsys package com.winterhub.winter_mines | grep -i -E "signatures|versionCode" | head -5 || true
