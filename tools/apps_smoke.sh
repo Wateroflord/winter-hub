@@ -6,9 +6,9 @@ for apk in apks/*.apk; do
   name=$(basename "$apk" .apk)
   pkg=$("$BT/aapt2" dump packagename "$apk" 2>/dev/null | tr -d '\r')
   [ -n "$pkg" ] || pkg=$(echo "$name" | tr 'A-Z-' 'a-z_' | sed 's/^/com.winterhub./')
-  libs=$(unzip -l "$apk" | grep -o 'lib/[^/]*/' | sort -u | tr '\n' ' ')
-  if [ -n "$libs" ] && ! echo "$libs" | grep -q 'lib/x86_64/'; then
-    echo "$name skip (только ARM: $libs)" >> out/status.txt
+  # Сборка только под телефоны (ARM) на эмуляторе x86_64 не запустится — пропускаем.
+  if unzip -l "$apk" | grep -q 'lib/.*/libflutter.so' && ! unzip -l "$apk" | grep -q 'lib/x86_64/libflutter.so'; then
+    echo "$name skip (только для ARM-телефонов)" >> out/status.txt
     continue
   fi
   adb install -r "$apk" >/dev/null 2>&1 || { echo "$name install-failed" >> out/status.txt; continue; }
