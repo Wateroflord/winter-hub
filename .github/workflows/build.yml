@@ -92,6 +92,7 @@ jobs:
         run: |
           flutter create --project-name winter_hub --org com.winterhub --platforms windows .
           rm -f test/widget_test.dart
+          python tools/patch_windows.py
           flutter pub get
           dart run flutter_launcher_icons -f icons_windows.yaml || true
           sed -i 's/L"winter_hub"/L"Winter Hub"/' windows/runner/main.cpp || true

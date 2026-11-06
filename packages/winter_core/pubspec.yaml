@@ -1,5 +1,5 @@
 name: winter_core
-description: Общий код приложений Winter Hub — отчёты о падениях.
+description: Shared code for Winter Hub apps (crash reports).
 publish_to: 'none'
 version: 1.0.0
 
