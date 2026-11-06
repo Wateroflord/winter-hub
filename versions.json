@@ -2,322 +2,350 @@
  "releases": {
   "Wateroflord/dota-draft|Dota-Draft-Setup.exe": {
    "a": {
-    "Dota-Draft-Setup.exe": "https://github.com/Wateroflord/dota-draft/releases/download/build-36/Dota-Draft-Setup.exe",
-    "Dota-Draft-Windows.zip": "https://github.com/Wateroflord/dota-draft/releases/download/build-36/Dota-Draft-Windows.zip",
-    "Dota-Draft.apk": "https://github.com/Wateroflord/dota-draft/releases/download/build-36/Dota-Draft.apk"
+    "Dota-Draft-Setup.exe": "https://github.com/Wateroflord/dota-draft/releases/download/build-39/Dota-Draft-Setup.exe",
+    "Dota-Draft-Windows.zip": "https://github.com/Wateroflord/dota-draft/releases/download/build-39/Dota-Draft-Windows.zip",
+    "Dota-Draft.apk": "https://github.com/Wateroflord/dota-draft/releases/download/build-39/Dota-Draft.apk"
    },
-   "b": 36,
+   "b": 39,
    "d": "2026-11-06",
    "s": {
-    "Dota-Draft-Setup.exe": 12273233,
-    "Dota-Draft-Windows.zip": 14673454,
-    "Dota-Draft.apk": 80578898
+    "Dota-Draft-Setup.exe": 12283747,
+    "Dota-Draft-Windows.zip": 14687035,
+    "Dota-Draft.apk": 80615762
    }
   },
   "Wateroflord/dota-draft|Dota-Draft.apk": {
    "a": {
-    "Dota-Draft.apk": "https://github.com/Wateroflord/dota-draft/releases/download/build-37/Dota-Draft.apk"
+    "Dota-Draft-Setup.exe": "https://github.com/Wateroflord/dota-draft/releases/download/build-39/Dota-Draft-Setup.exe",
+    "Dota-Draft-Windows.zip": "https://github.com/Wateroflord/dota-draft/releases/download/build-39/Dota-Draft-Windows.zip",
+    "Dota-Draft.apk": "https://github.com/Wateroflord/dota-draft/releases/download/build-39/Dota-Draft.apk"
    },
-   "b": 37,
+   "b": 39,
    "d": "2026-11-06",
    "s": {
-    "Dota-Draft.apk": 80611666
+    "Dota-Draft-Setup.exe": 12283747,
+    "Dota-Draft-Windows.zip": 14687035,
+    "Dota-Draft.apk": 80615762
    }
   },
   "Wateroflord/draw-school|Draw-School-Setup.exe": {
    "a": {
-    "Draw-School-Setup.exe": "https://github.com/Wateroflord/draw-school/releases/download/build-3/Draw-School-Setup.exe",
-    "Draw-School.apk": "https://github.com/Wateroflord/draw-school/releases/download/build-3/Draw-School.apk"
+    "Draw-School-Setup.exe": "https://github.com/Wateroflord/draw-school/releases/download/build-5/Draw-School-Setup.exe",
+    "Draw-School.apk": "https://github.com/Wateroflord/draw-school/releases/download/build-5/Draw-School.apk"
    },
-   "b": 3,
-   "d": "2026-11-05",
+   "b": 5,
+   "d": "2026-11-06",
    "s": {
-    "Draw-School-Setup.exe": 10100264,
-    "Draw-School.apk": 47016189
+    "Draw-School-Setup.exe": 10143145,
+    "Draw-School.apk": 47286799
    }
   },
   "Wateroflord/draw-school|Draw-School.apk": {
    "a": {
-    "Draw-School.apk": "https://github.com/Wateroflord/draw-school/releases/download/build-4/Draw-School.apk"
+    "Draw-School-Setup.exe": "https://github.com/Wateroflord/draw-school/releases/download/build-5/Draw-School-Setup.exe",
+    "Draw-School.apk": "https://github.com/Wateroflord/draw-school/releases/download/build-5/Draw-School.apk"
    },
-   "b": 4,
+   "b": 5,
    "d": "2026-11-06",
    "s": {
-    "Draw-School.apk": 47282703
+    "Draw-School-Setup.exe": 10143145,
+    "Draw-School.apk": 47286799
    }
   },
   "Wateroflord/forest-survival|Forest-Survival-Setup.exe": {
    "a": {
-    "Forest-Survival-Setup.exe": "https://github.com/Wateroflord/forest-survival/releases/download/build-3/Forest-Survival-Setup.exe",
-    "Forest-Survival.apk": "https://github.com/Wateroflord/forest-survival/releases/download/build-3/Forest-Survival.apk"
+    "Forest-Survival-Setup.exe": "https://github.com/Wateroflord/forest-survival/releases/download/build-5/Forest-Survival-Setup.exe",
+    "Forest-Survival.apk": "https://github.com/Wateroflord/forest-survival/releases/download/build-5/Forest-Survival.apk"
    },
-   "b": 3,
-   "d": "2026-11-05",
+   "b": 5,
+   "d": "2026-11-06",
    "s": {
-    "Forest-Survival-Setup.exe": 10382963,
-    "Forest-Survival.apk": 50129423
+    "Forest-Survival-Setup.exe": 10391089,
+    "Forest-Survival.apk": 50379279
    }
   },
   "Wateroflord/forest-survival|Forest-Survival.apk": {
    "a": {
-    "Forest-Survival.apk": "https://github.com/Wateroflord/forest-survival/releases/download/build-4/Forest-Survival.apk"
+    "Forest-Survival-Setup.exe": "https://github.com/Wateroflord/forest-survival/releases/download/build-5/Forest-Survival-Setup.exe",
+    "Forest-Survival.apk": "https://github.com/Wateroflord/forest-survival/releases/download/build-5/Forest-Survival.apk"
    },
-   "b": 4,
+   "b": 5,
    "d": "2026-11-06",
    "s": {
-    "Forest-Survival.apk": 50375183
+    "Forest-Survival-Setup.exe": 10391089,
+    "Forest-Survival.apk": 50379279
    }
   },
   "Wateroflord/kbju-tracker|KBJU-Tracker-Setup.exe": {
    "a": {
-    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-27/KBJU-Tracker-Setup.exe",
-    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-27/KBJU-Tracker-Windows.zip",
-    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-27/KBJU-Tracker.apk"
+    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-29/KBJU-Tracker-Setup.exe",
+    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-29/KBJU-Tracker-Windows.zip",
+    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-29/KBJU-Tracker.apk"
    },
-   "b": 27,
+   "b": 29,
    "d": "2026-11-06",
    "s": {
-    "KBJU-Tracker-Setup.exe": 11644596,
-    "KBJU-Tracker-Windows.zip": 13802383,
-    "KBJU-Tracker.apk": 80199256
+    "KBJU-Tracker-Setup.exe": 11651062,
+    "KBJU-Tracker-Windows.zip": 13810879,
+    "KBJU-Tracker.apk": 80285359
    }
   },
   "Wateroflord/kbju-tracker|KBJU-Tracker.apk": {
    "a": {
-    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-28/KBJU-Tracker.apk"
+    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-30/KBJU-Tracker.apk"
    },
-   "b": 28,
+   "b": 30,
    "d": "2026-11-06",
    "s": {
-    "KBJU-Tracker.apk": 80281263
+    "KBJU-Tracker.apk": 80694959
    }
   },
   "Wateroflord/mog-battle|Mog-Battle-Setup.exe": {
    "a": {
-    "Mog-Battle-Setup.exe": "https://github.com/Wateroflord/mog-battle/releases/download/build-3/Mog-Battle-Setup.exe",
-    "Mog-Battle-Windows.zip": "https://github.com/Wateroflord/mog-battle/releases/download/build-3/Mog-Battle-Windows.zip",
-    "Mog-Battle.apk": "https://github.com/Wateroflord/mog-battle/releases/download/build-3/Mog-Battle.apk"
+    "Mog-Battle-Setup.exe": "https://github.com/Wateroflord/mog-battle/releases/download/build-5/Mog-Battle-Setup.exe",
+    "Mog-Battle-Windows.zip": "https://github.com/Wateroflord/mog-battle/releases/download/build-5/Mog-Battle-Windows.zip",
+    "Mog-Battle.apk": "https://github.com/Wateroflord/mog-battle/releases/download/build-5/Mog-Battle.apk"
    },
-   "b": 3,
-   "d": "2026-11-05",
+   "b": 5,
+   "d": "2026-11-06",
    "s": {
-    "Mog-Battle-Setup.exe": 10948661,
-    "Mog-Battle-Windows.zip": 12686153,
-    "Mog-Battle.apk": 55749318
+    "Mog-Battle-Setup.exe": 10983801,
+    "Mog-Battle-Windows.zip": 12736052,
+    "Mog-Battle.apk": 56130246
    }
   },
   "Wateroflord/mog-battle|Mog-Battle.apk": {
    "a": {
-    "Mog-Battle.apk": "https://github.com/Wateroflord/mog-battle/releases/download/build-4/Mog-Battle.apk"
+    "Mog-Battle-Setup.exe": "https://github.com/Wateroflord/mog-battle/releases/download/build-5/Mog-Battle-Setup.exe",
+    "Mog-Battle-Windows.zip": "https://github.com/Wateroflord/mog-battle/releases/download/build-5/Mog-Battle-Windows.zip",
+    "Mog-Battle.apk": "https://github.com/Wateroflord/mog-battle/releases/download/build-5/Mog-Battle.apk"
    },
-   "b": 4,
+   "b": 5,
    "d": "2026-11-06",
    "s": {
-    "Mog-Battle.apk": 56126150
+    "Mog-Battle-Setup.exe": 10983801,
+    "Mog-Battle-Windows.zip": 12736052,
+    "Mog-Battle.apk": 56130246
    }
   },
   "Wateroflord/winter-chat|Winter-Chat-Setup.exe": {
    "a": {
-    "Winter-Chat-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-9/Winter-Chat-Linux.tar.gz",
-    "Winter-Chat-Server-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-9/Winter-Chat-Server-Linux.tar.gz",
-    "Winter-Chat-Server-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-9/Winter-Chat-Server-Windows.zip",
-    "Winter-Chat-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-9/Winter-Chat-Setup.exe",
-    "Winter-Chat.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-9/Winter-Chat.apk"
+    "Winter-Chat-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-14/Winter-Chat-Linux.tar.gz",
+    "Winter-Chat-Server-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-14/Winter-Chat-Server-Linux.tar.gz",
+    "Winter-Chat-Server-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-14/Winter-Chat-Server-Windows.zip",
+    "Winter-Chat-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-14/Winter-Chat-Setup.exe",
+    "Winter-Chat.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-14/Winter-Chat.apk"
    },
-   "b": 9,
-   "d": "2026-11-05",
+   "b": 14,
+   "d": "2026-11-06",
    "s": {
-    "Winter-Chat-Linux.tar.gz": 20572185,
-    "Winter-Chat-Server-Linux.tar.gz": 29046872,
-    "Winter-Chat-Server-Windows.zip": 29281217,
-    "Winter-Chat-Setup.exe": 17615380,
-    "Winter-Chat.apk": 56538562
+    "Winter-Chat-Linux.tar.gz": 20587609,
+    "Winter-Chat-Server-Linux.tar.gz": 29054628,
+    "Winter-Chat-Server-Windows.zip": 29289311,
+    "Winter-Chat-Setup.exe": 17655010,
+    "Winter-Chat.apk": 56495117
    }
   },
   "Wateroflord/winter-chat|Winter-Chat.apk": {
    "a": {
-    "Winter-Chat-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-9/Winter-Chat-Linux.tar.gz",
-    "Winter-Chat-Server-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-9/Winter-Chat-Server-Linux.tar.gz",
-    "Winter-Chat-Server-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-9/Winter-Chat-Server-Windows.zip",
-    "Winter-Chat-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-9/Winter-Chat-Setup.exe",
-    "Winter-Chat.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-9/Winter-Chat.apk"
+    "Winter-Chat-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-14/Winter-Chat-Linux.tar.gz",
+    "Winter-Chat-Server-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-14/Winter-Chat-Server-Linux.tar.gz",
+    "Winter-Chat-Server-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-14/Winter-Chat-Server-Windows.zip",
+    "Winter-Chat-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-14/Winter-Chat-Setup.exe",
+    "Winter-Chat.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-14/Winter-Chat.apk"
    },
-   "b": 9,
-   "d": "2026-11-05",
+   "b": 14,
+   "d": "2026-11-06",
    "s": {
-    "Winter-Chat-Linux.tar.gz": 20572185,
-    "Winter-Chat-Server-Linux.tar.gz": 29046872,
-    "Winter-Chat-Server-Windows.zip": 29281217,
-    "Winter-Chat-Setup.exe": 17615380,
-    "Winter-Chat.apk": 56538562
+    "Winter-Chat-Linux.tar.gz": 20587609,
+    "Winter-Chat-Server-Linux.tar.gz": 29054628,
+    "Winter-Chat-Server-Windows.zip": 29289311,
+    "Winter-Chat-Setup.exe": 17655010,
+    "Winter-Chat.apk": 56495117
    }
   },
   "Wateroflord/winter-chess|Winter-Chess-Setup.exe": {
    "a": {
-    "Winter-Chess-Setup.exe": "https://github.com/Wateroflord/winter-chess/releases/download/build-6/Winter-Chess-Setup.exe",
-    "Winter-Chess.apk": "https://github.com/Wateroflord/winter-chess/releases/download/build-6/Winter-Chess.apk"
+    "Winter-Chess-Setup.exe": "https://github.com/Wateroflord/winter-chess/releases/download/build-9/Winter-Chess-Setup.exe",
+    "Winter-Chess.apk": "https://github.com/Wateroflord/winter-chess/releases/download/build-9/Winter-Chess.apk"
    },
-   "b": 6,
-   "d": "2026-11-05",
+   "b": 9,
+   "d": "2026-11-06",
    "s": {
-    "Winter-Chess-Setup.exe": 85644814,
-    "Winter-Chess.apk": 102383039
+    "Winter-Chess-Setup.exe": 85675596,
+    "Winter-Chess.apk": 102457041
    }
   },
   "Wateroflord/winter-chess|Winter-Chess.apk": {
    "a": {
-    "Winter-Chess.apk": "https://github.com/Wateroflord/winter-chess/releases/download/build-8/Winter-Chess.apk"
+    "Winter-Chess-Setup.exe": "https://github.com/Wateroflord/winter-chess/releases/download/build-9/Winter-Chess-Setup.exe",
+    "Winter-Chess.apk": "https://github.com/Wateroflord/winter-chess/releases/download/build-9/Winter-Chess.apk"
    },
-   "b": 8,
+   "b": 9,
    "d": "2026-11-06",
    "s": {
-    "Winter-Chess.apk": 102452945
+    "Winter-Chess-Setup.exe": 85675596,
+    "Winter-Chess.apk": 102457041
    }
   },
   "Wateroflord/winter-expiry|winter-expiry.apk": {
    "a": {
-    "winter-expiry.apk": "https://github.com/Wateroflord/winter-expiry/releases/download/v1.0.6/winter-expiry.apk"
+    "winter-expiry.apk": "https://github.com/Wateroflord/winter-expiry/releases/download/v1.0.7/winter-expiry.apk"
    },
-   "b": 6,
+   "b": 7,
    "d": "2026-11-06",
    "s": {
-    "winter-expiry.apk": 75687698
+    "winter-expiry.apk": 75691794
    }
   },
   "Wateroflord/winter-hub|Winter-Hub-Setup.exe": {
    "a": {
-    "Winter-Hub-Setup.exe": "https://github.com/Wateroflord/winter-hub/releases/download/build-12/Winter-Hub-Setup.exe",
-    "Winter-Hub-Windows.zip": "https://github.com/Wateroflord/winter-hub/releases/download/build-12/Winter-Hub-Windows.zip",
-    "Winter-Hub.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-12/Winter-Hub.apk"
+    "Winter-Hub-Setup.exe": "https://github.com/Wateroflord/winter-hub/releases/download/build-14/Winter-Hub-Setup.exe",
+    "Winter-Hub-Windows.zip": "https://github.com/Wateroflord/winter-hub/releases/download/build-14/Winter-Hub-Windows.zip",
+    "Winter-Hub.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-14/Winter-Hub.apk"
    },
-   "b": 12,
+   "b": 14,
    "d": "2026-11-06",
    "s": {
-    "Winter-Hub-Setup.exe": 10248398,
-    "Winter-Hub-Windows.zip": 11692710,
-    "Winter-Hub.apk": 48155125
+    "Winter-Hub-Setup.exe": 10296222,
+    "Winter-Hub-Windows.zip": 11755974,
+    "Winter-Hub.apk": 48614968
    }
   },
   "Wateroflord/winter-hub|Winter-Hub.apk": {
    "a": {
-    "Winter-Hub.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-13/Winter-Hub.apk"
+    "Winter-Hub-Setup.exe": "https://github.com/Wateroflord/winter-hub/releases/download/build-14/Winter-Hub-Setup.exe",
+    "Winter-Hub-Windows.zip": "https://github.com/Wateroflord/winter-hub/releases/download/build-14/Winter-Hub-Windows.zip",
+    "Winter-Hub.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-14/Winter-Hub.apk"
    },
-   "b": 13,
+   "b": 14,
    "d": "2026-11-06",
    "s": {
+    "Winter-Hub-Setup.exe": 10296222,
+    "Winter-Hub-Windows.zip": 11755974,
     "Winter-Hub.apk": 48614968
    }
   },
   "Wateroflord/winter-language|Winter-Language-Setup.exe": {
    "a": {
-    "Winter-Language-Setup.exe": "https://github.com/Wateroflord/winter-language/releases/download/build-4/Winter-Language-Setup.exe",
-    "Winter-Language.apk": "https://github.com/Wateroflord/winter-language/releases/download/build-4/Winter-Language.apk"
+    "Winter-Language-Setup.exe": "https://github.com/Wateroflord/winter-language/releases/download/build-6/Winter-Language-Setup.exe",
+    "Winter-Language.apk": "https://github.com/Wateroflord/winter-language/releases/download/build-6/Winter-Language.apk"
    },
-   "b": 4,
+   "b": 6,
    "d": "2026-11-06",
    "s": {
-    "Winter-Language-Setup.exe": 10801448,
-    "Winter-Language.apk": 52500894
+    "Winter-Language-Setup.exe": 10809801,
+    "Winter-Language.apk": 52619765
    }
   },
   "Wateroflord/winter-language|Winter-Language.apk": {
    "a": {
-    "Winter-Language.apk": "https://github.com/Wateroflord/winter-language/releases/download/build-5/Winter-Language.apk"
+    "Winter-Language-Setup.exe": "https://github.com/Wateroflord/winter-language/releases/download/build-6/Winter-Language-Setup.exe",
+    "Winter-Language.apk": "https://github.com/Wateroflord/winter-language/releases/download/build-6/Winter-Language.apk"
    },
-   "b": 5,
+   "b": 6,
    "d": "2026-11-06",
    "s": {
-    "Winter-Language.apk": 52615669
+    "Winter-Language-Setup.exe": 10809801,
+    "Winter-Language.apk": 52619765
    }
   },
   "Wateroflord/winter-mines|Winter-Mines-Setup.exe": {
    "a": {
-    "Winter-Mines-Setup.exe": "https://github.com/Wateroflord/winter-mines/releases/download/build-3/Winter-Mines-Setup.exe",
-    "Winter-Mines.apk": "https://github.com/Wateroflord/winter-mines/releases/download/build-3/Winter-Mines.apk"
+    "Winter-Mines-Setup.exe": "https://github.com/Wateroflord/winter-mines/releases/download/build-5/Winter-Mines-Setup.exe",
+    "Winter-Mines.apk": "https://github.com/Wateroflord/winter-mines/releases/download/build-5/Winter-Mines.apk"
    },
-   "b": 3,
-   "d": "2026-11-05",
+   "b": 5,
+   "d": "2026-11-06",
    "s": {
-    "Winter-Mines-Setup.exe": 10173829,
-    "Winter-Mines.apk": 47814909
+    "Winter-Mines-Setup.exe": 10210372,
+    "Winter-Mines.apk": 48069135
    }
   },
   "Wateroflord/winter-mines|Winter-Mines.apk": {
    "a": {
-    "Winter-Mines.apk": "https://github.com/Wateroflord/winter-mines/releases/download/build-4/Winter-Mines.apk"
+    "Winter-Mines-Setup.exe": "https://github.com/Wateroflord/winter-mines/releases/download/build-5/Winter-Mines-Setup.exe",
+    "Winter-Mines.apk": "https://github.com/Wateroflord/winter-mines/releases/download/build-5/Winter-Mines.apk"
    },
-   "b": 4,
+   "b": 5,
    "d": "2026-11-06",
    "s": {
-    "Winter-Mines.apk": 48065039
+    "Winter-Mines-Setup.exe": 10210372,
+    "Winter-Mines.apk": 48069135
    }
   },
   "Wateroflord/winter-music|Winter-Music-Setup.exe": {
    "a": {
-    "Winter-Music-Setup.exe": "https://github.com/Wateroflord/winter-music/releases/download/build-6/Winter-Music-Setup.exe",
-    "Winter-Music.apk": "https://github.com/Wateroflord/winter-music/releases/download/build-6/Winter-Music.apk"
+    "Winter-Music-Setup.exe": "https://github.com/Wateroflord/winter-music/releases/download/build-8/Winter-Music-Setup.exe",
+    "Winter-Music.apk": "https://github.com/Wateroflord/winter-music/releases/download/build-8/Winter-Music.apk"
    },
-   "b": 6,
-   "d": "2026-11-05",
+   "b": 8,
+   "d": "2026-11-06",
    "s": {
-    "Winter-Music-Setup.exe": 10701933,
-    "Winter-Music.apk": 53152177
+    "Winter-Music-Setup.exe": 10740467,
+    "Winter-Music.apk": 53500514
    }
   },
   "Wateroflord/winter-music|Winter-Music.apk": {
    "a": {
-    "Winter-Music.apk": "https://github.com/Wateroflord/winter-music/releases/download/build-7/Winter-Music.apk"
+    "Winter-Music-Setup.exe": "https://github.com/Wateroflord/winter-music/releases/download/build-8/Winter-Music-Setup.exe",
+    "Winter-Music.apk": "https://github.com/Wateroflord/winter-music/releases/download/build-8/Winter-Music.apk"
    },
-   "b": 7,
+   "b": 8,
    "d": "2026-11-06",
    "s": {
-    "Winter-Music.apk": 53496418
+    "Winter-Music-Setup.exe": 10740467,
+    "Winter-Music.apk": 53500514
    }
   },
   "Wateroflord/winter-paint|Winter-Paint-Setup.exe": {
    "a": {
-    "Winter-Paint-Setup.exe": "https://github.com/Wateroflord/winter-paint/releases/download/build-6/Winter-Paint-Setup.exe",
-    "Winter-Paint.apk": "https://github.com/Wateroflord/winter-paint/releases/download/build-6/Winter-Paint.apk"
+    "Winter-Paint-Setup.exe": "https://github.com/Wateroflord/winter-paint/releases/download/build-8/Winter-Paint-Setup.exe",
+    "Winter-Paint.apk": "https://github.com/Wateroflord/winter-paint/releases/download/build-8/Winter-Paint.apk"
    },
-   "b": 6,
-   "d": "2026-11-05",
+   "b": 8,
+   "d": "2026-11-06",
    "s": {
-    "Winter-Paint-Setup.exe": 10550757,
-    "Winter-Paint.apk": 52156766
+    "Winter-Paint-Setup.exe": 10593283,
+    "Winter-Paint.apk": 52328975
    }
   },
   "Wateroflord/winter-paint|Winter-Paint.apk": {
    "a": {
-    "Winter-Paint.apk": "https://github.com/Wateroflord/winter-paint/releases/download/build-7/Winter-Paint.apk"
+    "Winter-Paint-Setup.exe": "https://github.com/Wateroflord/winter-paint/releases/download/build-8/Winter-Paint-Setup.exe",
+    "Winter-Paint.apk": "https://github.com/Wateroflord/winter-paint/releases/download/build-8/Winter-Paint.apk"
    },
-   "b": 7,
+   "b": 8,
    "d": "2026-11-06",
    "s": {
-    "Winter-Paint.apk": 52324879
+    "Winter-Paint-Setup.exe": 10593283,
+    "Winter-Paint.apk": 52328975
    }
   },
   "Wateroflord/winter-walks|Winter-Walks-Setup.exe": {
    "a": {
-    "Winter-Walks-Setup.exe": "https://github.com/Wateroflord/winter-walks/releases/download/build-11/Winter-Walks-Setup.exe",
-    "Winter-Walks.apk": "https://github.com/Wateroflord/winter-walks/releases/download/build-11/Winter-Walks.apk"
+    "Winter-Walks-Setup.exe": "https://github.com/Wateroflord/winter-walks/releases/download/build-13/Winter-Walks-Setup.exe",
+    "Winter-Walks.apk": "https://github.com/Wateroflord/winter-walks/releases/download/build-13/Winter-Walks.apk"
    },
-   "b": 11,
-   "d": "2026-11-05",
+   "b": 13,
+   "d": "2026-11-06",
    "s": {
-    "Winter-Walks-Setup.exe": 10777421,
-    "Winter-Walks.apk": 53705772
+    "Winter-Walks-Setup.exe": 10783409,
+    "Winter-Walks.apk": 53742636
    }
   },
   "Wateroflord/winter-walks|Winter-Walks.apk": {
    "a": {
-    "Winter-Walks.apk": "https://github.com/Wateroflord/winter-walks/releases/download/build-12/Winter-Walks.apk"
+    "Winter-Walks-Setup.exe": "https://github.com/Wateroflord/winter-walks/releases/download/build-13/Winter-Walks-Setup.exe",
+    "Winter-Walks.apk": "https://github.com/Wateroflord/winter-walks/releases/download/build-13/Winter-Walks.apk"
    },
-   "b": 12,
+   "b": 13,
    "d": "2026-11-06",
    "s": {
-    "Winter-Walks.apk": 53738540
+    "Winter-Walks-Setup.exe": 10783409,
+    "Winter-Walks.apk": 53742636
    }
   }
  },
- "updated": "2026-11-06T07:52:25Z"
+ "updated": "2026-11-06T09:46:43Z"
 }
