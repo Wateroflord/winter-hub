@@ -6,6 +6,7 @@ on:
     paths-ignore:
       - 'ci/**'
       - '.github/workflows/sign-test.yml'
+      - '.github/workflows/secrets-sync.yml'
       - 'catalog.json'
       - 'versions.json'
       - '.github/workflows/versions.yml'
