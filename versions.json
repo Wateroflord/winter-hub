@@ -218,15 +218,11 @@
   },
   "Wateroflord/winter-hub|Winter-Hub.apk": {
    "a": {
-    "Winter-Hub-Setup.exe": "https://github.com/Wateroflord/winter-hub/releases/download/build-9/Winter-Hub-Setup.exe",
-    "Winter-Hub-Windows.zip": "https://github.com/Wateroflord/winter-hub/releases/download/build-9/Winter-Hub-Windows.zip",
-    "Winter-Hub.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-9/Winter-Hub.apk"
+    "Winter-Hub.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-11/Winter-Hub.apk"
    },
-   "b": 9,
-   "d": "2026-11-05",
+   "b": 11,
+   "d": "2026-11-06",
    "s": {
-    "Winter-Hub-Setup.exe": 10236464,
-    "Winter-Hub-Windows.zip": 11677477,
     "Winter-Hub.apk": 48036341
    }
   },
@@ -327,5 +323,5 @@
    }
   }
  },
- "updated": "2026-11-05T20:06:24Z"
+ "updated": "2026-11-06T06:36:41Z"
 }
