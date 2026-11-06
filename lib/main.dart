@@ -6,8 +6,11 @@ import 'hub_state.dart';
 import 'native.dart';
 import 'snow.dart';
 import 'theme.dart';
+import 'package:winter_core/winter_core.dart';
 
-void main() {
+void main() => runWinterApp(repo: 'winter-hub', appName: 'Winter Hub', body: _main);
+
+void _main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
@@ -15,7 +18,7 @@ void main() {
     systemNavigationBarColor: W.bg,
     systemNavigationBarIconBrightness: Brightness.light,
   ));
-  runApp(const WinterHubApp());
+  runApp(WinterCrashBanner(child: const WinterHubApp()));
 }
 
 class WinterHubApp extends StatelessWidget {

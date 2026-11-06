@@ -46,6 +46,12 @@ jobs:
           cat analyze.txt
           python3 ci/annotate.py analyze.txt "analyze"
           exit $rc
+      - name: Tests (winter_core)
+        run: |
+          set -o pipefail
+          cd packages/winter_core
+          flutter pub get
+          flutter test 2>&1 | tee ../../core-test.txt || { python3 ../../ci/annotate.py ../../core-test.txt "tests"; exit 1; }
       - name: Tests
         run: |
           set -o pipefail

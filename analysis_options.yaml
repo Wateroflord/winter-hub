@@ -1,2 +1,5 @@
+analyzer:
+  exclude:
+    - packages/**
 linter:
   rules: {}
