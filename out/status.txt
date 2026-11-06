@@ -1,0 +1,14 @@
+Dota-Draft OK
+Draw-School OK
+Forest-Survival OK
+KBJU-Tracker OK
+Mog-Battle OK
+Winter-Chat skip (только для ARM-телефонов)
+Winter-Chess OK
+Winter-Hub OK
+Winter-Language OK
+Winter-Mines OK
+Winter-Music OK
+Winter-Paint OK
+Winter-Walks OK
+winter-expiry OK
