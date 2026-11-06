@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 
 import 'catalog.dart';
 import 'native.dart';
+import 'update_notify.dart';
 
 /// Номер сборки хаба (передаётся при сборке: --dart-define=BUILD=N).
 const hubBuild = int.fromEnvironment('BUILD', defaultValue: 0);
@@ -42,6 +43,12 @@ class HubState extends ChangeNotifier {
       installed[a.id] = await installedBuild(a);
     }
     notifyListeners();
+    if (isAndroid) {
+      await UpdateNotify.remember([
+        for (final a in catalog.apps) (repo: a.repo, asset: assetOf(a), name: a.name, build: installed[a.id]),
+        (repo: hubEntry.repo, asset: assetOf(hubEntry), name: 'Winter Hub', build: hubBuild > 0 ? hubBuild : null),
+      ]);
+    }
   }
 
   /// [manual] — пользователь сам нажал «обновить»: тогда дополнительно

@@ -7,6 +7,7 @@ import 'native.dart';
 import 'snow.dart';
 import 'theme.dart';
 import 'package:winter_core/winter_core.dart';
+import 'update_notify.dart';
 
 void main() => runWinterApp(repo: 'winter-hub', appName: 'Winter Hub', body: _main);
 
@@ -19,6 +20,7 @@ void _main() {
     systemNavigationBarIconBrightness: Brightness.light,
   ));
   runApp(WinterCrashBanner(child: const WinterHubApp()));
+  if (isAndroid) UpdateNotify.start();
 }
 
 class WinterHubApp extends StatelessWidget {

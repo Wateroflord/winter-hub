@@ -10,11 +10,16 @@ for p in [
     "android.permission.INTERNET",
     "android.permission.REQUEST_INSTALL_PACKAGES",
     "android.permission.REQUEST_DELETE_PACKAGES",
+    "android.permission.POST_NOTIFICATIONS",
+    "android.permission.RECEIVE_BOOT_COMPLETED",
+    "android.permission.WAKE_LOCK",
 ]:
     if p not in text:
         text = re.sub(r"(<manifest[^>]*>)", rf'\1\n    <uses-permission android:name="{p}"/>', text, count=1)
 
-packages = ["com.dotadraft.dota_draft", "com.kbju.kbju_tracker", "com.winterhub.winter_chess", "com.winterhub.winter_mines", "com.winterhub.winter_paint", "com.winterhub.draw_school", "com.winterhub.winter_music", "com.winterhub.forest_survival", "com.winterhub.winter_chat", "com.winterhub.mog_battle", "com.winterhub.winter_walks"]
+import json
+# Пакеты всех приложений из каталога — иначе Android 11+ не даёт хабу их видеть и запускать.
+packages = sorted({a["android"]["package"] for a in json.load(open("catalog.json", encoding="utf-8"))["apps"] if a.get("android")})
 inner = "".join(f'        <package android:name="{p}"/>\n' for p in packages)
 if "<queries>" in text:
     text = text.replace("<queries>", "<queries>\n" + inner.rstrip("\n"), 1)
@@ -31,6 +36,24 @@ provider = (
 if "fileprovider" not in text:
     text = text.replace("</application>", provider + "    </application>", 1)
 text = re.sub(r'android:label="[^"]*"', 'android:label="Winter Hub"', text, count=1)
+# Фоновая проверка обновлений (android_alarm_manager_plus).
+if "AlarmService" not in text:
+    text = text.replace("</application>", """    <service
+            android:name="dev.fluttercommunity.plus.androidalarmmanager.AlarmService"
+            android:permission="android.permission.BIND_JOB_SERVICE"
+            android:exported="false"/>
+        <receiver
+            android:name="dev.fluttercommunity.plus.androidalarmmanager.AlarmBroadcastReceiver"
+            android:exported="false"/>
+        <receiver
+            android:name="dev.fluttercommunity.plus.androidalarmmanager.RebootBroadcastReceiver"
+            android:enabled="false"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+    </application>""", 1)
 manifest.write_text(text, encoding="utf-8")
 
 xml = ROOT / "src/main/res/xml"
@@ -120,5 +143,12 @@ if "androidx.core:core" not in g:
         g = re.sub(r"^dependencies\s*\{", 'dependencies {\n    implementation("androidx.core:core-ktx:1.13.1")', g, count=1, flags=re.M)
     else:
         g += '\ndependencies {\n    implementation("androidx.core:core-ktx:1.13.1")\n}\n'
+# Уведомления (flutter_local_notifications) требуют desugaring.
+if "coreLibraryDesugaringEnabled" not in g:
+    g = re.sub(r"compileOptions\s*\{", "compileOptions {\n        isCoreLibraryDesugaringEnabled = true", g, count=1)
+if "desugar_jdk_libs" not in g:
+    g = re.sub(r"^dependencies\s*\{", 'dependencies {\n    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")', g, count=1, flags=re.M)
+if "isCoreLibraryDesugaringEnabled" not in g or "desugar_jdk_libs" not in g:
+    raise SystemExit("PATCH ERROR: desugaring")
 gradle.write_text(g, encoding="utf-8")
 print("patched")

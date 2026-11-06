@@ -1,35 +1,60 @@
 name: Apps smoke test
 
+# Ставит все приложения на эмулятор Android, запускает и проверяет, что не падают.
+# Само запускается каждые 3 часа, но работает только если вышли новые сборки.
+# Если что-то упало — открывает issue (придёт письмо на почту), когда починено — закрывает.
 on:
+  schedule:
+    - cron: '41 */3 * * *'
   workflow_dispatch:
   push:
     branches: [apps-smoke-run]
 
 permissions:
   contents: write
+  issues: write
+
+concurrency:
+  group: apps-smoke
+  cancel-in-progress: false
 
 jobs:
   android:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 50
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: New builds since last check?
+        id: gate
+        run: |
+          python3 -c "import json;r=json.load(open('versions.json'))['releases'];print('\n'.join(sorted(f'{k} {v[\"b\"]}' for k,v in r.items() if k.endswith('.apk'))))" > tested.txt
+          git fetch -q origin apps-smoke-out 2>/dev/null && git show origin/apps-smoke-out:out/tested.txt > prev.txt 2>/dev/null || true
+          if [ "${{ github.event_name }}" = "schedule" ] && cmp -s tested.txt prev.txt; then
+            echo "Новых сборок нет — проверка не нужна"; echo "skip=1" >> "$GITHUB_OUTPUT"
+          fi
       - name: Enable KVM
+        if: steps.gate.outputs.skip != '1'
         run: |
           echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
           sudo udevadm control --reload-rules
           sudo udevadm trigger --name-match=kvm
       - name: Download APKs
+        if: steps.gate.outputs.skip != '1'
         run: |
           mkdir -p apks out
-          for a in winter-chess:Winter-Chess winter-mines:Winter-Mines winter-paint:Winter-Paint draw-school:Draw-School winter-music:Winter-Music forest-survival:Forest-Survival mog-battle:Mog-Battle winter-walks:Winter-Walks winter-hub:Winter-Hub winter-expiry:winter-expiry winter-chat:Winter-Chat kbju-tracker:KBJU-Tracker dota-draft:Dota-Draft; do
+          cp tested.txt out/tested.txt
+          pairs=$(python3 -c "import json;c=json.load(open('catalog.json'));print(' '.join(a['repo'].split('/')[1]+':'+a['android']['asset'] for a in c['apps'] if a.get('android'))+' winter-hub:Winter-Hub.apk')")
+          for a in $pairs; do
             repo=${a%%:*}; asset=${a##*:}
-            gh release download -R Wateroflord/$repo -p "$asset.apk" -D apks || echo "no $asset" >> out/status.txt
+            gh release download -R Wateroflord/$repo -p "$asset" -D apks || echo "${asset%.apk} download-failed" >> out/status.txt
           done
           ls -la apks
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run on emulator
+        if: steps.gate.outputs.skip != '1'
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 34
@@ -37,8 +62,25 @@ jobs:
           target: google_apis
           disable-animations: true
           script: bash tools/apps_smoke.sh
+      - name: Report
+        if: always() && steps.gate.outputs.skip != '1'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          touch out/status.txt
+          cat out/status.txt
+          fails=$(grep -E "FAIL|install-failed|download-failed" out/status.txt || true)
+          title="Проверка на эмуляторе: приложения не запускаются"
+          num=$(gh issue list -R "$GITHUB_REPOSITORY" --state open --search "$title in:title" --json number -q '.[0].number' 2>/dev/null || true)
+          if [ -n "$fails" ]; then
+            body=$(printf 'Не прошли проверку:\n\n```\n%s\n```\n\nСкриншоты и журналы: ветка `apps-smoke-out`. Запуск: %s' "$fails" "$RUN_URL")
+            if [ -n "$num" ]; then gh issue comment "$num" -R "$GITHUB_REPOSITORY" --body "$body"; else gh issue create -R "$GITHUB_REPOSITORY" --title "$title" --body "$body"; fi
+          elif [ -n "$num" ]; then
+            gh issue close "$num" -R "$GITHUB_REPOSITORY" --comment "Все приложения снова запускаются ($RUN_URL)."
+          fi
       - name: Save
-        if: always()
+        if: always() && steps.gate.outputs.skip != '1'
         run: |
           git config user.name "winter-hub-bot"
           git config user.email "actions@users.noreply.github.com"
