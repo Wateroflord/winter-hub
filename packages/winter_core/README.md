@@ -8,10 +8,11 @@ dependencies:
     git:
       url: https://github.com/Wateroflord/winter-hub.git
       path: packages/winter_core
-      ref: core-v1   # версия winter_core — новые правки в хабе не ломают приложения
+      ref: 2c2002e2c47b0ae344152f53c0a5b309043c9e9d   # зафиксированная версия winter_core (1.1)
 ```
 
-Новая версия winter_core = новый тег (`core-v2`, …). Приложение переходит на неё, когда поменяешь `ref`.
+`ref` — номер коммита winter-hub. Правки в winter_core не ломают приложения: приложение получает новую версию,
+только когда в его pubspec.yaml поменяют `ref` на новый коммит.
 
 ## Отчёты о падениях
 
