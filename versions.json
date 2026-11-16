@@ -90,20 +90,8 @@
   },
   "Wateroflord/kbju-tracker|KBJU-Tracker-Setup.exe": {
    "a": {
-    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-30/KBJU-Tracker-Setup.exe",
-    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-30/KBJU-Tracker-Windows.zip",
-    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-30/KBJU-Tracker.apk"
-   },
-   "b": 30,
-   "d": "2026-11-06",
-   "s": {
-    "KBJU-Tracker-Setup.exe": 11693834,
-    "KBJU-Tracker-Windows.zip": 13874814,
-    "KBJU-Tracker.apk": 80694959
-   }
-  },
-  "Wateroflord/kbju-tracker|KBJU-Tracker.apk": {
-   "a": {
+    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-Setup.exe",
+    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-Windows.zip",
     "KBJU-Tracker-arm64-v8a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-arm64-v8a.apk",
     "KBJU-Tracker-armeabi-v7a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-armeabi-v7a.apk",
     "KBJU-Tracker-x86_64.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-x86_64.apk",
@@ -112,6 +100,28 @@
    "b": 34,
    "d": "2026-11-16",
    "s": {
+    "KBJU-Tracker-Setup.exe": 88680104,
+    "KBJU-Tracker-Windows.zip": 97020930,
+    "KBJU-Tracker-arm64-v8a.apk": 96915487,
+    "KBJU-Tracker-armeabi-v7a.apk": 16662498,
+    "KBJU-Tracker-x86_64.apk": 17551295,
+    "KBJU-Tracker.apk": 96915487
+   }
+  },
+  "Wateroflord/kbju-tracker|KBJU-Tracker.apk": {
+   "a": {
+    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-Setup.exe",
+    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-Windows.zip",
+    "KBJU-Tracker-arm64-v8a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-arm64-v8a.apk",
+    "KBJU-Tracker-armeabi-v7a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-armeabi-v7a.apk",
+    "KBJU-Tracker-x86_64.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-x86_64.apk",
+    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker.apk"
+   },
+   "b": 34,
+   "d": "2026-11-16",
+   "s": {
+    "KBJU-Tracker-Setup.exe": 88680104,
+    "KBJU-Tracker-Windows.zip": 97020930,
     "KBJU-Tracker-arm64-v8a.apk": 96915487,
     "KBJU-Tracker-armeabi-v7a.apk": 16662498,
     "KBJU-Tracker-x86_64.apk": 17551295,
@@ -234,18 +244,18 @@
   },
   "Wateroflord/winter-hub|Winter-Hub-Setup.exe": {
    "a": {
-    "Winter-Hub-Setup.exe": "https://github.com/Wateroflord/winter-hub/releases/download/build-16/Winter-Hub-Setup.exe",
-    "Winter-Hub-Windows.zip": "https://github.com/Wateroflord/winter-hub/releases/download/build-16/Winter-Hub-Windows.zip",
-    "Winter-Hub-arm64-v8a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-16/Winter-Hub-arm64-v8a.apk",
-    "Winter-Hub-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-16/Winter-Hub-armeabi-v7a.apk",
-    "Winter-Hub-x86_64.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-16/Winter-Hub-x86_64.apk",
-    "Winter-Hub.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-16/Winter-Hub.apk"
+    "Winter-Hub-Setup.exe": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-Setup.exe",
+    "Winter-Hub-Windows.zip": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-Windows.zip",
+    "Winter-Hub-arm64-v8a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-arm64-v8a.apk",
+    "Winter-Hub-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-armeabi-v7a.apk",
+    "Winter-Hub-x86_64.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-x86_64.apk",
+    "Winter-Hub.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub.apk"
    },
-   "b": 16,
+   "b": 17,
    "d": "2026-11-16",
    "s": {
-    "Winter-Hub-Setup.exe": 10302209,
-    "Winter-Hub-Windows.zip": 11765930,
+    "Winter-Hub-Setup.exe": 10302700,
+    "Winter-Hub-Windows.zip": 11765968,
     "Winter-Hub-arm64-v8a.apk": 17321101,
     "Winter-Hub-armeabi-v7a.apk": 14560403,
     "Winter-Hub-x86_64.apk": 18680964,
@@ -254,18 +264,18 @@
   },
   "Wateroflord/winter-hub|Winter-Hub.apk": {
    "a": {
-    "Winter-Hub-Setup.exe": "https://github.com/Wateroflord/winter-hub/releases/download/build-16/Winter-Hub-Setup.exe",
-    "Winter-Hub-Windows.zip": "https://github.com/Wateroflord/winter-hub/releases/download/build-16/Winter-Hub-Windows.zip",
-    "Winter-Hub-arm64-v8a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-16/Winter-Hub-arm64-v8a.apk",
-    "Winter-Hub-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-16/Winter-Hub-armeabi-v7a.apk",
-    "Winter-Hub-x86_64.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-16/Winter-Hub-x86_64.apk",
-    "Winter-Hub.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-16/Winter-Hub.apk"
+    "Winter-Hub-Setup.exe": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-Setup.exe",
+    "Winter-Hub-Windows.zip": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-Windows.zip",
+    "Winter-Hub-arm64-v8a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-arm64-v8a.apk",
+    "Winter-Hub-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-armeabi-v7a.apk",
+    "Winter-Hub-x86_64.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-x86_64.apk",
+    "Winter-Hub.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub.apk"
    },
-   "b": 16,
+   "b": 17,
    "d": "2026-11-16",
    "s": {
-    "Winter-Hub-Setup.exe": 10302209,
-    "Winter-Hub-Windows.zip": 11765930,
+    "Winter-Hub-Setup.exe": 10302700,
+    "Winter-Hub-Windows.zip": 11765968,
     "Winter-Hub-arm64-v8a.apk": 17321101,
     "Winter-Hub-armeabi-v7a.apk": 14560403,
     "Winter-Hub-x86_64.apk": 18680964,
@@ -393,5 +403,5 @@
    }
   }
  },
- "updated": "2026-11-16T11:09:03Z"
+ "updated": "2026-11-16T18:23:31Z"
 }
