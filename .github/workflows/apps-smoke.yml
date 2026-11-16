@@ -45,7 +45,7 @@ jobs:
         run: |
           mkdir -p apks out tmpapk
           cp tested.txt out/tested.txt
-          pairs=$(python3 -c "import json;c=json.load(open('catalog.json'));print(' '.join(a['repo'].split('/')[1]+':'+a['android']['asset'] for a in c['apps'] if a.get('android'))+' winter-hub:Winter-Hub.apk')")
+          pairs=$(python3 -c "import json;c=json.load(open('catalog.json'));print(' '.join(a['repo'].split('/')[1]+':'+a['android']['asset'] for a in c['apps'] if a.get('android') and not a.get('mergedInto'))+' winter-hub:Winter-Hub.apk')")
           for a in $pairs; do
             repo=${a%%:*}; asset=${a##*:}
             # Для эмулятора берём версию x86_64, если её нет — обычную.
