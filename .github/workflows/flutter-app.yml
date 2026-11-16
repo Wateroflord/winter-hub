@@ -50,6 +50,11 @@ on:
         required: false
         type: string
         default: ''
+      after_build_windows:
+        description: 'Команда bash после сборки Windows (например, положить рядом с exe доп. файлы)'
+        required: false
+        type: string
+        default: ''
       extra_artifact:
         description: 'Имя артефакта этого же запуска, файлы которого тоже положить в релиз'
         required: false
@@ -103,6 +108,8 @@ jobs:
           cache: true
       - name: Prepare
         if: inputs.prepare != ''
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ${{ inputs.prepare }}
       - name: Create Android project
         run: |
@@ -211,13 +218,15 @@ jobs:
       - name: Prepare
         if: inputs.prepare != ''
         shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ${{ inputs.prepare }}
       - name: Create Windows project
         shell: bash
         run: |
           flutter create --project-name ${{ inputs.project }} --org ${{ inputs.org }} --platforms windows .
           rm -f test/widget_test.dart
-          if [ -f tools/patch_windows.py ]; then python tools/patch_windows.py; fi
+          if [ -f tools/patch_windows.py ]; then python tools/patch_windows.py; else python .winter/ci/patch_windows.py; fi
           flutter pub get
           dart run flutter_launcher_icons -f icons_windows.yaml || true
           if [ -n "${{ inputs.win_title }}" ]; then
@@ -233,6 +242,12 @@ jobs:
           flutter build windows --release --dart-define=BUILD=${{ github.run_number }} \
             --build-number=${{ github.run_number }} --build-name=1.0.${{ github.run_number }} 2>&1 | tee build.txt \
             || { python3 .winter/ci/annotate.py build.txt "windows"; exit 1; }
+      - name: After build
+        if: inputs.after_build_windows != ''
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ${{ inputs.after_build_windows }}
       - name: Build installer
         shell: pwsh
         env:
