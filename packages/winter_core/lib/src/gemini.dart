@@ -85,6 +85,7 @@ class WinterGemini {
 
   /// Запрос к ИИ. [parts] — текст и картинки ([text], [image]).
   /// [json] — просить ответ в JSON. Возвращает текст ответа (без «мыслей» модели).
+  /// [onlyModel] — не перебирать модели: спросить только [model] (ошибка unavailable — если она недоступна).
   static Future<String> generate({
     required String key,
     required List<Map<String, dynamic>> parts,
@@ -92,11 +93,13 @@ class WinterGemini {
     bool json = false,
     Map<String, dynamic>? config,
     Duration timeout = const Duration(seconds: 90),
+    bool onlyModel = false,
   }) async {
     final k = key.trim();
     if (k.isEmpty) throw const GeminiError(GeminiFail.noKey);
     GeminiError last = const GeminiError(GeminiFail.unavailable);
-    for (final m in order(model)) {
+    final list = order(model);
+    for (final m in onlyModel ? list.take(1) : list) {
       try {
         return await _post(k, m, parts, json, config, timeout);
       } on _Next catch (e) {
