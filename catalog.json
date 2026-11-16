@@ -1,6 +1,14 @@
 {
   "hubNews": [
     {
+      "date": "2026-11-16",
+      "text": "Шахматы, Сапёр, Winter Paint, Уроки рисования, Winter Music, Выживание в лесу, Winter Walks, Winter Language, Просрочка и Mog Battle теперь плагины внутри КБЖУ Трекера. Отдельные версии больше не обновляются — перенеси данные (где есть экспорт) и удали их внизу хаба."
+    },
+    {
+      "date": "2026-11-16",
+      "text": "Приложения стали в 2–3 раза меньше: теперь есть отдельная версия под каждый тип процессора, хаб сам выбирает подходящую (её можно сменить в карточке приложения)."
+    },
+    {
       "date": "2026-11-06",
       "text": "КБЖУ Трекер: Winter Arc с друзьями — 365 дней дисциплины, очки и рейтинг. Вход логином Winter Chat. Обнови сервер чата на ноутбуке, чтобы рейтинг заработал."
     },
@@ -35,54 +43,42 @@
   ],
   "apps": [
     {
-      "id": "mog",
-      "name": "Mog Battle",
-      "tagline": "Оценка внешности и стиля, батл фото",
-      "description": "Мог-батл: твоё фото против соперника — кто где сильнее и почему. Отдельная оценка внешности, стиля одежды и синергии (как одежда подходит именно тебе), потенциал и конкретные советы, как стать лучше. История с графиком прогресса. Нужен бесплатный ключ Gemini.",
-      "repo": "Wateroflord/mog-battle",
-      "color": "#F5B942",
-      "icon": "https://raw.githubusercontent.com/Wateroflord/mog-battle/main/assets/icon/icon.png",
+      "id": "kbju",
+      "name": "КБЖУ Трекер",
+      "tagline": "КБЖУ + плагины: шахматы, сапёр, музыка и др.",
+      "description": "Фото еды — и ИИ считает калории, белки, жиры и углеводы. Вес, вода, привычки, тренировки, сон. Внутри — плагины Winter: Просрочка, Winter Language, Шахматы, Сапёр, Winter Music, Winter Paint, Уроки рисования, Winter Walks, Выживание в лесу и Mog Battle. Переключение — шторкой сверху, лишние плагины можно выключить. Есть версия для ПК с синхронизацией по Wi-Fi.",
+      "repo": "Wateroflord/kbju-tracker",
+      "color": "#5B9DFF",
+      "icon": "https://raw.githubusercontent.com/Wateroflord/kbju-tracker/main/assets/icon/icon.png",
       "android": {
-        "package": "com.winterhub.mog_battle",
-        "asset": "Mog-Battle.apk"
+        "package": "com.kbju.kbju_tracker",
+        "asset": "KBJU-Tracker.apk"
       },
       "windows": {
-        "asset": "Mog-Battle-Setup.exe",
-        "appId": "{93FB0EED-F0D2-42C9-B17B-AD65A6880E2D}",
-        "exe": "Mog Battle\\mog_battle.exe"
+        "asset": "KBJU-Tracker-Setup.exe",
+        "appId": "{3C1B7E62-9A4D-4F8B-B2E7-6D0A5C9F1E24}",
+        "exe": "KBJU Tracker\\kbju_tracker.exe"
       },
       "news": [
         {
-          "date": "2026-10-31",
-          "text": "Первая версия: мог-батл, оценка внешности, стиля и синергии, советы, история с прогрессом."
-        }
-      ]
-    },
-    {
-      "id": "chat",
-      "name": "Winter Chat",
-      "tagline": "Чаты и звонки для своих",
-      "description": "Мессенджер для друзей на своём сервере: личные чаты и группы, фото, видео и файлы, голосовые и видеозвонки с демонстрацией экрана. Сервер ставится на один компьютер — скачай его из Releases на странице приложения.",
-      "repo": "Wateroflord/winter-chat",
-      "color": "#7FD8FF",
-      "icon": "https://raw.githubusercontent.com/Wateroflord/winter-chat/main/assets/icon/icon.png",
-      "android": {
-        "package": "com.winterhub.winter_chat",
-        "asset": "Winter-Chat.apk"
-      },
-      "windows": {
-        "asset": "Winter-Chat-Setup.exe",
-        "appId": "{A7C3E1D4-6B2F-4E8A-9D51-3F0B7C2E8A64}",
-        "exe": "Winter Chat\\winter_chat.exe"
-      },
-      "news": [
-        {
-          "date": "2026-11-06",
-          "text": "Уведомления о сообщениях, когда чат закрыт. Сервер хранит рейтинг Winter Arc для КБЖУ Трекера."
+          "date": "2026-11-16",
+          "text": "КБЖУ стал супер-приложением: 10 приложений Winter теперь плагины внутри. Потяни полоску вверху экрана — откроется шторка для переключения. При первом запуске выбери, какие плагины включить. Учёба переносится в Winter Language сама."
         },
         {
-          "date": "2026-10-31",
-          "text": "Первая версия: регистрация по коду приглашения, чаты и группы, файлы, звонки с камерой и демонстрацией экрана."
+          "date": "2026-11-06",
+          "text": "Winter Arc: очки дисциплины и рейтинг друзей. Тир-лист еды (SSS…D) и подборки простых и вкусных блюд с КБЖУ."
+        },
+        {
+          "date": "2026-11-06",
+          "text": "Изучение языков переехало в отдельное приложение Winter Language. Во вкладке «Учёба» — кнопка переноса прогресса."
+        },
+        {
+          "date": "2026-10-30",
+          "text": "Появилась версия для Windows."
+        },
+        {
+          "date": "2026-10-30",
+          "text": "Синхронизация телефон ↔ ПК по Wi-Fi: QR-код на экране ПК, данные и фото становятся одинаковыми."
         }
       ]
     },
@@ -119,40 +115,57 @@
       ]
     },
     {
-      "id": "kbju",
-      "name": "КБЖУ Трекер",
-      "tagline": "Калории и БЖУ по фото еды",
-      "description": "Фото еды — и ИИ считает калории, белки, жиры и углеводы. Вес, вода, привычки, тренировки, сон, изучение языков. Теперь и на ПК, с синхронизацией с телефоном по Wi-Fi.",
-      "repo": "Wateroflord/kbju-tracker",
-      "color": "#5B9DFF",
-      "icon": "https://raw.githubusercontent.com/Wateroflord/kbju-tracker/main/assets/icon/icon.png",
+      "id": "chat",
+      "name": "Winter Chat",
+      "tagline": "Чаты и звонки для своих",
+      "description": "Мессенджер для друзей на своём сервере: личные чаты и группы, фото, видео и файлы, голосовые и видеозвонки с демонстрацией экрана. Сервер ставится на один компьютер — скачай его из Releases на странице приложения.",
+      "repo": "Wateroflord/winter-chat",
+      "color": "#7FD8FF",
+      "icon": "https://raw.githubusercontent.com/Wateroflord/winter-chat/main/assets/icon/icon.png",
       "android": {
-        "package": "com.kbju.kbju_tracker",
-        "asset": "KBJU-Tracker.apk"
+        "package": "com.winterhub.winter_chat",
+        "asset": "Winter-Chat.apk"
       },
       "windows": {
-        "asset": "KBJU-Tracker-Setup.exe",
-        "appId": "{3C1B7E62-9A4D-4F8B-B2E7-6D0A5C9F1E24}",
-        "exe": "KBJU Tracker\\kbju_tracker.exe"
+        "asset": "Winter-Chat-Setup.exe",
+        "appId": "{A7C3E1D4-6B2F-4E8A-9D51-3F0B7C2E8A64}",
+        "exe": "Winter Chat\\winter_chat.exe"
       },
       "news": [
         {
           "date": "2026-11-06",
-          "text": "Winter Arc: очки дисциплины и рейтинг друзей. Тир-лист еды (SSS…D) и подборки простых и вкусных блюд с КБЖУ."
+          "text": "Уведомления о сообщениях, когда чат закрыт. Сервер хранит рейтинг Winter Arc для КБЖУ Трекера."
         },
         {
-          "date": "2026-11-06",
-          "text": "Изучение языков переехало в отдельное приложение Winter Language. Во вкладке «Учёба» — кнопка переноса прогресса."
-        },
-        {
-          "date": "2026-10-30",
-          "text": "Появилась версия для Windows."
-        },
-        {
-          "date": "2026-10-30",
-          "text": "Синхронизация телефон ↔ ПК по Wi-Fi: QR-код на экране ПК, данные и фото становятся одинаковыми."
+          "date": "2026-10-31",
+          "text": "Первая версия: регистрация по коду приглашения, чаты и группы, файлы, звонки с камерой и демонстрацией экрана."
         }
       ]
+    },
+    {
+      "id": "mog",
+      "name": "Mog Battle",
+      "tagline": "Оценка внешности и стиля, батл фото",
+      "description": "Мог-батл: твоё фото против соперника — кто где сильнее и почему. Отдельная оценка внешности, стиля одежды и синергии (как одежда подходит именно тебе), потенциал и конкретные советы, как стать лучше. История с графиком прогресса. Нужен бесплатный ключ Gemini.",
+      "repo": "Wateroflord/mog-battle",
+      "color": "#F5B942",
+      "icon": "https://raw.githubusercontent.com/Wateroflord/mog-battle/main/assets/icon/icon.png",
+      "android": {
+        "package": "com.winterhub.mog_battle",
+        "asset": "Mog-Battle.apk"
+      },
+      "windows": {
+        "asset": "Mog-Battle-Setup.exe",
+        "appId": "{93FB0EED-F0D2-42C9-B17B-AD65A6880E2D}",
+        "exe": "Mog Battle\\mog_battle.exe"
+      },
+      "news": [
+        {
+          "date": "2026-10-31",
+          "text": "Первая версия: мог-батл, оценка внешности, стиля и синергии, советы, история с прогрессом."
+        }
+      ],
+      "mergedInto": "kbju"
     },
     {
       "id": "chess",
@@ -176,7 +189,8 @@
           "date": "2026-10-30",
           "text": "Первая версия."
         }
-      ]
+      ],
+      "mergedInto": "kbju"
     },
     {
       "id": "mines",
@@ -200,7 +214,8 @@
           "date": "2026-10-30",
           "text": "Первая версия."
         }
-      ]
+      ],
+      "mergedInto": "kbju"
     },
     {
       "id": "paint",
@@ -224,7 +239,8 @@
           "date": "2026-10-30",
           "text": "Первая версия."
         }
-      ]
+      ],
+      "mergedInto": "kbju"
     },
     {
       "id": "draw",
@@ -248,7 +264,8 @@
           "date": "2026-10-30",
           "text": "Первая версия."
         }
-      ]
+      ],
+      "mergedInto": "kbju"
     },
     {
       "id": "music",
@@ -272,7 +289,8 @@
           "date": "2026-10-30",
           "text": "Первая версия."
         }
-      ]
+      ],
+      "mergedInto": "kbju"
     },
     {
       "id": "forest",
@@ -296,7 +314,8 @@
           "date": "2026-10-30",
           "text": "Первая версия."
         }
-      ]
+      ],
+      "mergedInto": "kbju"
     },
     {
       "id": "walks",
@@ -320,7 +339,8 @@
           "date": "2026-11-01",
           "text": "Первая версия: места для прогулок, фото-места на карте и новости района за неделю."
         }
-      ]
+      ],
+      "mergedInto": "kbju"
     },
     {
       "id": "expiry",
@@ -339,7 +359,8 @@
           "date": "2026-11-05",
           "text": "Добавлено в Winter Hub, экспорт и импорт данных, постоянная подпись."
         }
-      ]
+      ],
+      "mergedInto": "kbju"
     },
     {
       "id": "language",
@@ -363,7 +384,8 @@
           "date": "2026-11-06",
           "text": "Первая версия: всё, что было во вкладке «Учёба» КБЖУ Трекера."
         }
-      ]
+      ],
+      "mergedInto": "kbju"
     }
   ]
 }
