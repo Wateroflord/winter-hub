@@ -14,107 +14,27 @@ on:
       - '.github/workflows/winsmoke.yml'
       - '.github/workflows/apps-smoke.yml'
       - 'tools/apps_smoke.sh'
+      - '.github/workflows/flutter-app.yml'
   workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Выпустить релиз (выключи, чтобы только проверить сборку)'
+        type: boolean
+        default: true
 
 permissions:
   contents: write
 
 jobs:
-  android:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          cache: true
-      - name: Create Android project
-        run: |
-          flutter create --project-name winter_hub --org com.winterhub --platforms android .
-          rm -f test/widget_test.dart
-          python3 tools/patch_android.py
-          flutter pub get
-          dart run flutter_launcher_icons || true
-      - name: Analyze
-        run: |
-          rc=0
-          flutter analyze --no-fatal-infos --no-fatal-warnings > analyze.txt 2>&1 || rc=$?
-          cat analyze.txt
-          python3 ci/annotate.py analyze.txt "analyze"
-          exit $rc
-      - name: Tests (winter_core)
-        run: |
-          set -o pipefail
-          cd packages/winter_core
-          flutter pub get
-          flutter test 2>&1 | tee ../../core-test.txt || { python3 ../../ci/annotate.py ../../core-test.txt "tests"; exit 1; }
-      - name: Tests
-        run: |
-          set -o pipefail
-          if ls test/*_test.dart >/dev/null 2>&1; then
-            flutter test test 2>&1 | tee test.txt || { python3 ci/annotate.py test.txt "tests"; exit 1; }
-          else
-            echo "Тестов нет"
-          fi
-      - name: Build APK
-        run: |
-          set -o pipefail
-          flutter build apk --release --dart-define=BUILD=${{ github.run_number }} --build-number=${{ github.run_number }} --build-name=1.0.${{ github.run_number }} 2>&1 | tee build.txt || { python3 ci/annotate.py build.txt "build"; exit 1; }
-      - name: Sign APK
-        env:
-          WINTER_SIGNING: ${{ secrets.WINTER_SIGNING }}
-        run: python3 ci/sign_apk.py build/app/outputs/flutter-apk/app-release.apk
-      - name: Release
-        run: |
-          cp build/app/outputs/flutter-apk/app-release.apk Winter-Hub.apk
-          gh release create "build-${{ github.run_number }}" Winter-Hub.apk \
-            --title "Winter Hub, сборка ${{ github.run_number }}" \
-            --notes "Телефон: Winter-Hub.apk. ПК: Winter-Hub-Setup.exe (появится через несколько минут)." \
-            --latest
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  windows:
-    needs: android
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: subosito/flutter-action@v2
-        with:
-          channel: stable
-          cache: true
-      - name: Create Windows project
-        shell: bash
-        run: |
-          flutter create --project-name winter_hub --org com.winterhub --platforms windows .
-          rm -f test/widget_test.dart
-          python tools/patch_windows.py
-          flutter pub get
-          dart run flutter_launcher_icons -f icons_windows.yaml || true
-          sed -i 's/L"winter_hub"/L"Winter Hub"/' windows/runner/main.cpp || true
-          sed -i 's/Win32Window::Size size(1280, 720);/Win32Window::Size size(900, 820);/' windows/runner/main.cpp || true
-      - name: Build Windows app
-        shell: bash
-        run: |
-          set -o pipefail
-          flutter build windows --release --dart-define=BUILD=${{ github.run_number }} --build-number=${{ github.run_number }} --build-name=1.0.${{ github.run_number }} 2>&1 | tee build.txt || { python3 ci/annotate.py build.txt "windows"; exit 1; }
-      - name: Build installer
-        shell: pwsh
-        env:
-          BUILD_NO: ${{ github.run_number }}
-        run: |
-          $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
-          if (-not (Test-Path $iscc)) { choco install innosetup -y --no-progress | Out-Null }
-          & $iscc tools\installer.iss
-          if ($LASTEXITCODE -ne 0) { echo "::error title=installer::Inno Setup failed"; exit 1 }
-      - name: Attach to the release
-        shell: pwsh
-        run: |
-          Compress-Archive -Path build/windows/x64/runner/Release/* -DestinationPath Winter-Hub-Windows.zip
-          gh release upload "build-${{ github.run_number }}" Winter-Hub-Windows.zip dist/Winter-Hub-Setup.exe --clobber
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  app:
+    uses: ./.github/workflows/flutter-app.yml
+    secrets: inherit
+    with:
+      project: winter_hub
+      org: com.winterhub
+      asset: Winter-Hub
+      title: Winter Hub
+      win_title: Winter Hub
+      win_size: '900, 820'
+      core_tests: true
+      publish: ${{ github.event_name != 'workflow_dispatch' || inputs.publish }}

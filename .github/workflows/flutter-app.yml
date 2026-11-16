@@ -1,0 +1,260 @@
+# Общая сборка приложений Winter (вызывается из build.yml каждого приложения).
+#
+# Делает:
+#  - Android: отдельный APK под каждый тип процессора (arm64-v8a, armeabi-v7a, x86_64)
+#    + <asset>.apk — копия arm64 под старым именем (для старых версий хаба и ссылок);
+#  - подпись каждого APK постоянным ключом (секрет WINTER_SIGNING);
+#  - релиз build-N на GitHub;
+#  - Windows: установщик <asset>-Setup.exe и архив <asset>-Windows.zip.
+#
+# Исправил здесь — исправилось во всех приложениях.
+# Пример вызова — README в папке ci/.
+name: Flutter app (shared)
+
+on:
+  workflow_call:
+    inputs:
+      project:
+        description: 'Имя проекта Flutter (как в pubspec: kbju_tracker)'
+        required: true
+        type: string
+      org:
+        description: 'Org для flutter create (com.kbju)'
+        required: true
+        type: string
+      asset:
+        description: 'Начало имени файлов (KBJU-Tracker → KBJU-Tracker-arm64-v8a.apk, KBJU-Tracker-Setup.exe)'
+        required: true
+        type: string
+      title:
+        description: 'Название для релиза (КБЖУ Трекер)'
+        required: true
+        type: string
+      win_title:
+        description: 'Заголовок окна на Windows (латиницей)'
+        required: false
+        type: string
+        default: ''
+      win_size:
+        description: 'Размер окна на Windows, например "900, 820"'
+        required: false
+        type: string
+        default: ''
+      windows:
+        description: 'Собирать ли Windows-версию'
+        required: false
+        type: boolean
+        default: true
+      prepare:
+        description: 'Команда bash перед сборкой (например, скопировать данные в assets)'
+        required: false
+        type: string
+        default: ''
+      extra_artifact:
+        description: 'Имя артефакта этого же запуска, файлы которого тоже положить в релиз'
+        required: false
+        type: string
+        default: ''
+      core_tests:
+        description: 'Прогнать тесты packages/winter_core (только для winter-hub)'
+        required: false
+        type: boolean
+        default: false
+      notes:
+        description: 'Дополнительный текст в описание релиза'
+        required: false
+        type: string
+        default: ''
+      publish:
+        description: 'Выпустить релиз (false — только проверить сборку, файлы будут в артефактах)'
+        required: false
+        type: boolean
+        default: true
+      flutter_version:
+        description: 'Версия Flutter (зафиксирована, чтобы обновление Flutter не ломало сборки)'
+        required: false
+        type: string
+        default: '3.47.9'
+
+permissions:
+  contents: write
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Shared CI tools (winter-hub/ci)
+        uses: actions/checkout@v4
+        with:
+          repository: Wateroflord/winter-hub
+          path: .winter
+          sparse-checkout: /ci/
+          sparse-checkout-cone-mode: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ inputs.flutter_version }}
+          cache: true
+      - name: Prepare
+        if: inputs.prepare != ''
+        run: ${{ inputs.prepare }}
+      - name: Create Android project
+        run: |
+          flutter create --project-name ${{ inputs.project }} --org ${{ inputs.org }} --platforms android .
+          rm -f test/widget_test.dart
+          if [ -f tools/patch_android.py ]; then python3 tools/patch_android.py; fi
+          flutter pub get
+          dart run flutter_launcher_icons || true
+      - name: Analyze
+        run: |
+          rc=0
+          flutter analyze --no-fatal-infos --no-fatal-warnings > analyze.txt 2>&1 || rc=$?
+          cat analyze.txt
+          python3 .winter/ci/annotate.py analyze.txt "analyze"
+          exit $rc
+      - name: Tests (winter_core)
+        if: inputs.core_tests
+        run: |
+          set -o pipefail
+          cd packages/winter_core
+          flutter pub get
+          flutter test 2>&1 | tee ../../core-test.txt || { python3 ../../ci/annotate.py ../../core-test.txt "tests"; exit 1; }
+      - name: Tests
+        run: |
+          set -o pipefail
+          if ls test/*_test.dart >/dev/null 2>&1; then
+            flutter test test 2>&1 | tee test.txt || { python3 .winter/ci/annotate.py test.txt "tests"; exit 1; }
+          else
+            echo "Тестов нет"
+          fi
+      - name: Build APKs (по одному на тип процессора)
+        run: |
+          set -o pipefail
+          flutter build apk --release --split-per-abi \
+            --dart-define=BUILD=${{ github.run_number }} \
+            --build-number=${{ github.run_number }} --build-name=1.0.${{ github.run_number }} 2>&1 | tee build.txt \
+            || { python3 .winter/ci/annotate.py build.txt "build"; exit 1; }
+          mkdir -p dist
+          for abi in arm64-v8a armeabi-v7a x86_64; do
+            cp "build/app/outputs/flutter-apk/app-$abi-release.apk" "dist/${{ inputs.asset }}-$abi.apk"
+          done
+      - name: Sign APKs
+        env:
+          WINTER_SIGNING: ${{ secrets.WINTER_SIGNING }}
+        run: |
+          for f in dist/*.apk; do python3 .winter/ci/sign_apk.py "$f"; done
+          # Старое имя файла = версия для arm64 (почти все телефоны).
+          cp "dist/${{ inputs.asset }}-arm64-v8a.apk" "dist/${{ inputs.asset }}.apk"
+          ls -la dist
+      - name: Extra files
+        if: inputs.extra_artifact != ''
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.extra_artifact }}
+          path: dist
+      - name: Files (test build, no release)
+        if: ${{ !inputs.publish }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-test
+          path: dist/*
+      - name: Release
+        if: inputs.publish
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          EXTRA_NOTES: ${{ inputs.notes }}
+        run: |
+          A="${{ inputs.asset }}"
+          {
+            echo "**Проще всего ставить через Winter Hub** — он сам выберет версию для твоего телефона."
+            echo
+            echo "Какой APK скачать вручную:"
+            echo "- \`$A-arm64-v8a.apk\` — почти все телефоны (2017 года и новее). **Если не знаешь — бери этот.**"
+            echo "- \`$A-armeabi-v7a.apk\` — очень старые или самые дешёвые телефоны."
+            echo "- \`$A-x86_64.apk\` — эмуляторы на ПК и редкие планшеты на Intel."
+            echo "- \`$A.apk\` — то же, что arm64-v8a (старое имя)."
+            if [ "${{ inputs.windows }}" = "true" ]; then
+              echo
+              echo "Windows: \`$A-Setup.exe\` (появится через несколько минут после APK)."
+            fi
+            if [ -n "$EXTRA_NOTES" ]; then echo; echo "$EXTRA_NOTES"; fi
+          } > notes.md
+          gh release create "build-${{ github.run_number }}" dist/* \
+            --title "${{ inputs.title }}, сборка ${{ github.run_number }}" \
+            --notes-file notes.md --latest
+
+  windows:
+    if: inputs.windows
+    needs: android
+    runs-on: windows-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - name: Shared CI tools (winter-hub/ci)
+        uses: actions/checkout@v4
+        with:
+          repository: Wateroflord/winter-hub
+          path: .winter
+          sparse-checkout: /ci/
+          sparse-checkout-cone-mode: false
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: ${{ inputs.flutter_version }}
+          cache: true
+      - name: Prepare
+        if: inputs.prepare != ''
+        shell: bash
+        run: ${{ inputs.prepare }}
+      - name: Create Windows project
+        shell: bash
+        run: |
+          flutter create --project-name ${{ inputs.project }} --org ${{ inputs.org }} --platforms windows .
+          rm -f test/widget_test.dart
+          if [ -f tools/patch_windows.py ]; then python tools/patch_windows.py; fi
+          flutter pub get
+          dart run flutter_launcher_icons -f icons_windows.yaml || true
+          if [ -n "${{ inputs.win_title }}" ]; then
+            sed -i 's/L"${{ inputs.project }}"/L"${{ inputs.win_title }}"/' windows/runner/main.cpp || true
+          fi
+          if [ -n "${{ inputs.win_size }}" ]; then
+            sed -i 's/Win32Window::Size size(1280, 720);/Win32Window::Size size(${{ inputs.win_size }});/' windows/runner/main.cpp || true
+          fi
+      - name: Build Windows app
+        shell: bash
+        run: |
+          set -o pipefail
+          flutter build windows --release --dart-define=BUILD=${{ github.run_number }} \
+            --build-number=${{ github.run_number }} --build-name=1.0.${{ github.run_number }} 2>&1 | tee build.txt \
+            || { python3 .winter/ci/annotate.py build.txt "windows"; exit 1; }
+      - name: Build installer
+        shell: pwsh
+        env:
+          BUILD_NO: ${{ github.run_number }}
+        run: |
+          $iscc = "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe"
+          if (-not (Test-Path $iscc)) { choco install innosetup -y --no-progress | Out-Null }
+          & $iscc tools\installer.iss
+          if ($LASTEXITCODE -ne 0) { echo "::error title=installer::Inno Setup failed"; exit 1 }
+      - name: Zip
+        shell: pwsh
+        run: Compress-Archive -Path build/windows/x64/runner/Release/* -DestinationPath ${{ inputs.asset }}-Windows.zip
+      - name: Files (test build, no release)
+        if: ${{ !inputs.publish }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-test
+          path: dist/${{ inputs.asset }}-Setup.exe
+      - name: Attach to the release
+        if: inputs.publish
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload "build-${{ github.run_number }}" ${{ inputs.asset }}-Windows.zip dist/${{ inputs.asset }}-Setup.exe --clobber

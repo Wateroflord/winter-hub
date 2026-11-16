@@ -8,7 +8,10 @@ dependencies:
     git:
       url: https://github.com/Wateroflord/winter-hub.git
       path: packages/winter_core
+      ref: core-v1   # версия winter_core — новые правки в хабе не ломают приложения
 ```
+
+Новая версия winter_core = новый тег (`core-v2`, …). Приложение переходит на неё, когда поменяешь `ref`.
 
 ## Отчёты о падениях
 
@@ -22,3 +25,18 @@ Future<void> _main() async {
 
 Ошибки пишутся в файл на устройстве. После падения при следующем запуске внизу появляется плашка
 «Сообщить» — она открывает на GitHub готовый отчёт (issue) в репозитории приложения.
+
+## Gemini
+
+```dart
+final text = await WinterGemini.generate(
+  key: apiKey,
+  model: '',                      // пусто — первая из WinterGemini.models
+  parts: [WinterGemini.text('Привет'), WinterGemini.image(bytes)],
+  json: true,                     // просить ответ в JSON
+);
+final obj = WinterGemini.jsonObject(text);
+```
+
+Ошибки приходят как `GeminiError` с полем `kind` (`noKey`, `badKey`, `timeout`, `offline`, `rateLimit`, `unavailable`, …) —
+текст для пользователя на своём языке пишет приложение. Если модель недоступна, клиент сам пробует следующую.

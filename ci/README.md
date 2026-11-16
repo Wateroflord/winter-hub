@@ -1,5 +1,28 @@
 # Общие CI-инструменты приложений Winter
 
+## Общая сборка (`.github/workflows/flutter-app.yml`)
+
+Вся сборка приложения — Android (отдельный APK под каждый процессор), подпись, релиз и Windows — описана один раз
+в winter-hub. В приложении остаётся короткий `build.yml`:
+
+```yaml
+jobs:
+  app:
+    uses: Wateroflord/winter-hub/.github/workflows/flutter-app.yml@main
+    secrets: inherit
+    with:
+      project: kbju_tracker
+      org: com.kbju
+      asset: KBJU-Tracker        # KBJU-Tracker-arm64-v8a.apk, …, KBJU-Tracker-Setup.exe
+      title: КБЖУ Трекер
+      win_title: KBJU Tracker
+```
+
+В релизе: `<asset>-arm64-v8a.apk`, `<asset>-armeabi-v7a.apk`, `<asset>-x86_64.apk` и `<asset>.apk`
+(копия arm64 — старое имя, чтобы не сломать старые версии хаба). Хаб сам выбирает версию под телефон.
+Версия Flutter зафиксирована (`flutter_version`), чтобы новый Flutter не ломал все сборки разом.
+Проверить сборку без релиза: Actions → Build → Run workflow → снять галочку «publish».
+
 Все приложения (`winter-mines`, `kbju-tracker`, `dota-draft`, …) берут эти скрипты отсюда
 шагом `actions/checkout` с `repository: Wateroflord/winter-hub`, `path: .winter`, `sparse-checkout: /ci/` (без cone-режима).
 Исправил здесь — исправилось во всех сборках.

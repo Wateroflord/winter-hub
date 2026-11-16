@@ -96,6 +96,19 @@ class MainActivity : FlutterActivity() {
                             result.success(-1)
                         }
                     }
+                    "info" -> {
+                        // Номер сборки (из versionName «1.0.N») и код версии: по коду видно,
+                        // под какой процессор стоит APK (1xxx — armeabi-v7a, 2xxx — arm64-v8a, 4xxx — x86_64).
+                        val pkg = call.argument<String>("pkg")!!
+                        try {
+                            val info = packageManager.getPackageInfo(pkg, 0)
+                            val code = if (Build.VERSION.SDK_INT >= 28) info.longVersionCode.toInt() else @Suppress("DEPRECATION") info.versionCode
+                            result.success(mapOf("code" to code, "name" to (info.versionName ?: "")))
+                        } catch (e: Exception) {
+                            result.success(null)
+                        }
+                    }
+                    "abis" -> result.success(Build.SUPPORTED_ABIS.toList())
                     "launch" -> {
                         val i = packageManager.getLaunchIntentForPackage(call.argument<String>("pkg")!!)
                         if (i == null) result.success(false) else {

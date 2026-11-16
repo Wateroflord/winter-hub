@@ -111,7 +111,8 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                         const Padding(padding: EdgeInsets.all(40), child: Center(child: CircularProgressIndicator()))
                       else
                         for (final a in hub.catalog.apps)
-                          if (hub.assetOf(a) != null) _appCard(a),
+                          if (hub.assetOf(a) != null && a.mergedInto == null) _appCard(a),
+                      if (!hub.loading) ..._mergedSection(),
                       if (hub.catalog.hubNews.isNotEmpty) ...[
                         const SizedBox(height: 18),
                         const Text('Новости хаба', style: W.h2),
@@ -196,7 +197,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     final update = hub.hasUpdate(a);
     final asset = hub.assetOf(a);
     final available = asset != null && rel?.assets.containsKey(asset) == true;
-    final size = available ? rel!.sizes[asset] ?? 0 : 0;
+    final size = available ? rel!.sizes[hub.downloadAsset(a, rel)] ?? rel.sizes[asset] ?? 0 : 0;
     final expanded = open.contains(a.id);
 
     String status;
@@ -298,6 +299,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                 }),
             ]),
           if (expanded) ...[
+            if (hub.hasSplit(a)) ...[
+              const SizedBox(height: 12),
+              _abiRow(a),
+            ],
             const SizedBox(height: 14),
             Text(a.description, style: W.body),
             if (rel != null) ...[
@@ -314,6 +319,123 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
         ]),
       ),
     );
+  }
+
+  /// Строка «Версия для процессора» с кнопкой выбора.
+  Widget _abiRow(AppEntry a) {
+    final abi = hub.abiFor(a);
+    final rec = abi == hub.recommended;
+    final inst = hub.installedAbi[a.id];
+    return InkWell(
+      borderRadius: BorderRadius.circular(10),
+      onTap: () => _pickAbi(a),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        decoration: BoxDecoration(color: W.surface2, borderRadius: BorderRadius.circular(10), border: Border.all(color: W.border)),
+        child: Row(children: [
+          const Icon(Icons.memory, size: 18, color: W.ice),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              Text('Версия: ${abiTitle(abi)}${rec ? ' · рекомендуется' : ''}', style: W.body.copyWith(fontWeight: FontWeight.w600)),
+              Text(
+                inst == null
+                    ? abiHint(abi)
+                    : inst == abi
+                        ? 'Сейчас стоит эта версия'
+                        : 'Сейчас стоит ${abiTitle(inst)}',
+                style: W.small,
+              ),
+            ]),
+          ),
+          const Text('Сменить', style: TextStyle(color: W.ice, fontWeight: FontWeight.w600)),
+        ]),
+      ),
+    );
+  }
+
+  Future<void> _pickAbi(AppEntry a) async {
+    final rel = hub.releases[a.id];
+    final legacy = hub.assetOf(a)!;
+    final current = hub.abiFor(a);
+    final picked = await showModalBottomSheet<String>(
+      context: context,
+      backgroundColor: W.surface,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(18))),
+      builder: (ctx) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+          child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text('Какую версию скачивать', style: W.h2),
+            const SizedBox(height: 4),
+            Text(
+              hub.deviceAbiList.isEmpty
+                  ? 'Если не знаешь — оставь ARM64.'
+                  : 'Твой телефон: ${hub.deviceAbiList.map(abiTitle).join(', ')}. Лучше всего подходит ${abiTitle(hub.recommended)}.',
+              style: W.small,
+            ),
+            const SizedBox(height: 10),
+            for (final x in apkAbis)
+              if (rel?.assets.containsKey(HubState.abiAsset(legacy, x)) ?? false)
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  enabled: hub.deviceAbiList.isEmpty || hub.deviceAbiList.contains(x),
+                  leading: Icon(x == current ? Icons.radio_button_checked : Icons.radio_button_unchecked, color: W.ice),
+                  title: Text('${abiTitle(x)}${x == hub.recommended ? ' · рекомендуется' : ''}', style: W.body),
+                  subtitle: Text(
+                    '${abiHint(x)}'
+                    '${(rel!.sizes[HubState.abiAsset(legacy, x)] ?? 0) > 0 ? ' · ${(rel.sizes[HubState.abiAsset(legacy, x)]! / 1048576).toStringAsFixed(0)} МБ' : ''}'
+                    '${hub.deviceAbiList.isNotEmpty && !hub.deviceAbiList.contains(x) ? ' · не подходит этому телефону' : ''}',
+                    style: W.small,
+                  ),
+                  onTap: () => Navigator.pop(ctx, x),
+                ),
+          ]),
+        ),
+      ),
+    );
+    if (picked == null) return;
+    await hub.chooseAbi(a, picked == hub.recommended ? null : picked);
+    final inst = hub.installedAbi[a.id];
+    if (hub.installed[a.id] != null && inst != null && inst != picked) {
+      _toast('Чтобы сменить версию, нажми «Удалить», потом «Установить». Данные приложения при этом сотрутся.');
+    }
+  }
+
+  /// Старые отдельные приложения, которые стали плагинами: показываем, только если они ещё стоят.
+  List<Widget> _mergedSection() {
+    final left = [
+      for (final a in hub.catalog.apps)
+        if (a.mergedInto != null && hub.installed[a.id] != null) a,
+    ];
+    if (left.isEmpty) return const [];
+    String host(String id) {
+      for (final x in hub.catalog.apps) {
+        if (x.id == id) return x.name;
+      }
+      return id;
+    }
+
+    return [
+      const SizedBox(height: 18),
+      const Text('Стали плагинами', style: W.h2),
+      const SizedBox(height: 4),
+      Text('Эти приложения теперь внутри ${host(left.first.mergedInto!)} (шторка сверху). '
+          'Отдельные версии больше не обновляются — их можно удалить.', style: W.small),
+      const SizedBox(height: 8),
+      for (final a in left)
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8),
+          child: _Glass(
+            child: Row(children: [
+              Expanded(child: Text(a.name, style: W.body.copyWith(fontWeight: FontWeight.w600))),
+              hub.jobs[a.id] != null
+                  ? Text(hub.jobs[a.id]!.text, style: W.small)
+                  : _btn(Icons.delete_outline, 'Удалить', W.bad, () async => _toast(await hub.remove(a))),
+            ]),
+          ),
+        ),
+    ];
   }
 
   String _date(String iso) {

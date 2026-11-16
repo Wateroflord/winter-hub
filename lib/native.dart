@@ -11,17 +11,80 @@ bool get isAndroid => Platform.isAndroid;
 
 const _ch = MethodChannel('winterhub/apps');
 
+/// Типы процессоров, под которые собираются APK (в порядке «чаще всего встречается»).
+const apkAbis = ['arm64-v8a', 'armeabi-v7a', 'x86_64'];
+
+/// Понятное название версии APK.
+String abiTitle(String abi) => switch (abi) {
+      'arm64-v8a' => 'ARM64',
+      'armeabi-v7a' => 'ARMv7',
+      'x86_64' => 'x86_64',
+      _ => abi,
+    };
+
+/// Для кого эта версия.
+String abiHint(String abi) => switch (abi) {
+      'arm64-v8a' => 'почти все телефоны (2017 года и новее)',
+      'armeabi-v7a' => 'очень старые и самые дешёвые телефоны',
+      'x86_64' => 'эмуляторы на ПК и планшеты на Intel',
+      _ => '',
+    };
+
+/// Какие типы процессора поддерживает телефон (первый — родной).
+Future<List<String>> deviceAbis() async {
+  if (!isAndroid) return const [];
+  try {
+    return await _ch.invokeListMethod<String>('abis') ?? const [];
+  } catch (_) {
+    return const [];
+  }
+}
+
+/// Рекомендуемая версия APK: первая из поддерживаемых телефоном, под которую есть сборка.
+String recommendedAbi(List<String> device) {
+  for (final d in device) {
+    if (apkAbis.contains(d)) return d;
+  }
+  return apkAbis.first;
+}
+
+/// Под какой процессор стоит APK — по коду версии (Flutter: 1xxx, 2xxx, 4xxx). null — общая сборка.
+String? abiFromVersionCode(int code) => switch (code ~/ 1000) {
+      1 => 'armeabi-v7a',
+      2 => 'arm64-v8a',
+      4 => 'x86_64',
+      _ => null,
+    };
+
+/// Номер сборки по versionName «1.0.N» (у версий под процессор код версии = 1000·k + N).
+int buildFromVersion(String name, int code) {
+  final m = RegExp(r'(\d+)$').firstMatch(name.trim());
+  return int.tryParse(m?.group(1) ?? '') ?? code % 1000;
+}
+
+/// Установленный APK на телефоне: номер сборки и тип процессора (null — общая сборка или неизвестно).
+Future<({int build, String? abi})?> androidInstall(String pkg) async {
+  try {
+    final m = await _ch.invokeMapMethod<String, dynamic>('info', {'pkg': pkg});
+    if (m == null) return null;
+    final code = (m['code'] as num?)?.toInt() ?? 0;
+    return (build: buildFromVersion('${m['name'] ?? ''}', code), abi: abiFromVersionCode(code));
+  } catch (_) {
+    try {
+      final v = await _ch.invokeMethod<int>('version', {'pkg': pkg});
+      return v == null || v < 0 ? null : (build: v % 1000, abi: abiFromVersionCode(v));
+    } catch (_) {
+      return null;
+    }
+  }
+}
+
 /// Номер установленной сборки: null — не установлено, 0 — установлено, но номер неизвестен.
 Future<int?> installedBuild(AppEntry a) async {
   if (isAndroid) {
     final pkg = a.androidPackage;
     if (pkg == null) return null;
-    try {
-      final v = await _ch.invokeMethod<int>('version', {'pkg': pkg});
-      return v == null || v < 0 ? null : v;
-    } catch (_) {
-      return null;
-    }
+    return (await androidInstall(pkg))?.build;
   }
   if (isWindows) {
     final key = _uninstallKey(a);

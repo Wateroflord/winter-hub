@@ -28,9 +28,61 @@ class HubState extends ChangeNotifier {
   bool loading = true;
   bool offline = false;
 
+  /// Типы процессора телефона (первый — родной) и рекомендуемая версия APK.
+  List<String> deviceAbiList = const [];
+  String get recommended => recommendedAbi(deviceAbiList);
+
+  /// Под какой процессор стоит установленное приложение (null — общая сборка/неизвестно).
+  final Map<String, String?> installedAbi = {};
+
+  /// Версия, которую пользователь выбрал сам (id → abi).
+  final Map<String, String> abiChoice = {};
+
+  /// Файл в сводке версий (старое общее имя — по нему ищется выпуск).
   String? assetOf(AppEntry a) => isAndroid ? a.androidAsset : a.winAsset;
 
+  /// Какая версия APK будет скачана: выбранная вручную → та, что уже стоит → рекомендуемая.
+  String abiFor(AppEntry a) => abiChoice[a.id] ?? installedAbi[a.id] ?? recommended;
+
+  /// Имя файла версии под процессор: KBJU-Tracker.apk → KBJU-Tracker-arm64-v8a.apk.
+  static String abiAsset(String legacy, String abi) =>
+      legacy.endsWith('.apk') ? '${legacy.substring(0, legacy.length - 4)}-$abi.apk' : legacy;
+
+  /// Какой файл скачивать. Если у выпуска нет версий под процессор (старая сборка) — общий файл.
+  String? downloadAsset(AppEntry a, [Release? rel]) {
+    final legacy = assetOf(a);
+    if (legacy == null || !isAndroid) return legacy;
+    final r = rel ?? (a.id == hubEntry.id ? hubRelease : releases[a.id]);
+    final split = abiAsset(legacy, abiFor(a));
+    return r != null && r.assets.containsKey(split) ? split : legacy;
+  }
+
+  /// Есть ли у последнего выпуска отдельные версии под процессор.
+  bool hasSplit(AppEntry a) {
+    final legacy = assetOf(a), r = releases[a.id];
+    return isAndroid && legacy != null && r != null && apkAbis.any((x) => r.assets.containsKey(abiAsset(legacy, x)));
+  }
+
+  Future<void> chooseAbi(AppEntry a, String? abi) async {
+    if (abi == null) {
+      abiChoice.remove(a.id);
+    } else {
+      abiChoice[a.id] = abi;
+    }
+    await writeCache('abi_choice.json', abiChoice);
+    notifyListeners();
+  }
+
   Future<void> load() async {
+    if (isAndroid) {
+      deviceAbiList = await deviceAbis();
+      final saved = await readCache('abi_choice.json');
+      if (saved != null) {
+        for (final e in saved.entries) {
+          if (apkAbis.contains('${e.value}')) abiChoice['${e.key}'] = '${e.value}';
+        }
+      }
+    }
     catalog = await loadCatalog(online: false);
     loading = catalog.apps.isEmpty;
     notifyListeners();
@@ -40,7 +92,13 @@ class HubState extends ChangeNotifier {
 
   Future<void> refreshInstalled() async {
     for (final a in catalog.apps) {
-      installed[a.id] = await installedBuild(a);
+      if (isAndroid && a.androidPackage != null) {
+        final i = await androidInstall(a.androidPackage!);
+        installed[a.id] = i?.build;
+        installedAbi[a.id] = i?.abi;
+      } else {
+        installed[a.id] = await installedBuild(a);
+      }
     }
     notifyListeners();
     if (isAndroid) {
@@ -112,7 +170,7 @@ class HubState extends ChangeNotifier {
   /// Скачать и установить (или обновить). Возвращает текст ошибки.
   Future<String?> install(AppEntry a) async {
     final r = releases[a.id];
-    final asset = assetOf(a);
+    final asset = downloadAsset(a, r);
     final url = asset == null ? null : r?.assets[asset];
     if (url == null) return 'Файл для этой системы ещё не готов — попробуй через пару минут';
     try {
@@ -142,7 +200,7 @@ class HubState extends ChangeNotifier {
   }
 
   Future<String?> updateHub() async {
-    final asset = assetOf(hubEntry);
+    final asset = downloadAsset(hubEntry, hubRelease);
     final url = asset == null ? null : hubRelease?.assets[asset];
     if (url == null) return 'Обновление ещё не готово';
     try {

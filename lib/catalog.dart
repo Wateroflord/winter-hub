@@ -21,6 +21,10 @@ class AppEntry {
   final String? androidPackage, androidAsset;
   final String? winAsset, winAppId, winExe;
   final List<NewsItem> news;
+
+  /// Приложение стало плагином другого (id «хозяина», например kbju).
+  /// Хаб его больше не ставит: показывает, только если оно ещё стоит, — чтобы удалить.
+  final String? mergedInto;
   const AppEntry({
     required this.id,
     required this.name,
@@ -35,6 +39,7 @@ class AppEntry {
     this.winAppId,
     this.winExe,
     this.news = const [],
+    this.mergedInto,
   });
 
   static AppEntry fromJson(Map j) {
@@ -54,6 +59,7 @@ class AppEntry {
       winAppId: w['appId']?.toString(),
       winExe: w['exe']?.toString(),
       news: NewsItem.parse(j['news']),
+      mergedInto: j['mergedInto']?.toString(),
     );
   }
 }

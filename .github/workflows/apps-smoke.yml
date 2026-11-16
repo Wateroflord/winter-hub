@@ -43,12 +43,18 @@ jobs:
       - name: Download APKs
         if: steps.gate.outputs.skip != '1'
         run: |
-          mkdir -p apks out
+          mkdir -p apks out tmpapk
           cp tested.txt out/tested.txt
           pairs=$(python3 -c "import json;c=json.load(open('catalog.json'));print(' '.join(a['repo'].split('/')[1]+':'+a['android']['asset'] for a in c['apps'] if a.get('android'))+' winter-hub:Winter-Hub.apk')")
           for a in $pairs; do
             repo=${a%%:*}; asset=${a##*:}
-            gh release download -R Wateroflord/$repo -p "$asset" -D apks || echo "${asset%.apk} download-failed" >> out/status.txt
+            # Для эмулятора берём версию x86_64, если её нет — обычную.
+            x86="${asset%.apk}-x86_64.apk"
+            if gh release download -R Wateroflord/$repo -p "$x86" -D tmpapk 2>/dev/null; then
+              mv "tmpapk/$x86" "apks/$asset"
+            else
+              gh release download -R Wateroflord/$repo -p "$asset" -D apks || echo "${asset%.apk} download-failed" >> out/status.txt
+            fi
           done
           ls -la apks
         env:
