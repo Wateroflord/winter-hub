@@ -214,78 +214,124 @@
     "Mog-Battle.apk": 56130246
    }
   },
-  "Wateroflord/winter-chat|Winter-Chat-Setup.exe": {
+  "Wateroflord/winter-chat|Winter-Chat-Server-Setup.exe": {
    "a": {
-    "Winter-Chat-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-Linux.tar.gz",
-    "Winter-Chat-Server-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-Server-Linux.tar.gz",
-    "Winter-Chat-Server-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-Server-Windows.zip",
-    "Winter-Chat-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-Setup.exe",
-    "Winter-Chat-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-Windows.zip",
-    "Winter-Chat-arm64-v8a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-arm64-v8a.apk",
-    "Winter-Chat-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-armeabi-v7a.apk",
-    "Winter-Chat-x86_64.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-x86_64.apk",
-    "Winter-Chat.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat.apk"
+    "Winter-Chat-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Linux.tar.gz",
+    "Winter-Chat-Server-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Server-Linux.tar.gz",
+    "Winter-Chat-Server-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Server-Setup.exe",
+    "Winter-Chat-Server-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Server-Windows.zip",
+    "Winter-Chat-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Setup.exe",
+    "Winter-Chat-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Windows.zip",
+    "Winter-Chat-arm64-v8a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-arm64-v8a.apk",
+    "Winter-Chat-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-armeabi-v7a.apk",
+    "Winter-Chat-x86_64.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-x86_64.apk",
+    "Winter-Chat.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat.apk"
    },
-   "b": 16,
-   "d": "2026-11-16",
+   "b": 18,
+   "d": "2026-11-24",
    "h": {
-    "Winter-Chat-Linux.tar.gz": "497eee13ff0de497f859443d0794149d58921d459ca93ff8451765e544fb85c3",
-    "Winter-Chat-Server-Linux.tar.gz": "71df3a9d3d64fdf309b21c9e27b212d2cfe97c65cbacebf84d261d6eedb47448",
-    "Winter-Chat-Server-Windows.zip": "9e4e74ff8cfd501fff3091740b0c7ac30f24431d2c21ecf7e9c301560a0b84c4",
-    "Winter-Chat-Setup.exe": "9893ca401840841e5acae21a39e1e5405a6f0d588dc887eb5ba4b1035166fa95",
-    "Winter-Chat-Windows.zip": "59934ca66f0144b62739c4b7e5fb3db722bdf73a6fb24cf5634c514097170e79",
-    "Winter-Chat-arm64-v8a.apk": "d4ec1a1c50c61f9619da6b1a9b9ce91567996c5646f7f09021b6b1efabd964f2",
-    "Winter-Chat-armeabi-v7a.apk": "5650567dbb3f015b8fe38aa0536d2d0be6dfce8cb4f4afff51860da69c2d5b40",
-    "Winter-Chat-x86_64.apk": "62f6cb537dc30745e997a9c9ad47df55b43dedc6be1f401766e2993281ada09b",
-    "Winter-Chat.apk": "d4ec1a1c50c61f9619da6b1a9b9ce91567996c5646f7f09021b6b1efabd964f2"
+    "Winter-Chat-Linux.tar.gz": "66523549d9075fca974600c1e41c02f8fae6ea0162cdc9cdf3fd75931b20cc9e",
+    "Winter-Chat-Server-Linux.tar.gz": "38f83235cec9e4f6ca68b40eb31e56cbe41ff463dc010cbd50ae8ac7af8489f8",
+    "Winter-Chat-Server-Setup.exe": "0920cb91a5b6dd67a0c62d5dd40cefb3b0ffffd1e69f03f75c694c81a1e7c479",
+    "Winter-Chat-Server-Windows.zip": "6c2d8bd0d219b436ba38a252bf9b14cb901b958fc55981697f349f1405c84b8f",
+    "Winter-Chat-Setup.exe": "b1db586428f0a669969938279117b37e5541a54642301d145717d2acd39b4cd3",
+    "Winter-Chat-Windows.zip": "f02824462c613fcd88a27a4fc053e50e1c9a1d96fb4ae87162aa5151d6b77c11",
+    "Winter-Chat-arm64-v8a.apk": "6f3176dc0cc8f9aef6803aaf2d57876c881209d68c74cccc1a11f6daf8c466f1",
+    "Winter-Chat-armeabi-v7a.apk": "026b0c098f165dc05220423211265dd4901a0c9ee1f47929bb5eee1fd2cbe03a",
+    "Winter-Chat-x86_64.apk": "f1ca88bf098d5d3fb7ae432eaf4fd6508cc9cdfa0c54689593ffbeb415115c93",
+    "Winter-Chat.apk": "6f3176dc0cc8f9aef6803aaf2d57876c881209d68c74cccc1a11f6daf8c466f1"
    },
    "s": {
-    "Winter-Chat-Linux.tar.gz": 20588199,
-    "Winter-Chat-Server-Linux.tar.gz": 29054249,
-    "Winter-Chat-Server-Windows.zip": 29289146,
-    "Winter-Chat-Setup.exe": 17655379,
-    "Winter-Chat-Windows.zip": 22301982,
-    "Winter-Chat-arm64-v8a.apk": 33192329,
-    "Winter-Chat-armeabi-v7a.apk": 25287061,
-    "Winter-Chat-x86_64.apk": 38652279,
-    "Winter-Chat.apk": 33192329
+    "Winter-Chat-Linux.tar.gz": 21924906,
+    "Winter-Chat-Server-Linux.tar.gz": 29056629,
+    "Winter-Chat-Server-Setup.exe": 22922133,
+    "Winter-Chat-Server-Windows.zip": 29292621,
+    "Winter-Chat-Setup.exe": 18467903,
+    "Winter-Chat-Windows.zip": 23485864,
+    "Winter-Chat-arm64-v8a.apk": 35912150,
+    "Winter-Chat-armeabi-v7a.apk": 27322852,
+    "Winter-Chat-x86_64.apk": 41667009,
+    "Winter-Chat.apk": 35912150
+   }
+  },
+  "Wateroflord/winter-chat|Winter-Chat-Setup.exe": {
+   "a": {
+    "Winter-Chat-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Linux.tar.gz",
+    "Winter-Chat-Server-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Server-Linux.tar.gz",
+    "Winter-Chat-Server-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Server-Setup.exe",
+    "Winter-Chat-Server-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Server-Windows.zip",
+    "Winter-Chat-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Setup.exe",
+    "Winter-Chat-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Windows.zip",
+    "Winter-Chat-arm64-v8a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-arm64-v8a.apk",
+    "Winter-Chat-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-armeabi-v7a.apk",
+    "Winter-Chat-x86_64.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-x86_64.apk",
+    "Winter-Chat.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat.apk"
+   },
+   "b": 18,
+   "d": "2026-11-24",
+   "h": {
+    "Winter-Chat-Linux.tar.gz": "66523549d9075fca974600c1e41c02f8fae6ea0162cdc9cdf3fd75931b20cc9e",
+    "Winter-Chat-Server-Linux.tar.gz": "38f83235cec9e4f6ca68b40eb31e56cbe41ff463dc010cbd50ae8ac7af8489f8",
+    "Winter-Chat-Server-Setup.exe": "0920cb91a5b6dd67a0c62d5dd40cefb3b0ffffd1e69f03f75c694c81a1e7c479",
+    "Winter-Chat-Server-Windows.zip": "6c2d8bd0d219b436ba38a252bf9b14cb901b958fc55981697f349f1405c84b8f",
+    "Winter-Chat-Setup.exe": "b1db586428f0a669969938279117b37e5541a54642301d145717d2acd39b4cd3",
+    "Winter-Chat-Windows.zip": "f02824462c613fcd88a27a4fc053e50e1c9a1d96fb4ae87162aa5151d6b77c11",
+    "Winter-Chat-arm64-v8a.apk": "6f3176dc0cc8f9aef6803aaf2d57876c881209d68c74cccc1a11f6daf8c466f1",
+    "Winter-Chat-armeabi-v7a.apk": "026b0c098f165dc05220423211265dd4901a0c9ee1f47929bb5eee1fd2cbe03a",
+    "Winter-Chat-x86_64.apk": "f1ca88bf098d5d3fb7ae432eaf4fd6508cc9cdfa0c54689593ffbeb415115c93",
+    "Winter-Chat.apk": "6f3176dc0cc8f9aef6803aaf2d57876c881209d68c74cccc1a11f6daf8c466f1"
+   },
+   "s": {
+    "Winter-Chat-Linux.tar.gz": 21924906,
+    "Winter-Chat-Server-Linux.tar.gz": 29056629,
+    "Winter-Chat-Server-Setup.exe": 22922133,
+    "Winter-Chat-Server-Windows.zip": 29292621,
+    "Winter-Chat-Setup.exe": 18467903,
+    "Winter-Chat-Windows.zip": 23485864,
+    "Winter-Chat-arm64-v8a.apk": 35912150,
+    "Winter-Chat-armeabi-v7a.apk": 27322852,
+    "Winter-Chat-x86_64.apk": 41667009,
+    "Winter-Chat.apk": 35912150
    }
   },
   "Wateroflord/winter-chat|Winter-Chat.apk": {
    "a": {
-    "Winter-Chat-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-Linux.tar.gz",
-    "Winter-Chat-Server-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-Server-Linux.tar.gz",
-    "Winter-Chat-Server-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-Server-Windows.zip",
-    "Winter-Chat-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-Setup.exe",
-    "Winter-Chat-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-Windows.zip",
-    "Winter-Chat-arm64-v8a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-arm64-v8a.apk",
-    "Winter-Chat-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-armeabi-v7a.apk",
-    "Winter-Chat-x86_64.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat-x86_64.apk",
-    "Winter-Chat.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-16/Winter-Chat.apk"
+    "Winter-Chat-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Linux.tar.gz",
+    "Winter-Chat-Server-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Server-Linux.tar.gz",
+    "Winter-Chat-Server-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Server-Setup.exe",
+    "Winter-Chat-Server-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Server-Windows.zip",
+    "Winter-Chat-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Setup.exe",
+    "Winter-Chat-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-Windows.zip",
+    "Winter-Chat-arm64-v8a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-arm64-v8a.apk",
+    "Winter-Chat-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-armeabi-v7a.apk",
+    "Winter-Chat-x86_64.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat-x86_64.apk",
+    "Winter-Chat.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-18/Winter-Chat.apk"
    },
-   "b": 16,
-   "d": "2026-11-16",
+   "b": 18,
+   "d": "2026-11-24",
    "h": {
-    "Winter-Chat-Linux.tar.gz": "497eee13ff0de497f859443d0794149d58921d459ca93ff8451765e544fb85c3",
-    "Winter-Chat-Server-Linux.tar.gz": "71df3a9d3d64fdf309b21c9e27b212d2cfe97c65cbacebf84d261d6eedb47448",
-    "Winter-Chat-Server-Windows.zip": "9e4e74ff8cfd501fff3091740b0c7ac30f24431d2c21ecf7e9c301560a0b84c4",
-    "Winter-Chat-Setup.exe": "9893ca401840841e5acae21a39e1e5405a6f0d588dc887eb5ba4b1035166fa95",
-    "Winter-Chat-Windows.zip": "59934ca66f0144b62739c4b7e5fb3db722bdf73a6fb24cf5634c514097170e79",
-    "Winter-Chat-arm64-v8a.apk": "d4ec1a1c50c61f9619da6b1a9b9ce91567996c5646f7f09021b6b1efabd964f2",
-    "Winter-Chat-armeabi-v7a.apk": "5650567dbb3f015b8fe38aa0536d2d0be6dfce8cb4f4afff51860da69c2d5b40",
-    "Winter-Chat-x86_64.apk": "62f6cb537dc30745e997a9c9ad47df55b43dedc6be1f401766e2993281ada09b",
-    "Winter-Chat.apk": "d4ec1a1c50c61f9619da6b1a9b9ce91567996c5646f7f09021b6b1efabd964f2"
+    "Winter-Chat-Linux.tar.gz": "66523549d9075fca974600c1e41c02f8fae6ea0162cdc9cdf3fd75931b20cc9e",
+    "Winter-Chat-Server-Linux.tar.gz": "38f83235cec9e4f6ca68b40eb31e56cbe41ff463dc010cbd50ae8ac7af8489f8",
+    "Winter-Chat-Server-Setup.exe": "0920cb91a5b6dd67a0c62d5dd40cefb3b0ffffd1e69f03f75c694c81a1e7c479",
+    "Winter-Chat-Server-Windows.zip": "6c2d8bd0d219b436ba38a252bf9b14cb901b958fc55981697f349f1405c84b8f",
+    "Winter-Chat-Setup.exe": "b1db586428f0a669969938279117b37e5541a54642301d145717d2acd39b4cd3",
+    "Winter-Chat-Windows.zip": "f02824462c613fcd88a27a4fc053e50e1c9a1d96fb4ae87162aa5151d6b77c11",
+    "Winter-Chat-arm64-v8a.apk": "6f3176dc0cc8f9aef6803aaf2d57876c881209d68c74cccc1a11f6daf8c466f1",
+    "Winter-Chat-armeabi-v7a.apk": "026b0c098f165dc05220423211265dd4901a0c9ee1f47929bb5eee1fd2cbe03a",
+    "Winter-Chat-x86_64.apk": "f1ca88bf098d5d3fb7ae432eaf4fd6508cc9cdfa0c54689593ffbeb415115c93",
+    "Winter-Chat.apk": "6f3176dc0cc8f9aef6803aaf2d57876c881209d68c74cccc1a11f6daf8c466f1"
    },
    "s": {
-    "Winter-Chat-Linux.tar.gz": 20588199,
-    "Winter-Chat-Server-Linux.tar.gz": 29054249,
-    "Winter-Chat-Server-Windows.zip": 29289146,
-    "Winter-Chat-Setup.exe": 17655379,
-    "Winter-Chat-Windows.zip": 22301982,
-    "Winter-Chat-arm64-v8a.apk": 33192329,
-    "Winter-Chat-armeabi-v7a.apk": 25287061,
-    "Winter-Chat-x86_64.apk": 38652279,
-    "Winter-Chat.apk": 33192329
+    "Winter-Chat-Linux.tar.gz": 21924906,
+    "Winter-Chat-Server-Linux.tar.gz": 29056629,
+    "Winter-Chat-Server-Setup.exe": 22922133,
+    "Winter-Chat-Server-Windows.zip": 29292621,
+    "Winter-Chat-Setup.exe": 18467903,
+    "Winter-Chat-Windows.zip": 23485864,
+    "Winter-Chat-arm64-v8a.apk": 35912150,
+    "Winter-Chat-armeabi-v7a.apk": 27322852,
+    "Winter-Chat-x86_64.apk": 41667009,
+    "Winter-Chat.apk": 35912150
    }
   },
   "Wateroflord/winter-chess|Winter-Chess-Setup.exe": {
@@ -335,58 +381,58 @@
   },
   "Wateroflord/winter-hub|Winter-Hub-Setup.exe": {
    "a": {
-    "Winter-Hub-Setup.exe": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-Setup.exe",
-    "Winter-Hub-Windows.zip": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-Windows.zip",
-    "Winter-Hub-arm64-v8a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-arm64-v8a.apk",
-    "Winter-Hub-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-armeabi-v7a.apk",
-    "Winter-Hub-x86_64.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-x86_64.apk",
-    "Winter-Hub.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub.apk"
+    "Winter-Hub-Setup.exe": "https://github.com/Wateroflord/winter-hub/releases/download/build-19/Winter-Hub-Setup.exe",
+    "Winter-Hub-Windows.zip": "https://github.com/Wateroflord/winter-hub/releases/download/build-19/Winter-Hub-Windows.zip",
+    "Winter-Hub-arm64-v8a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-19/Winter-Hub-arm64-v8a.apk",
+    "Winter-Hub-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-19/Winter-Hub-armeabi-v7a.apk",
+    "Winter-Hub-x86_64.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-19/Winter-Hub-x86_64.apk",
+    "Winter-Hub.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-19/Winter-Hub.apk"
    },
-   "b": 17,
-   "d": "2026-11-16",
+   "b": 19,
+   "d": "2026-11-24",
    "h": {
-    "Winter-Hub-Setup.exe": "f5e9a908f16d8c0403e012eaa306da01364dbabeacd372c6c0e13a79e808d8d9",
-    "Winter-Hub-Windows.zip": "7df374c372a46eeb05b41c6142591c12ea0a7c3345ecc97d710a7a3007a22b6c",
-    "Winter-Hub-arm64-v8a.apk": "204a860753cd72ccdbcbd703c633dcd59469031d2068e996274de49c3201fc8c",
-    "Winter-Hub-armeabi-v7a.apk": "7fc5a38de6c6f7c7d12bfb81b63967bb7e3ece2b6bd5d69b1070867b46864639",
-    "Winter-Hub-x86_64.apk": "799f2190ef196c848a3ac3524e070aea31d781187effe195d20dbe7a0cc1fe37",
-    "Winter-Hub.apk": "204a860753cd72ccdbcbd703c633dcd59469031d2068e996274de49c3201fc8c"
+    "Winter-Hub-Setup.exe": "d826db575152aeb89bb290a017f2544211a4249f859deda04976d262f29548c6",
+    "Winter-Hub-Windows.zip": "bfa4f7342aa3296c0fd89e63aa0f31bb64b52af7b3f40bae52e6b9fb586336d3",
+    "Winter-Hub-arm64-v8a.apk": "a55c7cbd220747eee27b0b258340535ae4fb2fe9b90c4a8f5494416da8be4801",
+    "Winter-Hub-armeabi-v7a.apk": "cd9817382b0943997d6ac94923b340afc022a6b7d96d445e40a34ff1ce59a2a5",
+    "Winter-Hub-x86_64.apk": "8c053ba0f740dc4987b9f4c69f6a419671fcf319b531ebb6be4af5e3a4ad68ec",
+    "Winter-Hub.apk": "a55c7cbd220747eee27b0b258340535ae4fb2fe9b90c4a8f5494416da8be4801"
    },
    "s": {
-    "Winter-Hub-Setup.exe": 10302700,
-    "Winter-Hub-Windows.zip": 11765968,
-    "Winter-Hub-arm64-v8a.apk": 17321101,
-    "Winter-Hub-armeabi-v7a.apk": 14560403,
-    "Winter-Hub-x86_64.apk": 18680964,
-    "Winter-Hub.apk": 17321101
+    "Winter-Hub-Setup.exe": 10324690,
+    "Winter-Hub-Windows.zip": 11796158,
+    "Winter-Hub-arm64-v8a.apk": 17325277,
+    "Winter-Hub-armeabi-v7a.apk": 14630115,
+    "Winter-Hub-x86_64.apk": 18816212,
+    "Winter-Hub.apk": 17325277
    }
   },
   "Wateroflord/winter-hub|Winter-Hub.apk": {
    "a": {
-    "Winter-Hub-Setup.exe": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-Setup.exe",
-    "Winter-Hub-Windows.zip": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-Windows.zip",
-    "Winter-Hub-arm64-v8a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-arm64-v8a.apk",
-    "Winter-Hub-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-armeabi-v7a.apk",
-    "Winter-Hub-x86_64.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub-x86_64.apk",
-    "Winter-Hub.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-17/Winter-Hub.apk"
+    "Winter-Hub-Setup.exe": "https://github.com/Wateroflord/winter-hub/releases/download/build-19/Winter-Hub-Setup.exe",
+    "Winter-Hub-Windows.zip": "https://github.com/Wateroflord/winter-hub/releases/download/build-19/Winter-Hub-Windows.zip",
+    "Winter-Hub-arm64-v8a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-19/Winter-Hub-arm64-v8a.apk",
+    "Winter-Hub-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-19/Winter-Hub-armeabi-v7a.apk",
+    "Winter-Hub-x86_64.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-19/Winter-Hub-x86_64.apk",
+    "Winter-Hub.apk": "https://github.com/Wateroflord/winter-hub/releases/download/build-19/Winter-Hub.apk"
    },
-   "b": 17,
-   "d": "2026-11-16",
+   "b": 19,
+   "d": "2026-11-24",
    "h": {
-    "Winter-Hub-Setup.exe": "f5e9a908f16d8c0403e012eaa306da01364dbabeacd372c6c0e13a79e808d8d9",
-    "Winter-Hub-Windows.zip": "7df374c372a46eeb05b41c6142591c12ea0a7c3345ecc97d710a7a3007a22b6c",
-    "Winter-Hub-arm64-v8a.apk": "204a860753cd72ccdbcbd703c633dcd59469031d2068e996274de49c3201fc8c",
-    "Winter-Hub-armeabi-v7a.apk": "7fc5a38de6c6f7c7d12bfb81b63967bb7e3ece2b6bd5d69b1070867b46864639",
-    "Winter-Hub-x86_64.apk": "799f2190ef196c848a3ac3524e070aea31d781187effe195d20dbe7a0cc1fe37",
-    "Winter-Hub.apk": "204a860753cd72ccdbcbd703c633dcd59469031d2068e996274de49c3201fc8c"
+    "Winter-Hub-Setup.exe": "d826db575152aeb89bb290a017f2544211a4249f859deda04976d262f29548c6",
+    "Winter-Hub-Windows.zip": "bfa4f7342aa3296c0fd89e63aa0f31bb64b52af7b3f40bae52e6b9fb586336d3",
+    "Winter-Hub-arm64-v8a.apk": "a55c7cbd220747eee27b0b258340535ae4fb2fe9b90c4a8f5494416da8be4801",
+    "Winter-Hub-armeabi-v7a.apk": "cd9817382b0943997d6ac94923b340afc022a6b7d96d445e40a34ff1ce59a2a5",
+    "Winter-Hub-x86_64.apk": "8c053ba0f740dc4987b9f4c69f6a419671fcf319b531ebb6be4af5e3a4ad68ec",
+    "Winter-Hub.apk": "a55c7cbd220747eee27b0b258340535ae4fb2fe9b90c4a8f5494416da8be4801"
    },
    "s": {
-    "Winter-Hub-Setup.exe": 10302700,
-    "Winter-Hub-Windows.zip": 11765968,
-    "Winter-Hub-arm64-v8a.apk": 17321101,
-    "Winter-Hub-armeabi-v7a.apk": 14560403,
-    "Winter-Hub-x86_64.apk": 18680964,
-    "Winter-Hub.apk": 17321101
+    "Winter-Hub-Setup.exe": 10324690,
+    "Winter-Hub-Windows.zip": 11796158,
+    "Winter-Hub-arm64-v8a.apk": 17325277,
+    "Winter-Hub-armeabi-v7a.apk": 14630115,
+    "Winter-Hub-x86_64.apk": 18816212,
+    "Winter-Hub.apk": 17325277
    }
   },
   "Wateroflord/winter-language|Winter-Language-Setup.exe": {
@@ -550,5 +596,5 @@
    }
   }
  },
- "updated": "2026-11-24T16:29:18Z"
+ "updated": "2026-11-24T16:51:07Z"
 }
