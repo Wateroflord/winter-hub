@@ -11,6 +11,14 @@
    },
    "b": 42,
    "d": "2026-11-16",
+   "h": {
+    "Dota-Draft-Setup.exe": "8a3503fe0b65ad50bbdfef0522c213ff1a2487e1966c113fddf08f21e325ae5e",
+    "Dota-Draft-Windows.zip": "29b91d2cc912c6de48784abca3c743486a94ceb05e09215b3daa38fb0f0fd5f3",
+    "Dota-Draft-arm64-v8a.apk": "29817280f0b8679cc81a7277bae0b07748e7fc711ec4e9ef8726bbc49c817fbb",
+    "Dota-Draft-armeabi-v7a.apk": "cb9fa967bab6f9400c4ea46771c69ff8eeb3bd541c806d8d937d78e530d3f2fa",
+    "Dota-Draft-x86_64.apk": "6fbfa3c96faf7ef199c8fefa939a56e8d3e4c213473b848aa11f6cca01f4652e",
+    "Dota-Draft.apk": "29817280f0b8679cc81a7277bae0b07748e7fc711ec4e9ef8726bbc49c817fbb"
+   },
    "s": {
     "Dota-Draft-Setup.exe": 12288703,
     "Dota-Draft-Windows.zip": 14694056,
@@ -31,6 +39,14 @@
    },
    "b": 42,
    "d": "2026-11-16",
+   "h": {
+    "Dota-Draft-Setup.exe": "8a3503fe0b65ad50bbdfef0522c213ff1a2487e1966c113fddf08f21e325ae5e",
+    "Dota-Draft-Windows.zip": "29b91d2cc912c6de48784abca3c743486a94ceb05e09215b3daa38fb0f0fd5f3",
+    "Dota-Draft-arm64-v8a.apk": "29817280f0b8679cc81a7277bae0b07748e7fc711ec4e9ef8726bbc49c817fbb",
+    "Dota-Draft-armeabi-v7a.apk": "cb9fa967bab6f9400c4ea46771c69ff8eeb3bd541c806d8d937d78e530d3f2fa",
+    "Dota-Draft-x86_64.apk": "6fbfa3c96faf7ef199c8fefa939a56e8d3e4c213473b848aa11f6cca01f4652e",
+    "Dota-Draft.apk": "29817280f0b8679cc81a7277bae0b07748e7fc711ec4e9ef8726bbc49c817fbb"
+   },
    "s": {
     "Dota-Draft-Setup.exe": 12288703,
     "Dota-Draft-Windows.zip": 14694056,
@@ -47,6 +63,10 @@
    },
    "b": 5,
    "d": "2026-11-06",
+   "h": {
+    "Draw-School-Setup.exe": "2ea0eef69e68a03b940c8da448b0494ee322fcbe99910ff2471cab1943699ea4",
+    "Draw-School.apk": "4a1940d21ddae966155a11553cae9be934b74b018e4a6f7b1abdbe7f17f46e86"
+   },
    "s": {
     "Draw-School-Setup.exe": 10143145,
     "Draw-School.apk": 47286799
@@ -59,6 +79,10 @@
    },
    "b": 5,
    "d": "2026-11-06",
+   "h": {
+    "Draw-School-Setup.exe": "2ea0eef69e68a03b940c8da448b0494ee322fcbe99910ff2471cab1943699ea4",
+    "Draw-School.apk": "4a1940d21ddae966155a11553cae9be934b74b018e4a6f7b1abdbe7f17f46e86"
+   },
    "s": {
     "Draw-School-Setup.exe": 10143145,
     "Draw-School.apk": 47286799
@@ -71,6 +95,10 @@
    },
    "b": 5,
    "d": "2026-11-06",
+   "h": {
+    "Forest-Survival-Setup.exe": "a87385ee921481140de6b804357f7310f7accc36d828ba9b88de5729b82d82ba",
+    "Forest-Survival.apk": "4b080a5daf9cff2f4dfb6ef7c1b0155d98353790bcea7de7b3aee920c0059891"
+   },
    "s": {
     "Forest-Survival-Setup.exe": 10391089,
     "Forest-Survival.apk": 50379279
@@ -83,6 +111,10 @@
    },
    "b": 5,
    "d": "2026-11-06",
+   "h": {
+    "Forest-Survival-Setup.exe": "a87385ee921481140de6b804357f7310f7accc36d828ba9b88de5729b82d82ba",
+    "Forest-Survival.apk": "4b080a5daf9cff2f4dfb6ef7c1b0155d98353790bcea7de7b3aee920c0059891"
+   },
    "s": {
     "Forest-Survival-Setup.exe": 10391089,
     "Forest-Survival.apk": 50379279
@@ -90,42 +122,58 @@
   },
   "Wateroflord/kbju-tracker|KBJU-Tracker-Setup.exe": {
    "a": {
-    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-Setup.exe",
-    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-Windows.zip",
-    "KBJU-Tracker-arm64-v8a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-arm64-v8a.apk",
-    "KBJU-Tracker-armeabi-v7a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-armeabi-v7a.apk",
-    "KBJU-Tracker-x86_64.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-x86_64.apk",
-    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker.apk"
+    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-36/KBJU-Tracker-Setup.exe",
+    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-36/KBJU-Tracker-Windows.zip",
+    "KBJU-Tracker-arm64-v8a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-36/KBJU-Tracker-arm64-v8a.apk",
+    "KBJU-Tracker-armeabi-v7a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-36/KBJU-Tracker-armeabi-v7a.apk",
+    "KBJU-Tracker-x86_64.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-36/KBJU-Tracker-x86_64.apk",
+    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-36/KBJU-Tracker.apk"
    },
-   "b": 34,
-   "d": "2026-11-16",
+   "b": 36,
+   "d": "2026-11-24",
+   "h": {
+    "KBJU-Tracker-Setup.exe": "f3d781ad1b1dafa0d6b551e28645c0049a55e8c107fb09d70dcfae2898ad0a43",
+    "KBJU-Tracker-Windows.zip": "57b8d26c0cab00302b31b03d4852d3c5340b45bfc0ac8402bf7ac23d143e38f1",
+    "KBJU-Tracker-arm64-v8a.apk": "c945578df4f8febb99ea9fb8a7e46d18562bf5c3b2d932fa8dee6667f2e2564c",
+    "KBJU-Tracker-armeabi-v7a.apk": "a4a5a78cb3398a84ac714154527539133a7085a23838481b5f32018c0817145d",
+    "KBJU-Tracker-x86_64.apk": "44ec135dee05f6b1920a57e19760721d0f31fba133361e0f1d33de78577b9d38",
+    "KBJU-Tracker.apk": "c945578df4f8febb99ea9fb8a7e46d18562bf5c3b2d932fa8dee6667f2e2564c"
+   },
    "s": {
-    "KBJU-Tracker-Setup.exe": 88680104,
-    "KBJU-Tracker-Windows.zip": 97020930,
-    "KBJU-Tracker-arm64-v8a.apk": 96915487,
-    "KBJU-Tracker-armeabi-v7a.apk": 16662498,
-    "KBJU-Tracker-x86_64.apk": 17551295,
-    "KBJU-Tracker.apk": 96915487
+    "KBJU-Tracker-Setup.exe": 88705530,
+    "KBJU-Tracker-Windows.zip": 97050874,
+    "KBJU-Tracker-arm64-v8a.apk": 113974129,
+    "KBJU-Tracker-armeabi-v7a.apk": 33102646,
+    "KBJU-Tracker-x86_64.apk": 34953998,
+    "KBJU-Tracker.apk": 113974129
    }
   },
   "Wateroflord/kbju-tracker|KBJU-Tracker.apk": {
    "a": {
-    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-Setup.exe",
-    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-Windows.zip",
-    "KBJU-Tracker-arm64-v8a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-arm64-v8a.apk",
-    "KBJU-Tracker-armeabi-v7a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-armeabi-v7a.apk",
-    "KBJU-Tracker-x86_64.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker-x86_64.apk",
-    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-34/KBJU-Tracker.apk"
+    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-36/KBJU-Tracker-Setup.exe",
+    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-36/KBJU-Tracker-Windows.zip",
+    "KBJU-Tracker-arm64-v8a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-36/KBJU-Tracker-arm64-v8a.apk",
+    "KBJU-Tracker-armeabi-v7a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-36/KBJU-Tracker-armeabi-v7a.apk",
+    "KBJU-Tracker-x86_64.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-36/KBJU-Tracker-x86_64.apk",
+    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-36/KBJU-Tracker.apk"
    },
-   "b": 34,
-   "d": "2026-11-16",
+   "b": 36,
+   "d": "2026-11-24",
+   "h": {
+    "KBJU-Tracker-Setup.exe": "f3d781ad1b1dafa0d6b551e28645c0049a55e8c107fb09d70dcfae2898ad0a43",
+    "KBJU-Tracker-Windows.zip": "57b8d26c0cab00302b31b03d4852d3c5340b45bfc0ac8402bf7ac23d143e38f1",
+    "KBJU-Tracker-arm64-v8a.apk": "c945578df4f8febb99ea9fb8a7e46d18562bf5c3b2d932fa8dee6667f2e2564c",
+    "KBJU-Tracker-armeabi-v7a.apk": "a4a5a78cb3398a84ac714154527539133a7085a23838481b5f32018c0817145d",
+    "KBJU-Tracker-x86_64.apk": "44ec135dee05f6b1920a57e19760721d0f31fba133361e0f1d33de78577b9d38",
+    "KBJU-Tracker.apk": "c945578df4f8febb99ea9fb8a7e46d18562bf5c3b2d932fa8dee6667f2e2564c"
+   },
    "s": {
-    "KBJU-Tracker-Setup.exe": 88680104,
-    "KBJU-Tracker-Windows.zip": 97020930,
-    "KBJU-Tracker-arm64-v8a.apk": 96915487,
-    "KBJU-Tracker-armeabi-v7a.apk": 16662498,
-    "KBJU-Tracker-x86_64.apk": 17551295,
-    "KBJU-Tracker.apk": 96915487
+    "KBJU-Tracker-Setup.exe": 88705530,
+    "KBJU-Tracker-Windows.zip": 97050874,
+    "KBJU-Tracker-arm64-v8a.apk": 113974129,
+    "KBJU-Tracker-armeabi-v7a.apk": 33102646,
+    "KBJU-Tracker-x86_64.apk": 34953998,
+    "KBJU-Tracker.apk": 113974129
    }
   },
   "Wateroflord/mog-battle|Mog-Battle-Setup.exe": {
@@ -136,6 +184,11 @@
    },
    "b": 5,
    "d": "2026-11-06",
+   "h": {
+    "Mog-Battle-Setup.exe": "77afc7d22f71a69f9de8060411536e8be3586d50d02143a5fdda6aee8e3ee90d",
+    "Mog-Battle-Windows.zip": "292913d66e5fd88f8db2e80eac5fa2ed9b9855bb153d535caabb8281cfa9a28d",
+    "Mog-Battle.apk": "6b94fea1e63c25ca6510077339832c3f7ba4869a960aab31e89c16f590667b16"
+   },
    "s": {
     "Mog-Battle-Setup.exe": 10983801,
     "Mog-Battle-Windows.zip": 12736052,
@@ -150,6 +203,11 @@
    },
    "b": 5,
    "d": "2026-11-06",
+   "h": {
+    "Mog-Battle-Setup.exe": "77afc7d22f71a69f9de8060411536e8be3586d50d02143a5fdda6aee8e3ee90d",
+    "Mog-Battle-Windows.zip": "292913d66e5fd88f8db2e80eac5fa2ed9b9855bb153d535caabb8281cfa9a28d",
+    "Mog-Battle.apk": "6b94fea1e63c25ca6510077339832c3f7ba4869a960aab31e89c16f590667b16"
+   },
    "s": {
     "Mog-Battle-Setup.exe": 10983801,
     "Mog-Battle-Windows.zip": 12736052,
@@ -170,6 +228,17 @@
    },
    "b": 16,
    "d": "2026-11-16",
+   "h": {
+    "Winter-Chat-Linux.tar.gz": "497eee13ff0de497f859443d0794149d58921d459ca93ff8451765e544fb85c3",
+    "Winter-Chat-Server-Linux.tar.gz": "71df3a9d3d64fdf309b21c9e27b212d2cfe97c65cbacebf84d261d6eedb47448",
+    "Winter-Chat-Server-Windows.zip": "9e4e74ff8cfd501fff3091740b0c7ac30f24431d2c21ecf7e9c301560a0b84c4",
+    "Winter-Chat-Setup.exe": "9893ca401840841e5acae21a39e1e5405a6f0d588dc887eb5ba4b1035166fa95",
+    "Winter-Chat-Windows.zip": "59934ca66f0144b62739c4b7e5fb3db722bdf73a6fb24cf5634c514097170e79",
+    "Winter-Chat-arm64-v8a.apk": "d4ec1a1c50c61f9619da6b1a9b9ce91567996c5646f7f09021b6b1efabd964f2",
+    "Winter-Chat-armeabi-v7a.apk": "5650567dbb3f015b8fe38aa0536d2d0be6dfce8cb4f4afff51860da69c2d5b40",
+    "Winter-Chat-x86_64.apk": "62f6cb537dc30745e997a9c9ad47df55b43dedc6be1f401766e2993281ada09b",
+    "Winter-Chat.apk": "d4ec1a1c50c61f9619da6b1a9b9ce91567996c5646f7f09021b6b1efabd964f2"
+   },
    "s": {
     "Winter-Chat-Linux.tar.gz": 20588199,
     "Winter-Chat-Server-Linux.tar.gz": 29054249,
@@ -196,6 +265,17 @@
    },
    "b": 16,
    "d": "2026-11-16",
+   "h": {
+    "Winter-Chat-Linux.tar.gz": "497eee13ff0de497f859443d0794149d58921d459ca93ff8451765e544fb85c3",
+    "Winter-Chat-Server-Linux.tar.gz": "71df3a9d3d64fdf309b21c9e27b212d2cfe97c65cbacebf84d261d6eedb47448",
+    "Winter-Chat-Server-Windows.zip": "9e4e74ff8cfd501fff3091740b0c7ac30f24431d2c21ecf7e9c301560a0b84c4",
+    "Winter-Chat-Setup.exe": "9893ca401840841e5acae21a39e1e5405a6f0d588dc887eb5ba4b1035166fa95",
+    "Winter-Chat-Windows.zip": "59934ca66f0144b62739c4b7e5fb3db722bdf73a6fb24cf5634c514097170e79",
+    "Winter-Chat-arm64-v8a.apk": "d4ec1a1c50c61f9619da6b1a9b9ce91567996c5646f7f09021b6b1efabd964f2",
+    "Winter-Chat-armeabi-v7a.apk": "5650567dbb3f015b8fe38aa0536d2d0be6dfce8cb4f4afff51860da69c2d5b40",
+    "Winter-Chat-x86_64.apk": "62f6cb537dc30745e997a9c9ad47df55b43dedc6be1f401766e2993281ada09b",
+    "Winter-Chat.apk": "d4ec1a1c50c61f9619da6b1a9b9ce91567996c5646f7f09021b6b1efabd964f2"
+   },
    "s": {
     "Winter-Chat-Linux.tar.gz": 20588199,
     "Winter-Chat-Server-Linux.tar.gz": 29054249,
@@ -215,6 +295,10 @@
    },
    "b": 9,
    "d": "2026-11-06",
+   "h": {
+    "Winter-Chess-Setup.exe": "7469ae500e7aa364cff5fcfd5470cebf5c5fbfd5f5d0478dca3caa9d190a3e3b",
+    "Winter-Chess.apk": "c1a508917d2aad7d5a69a0597576575def51bf11e1912640817ee5b8c833ce6a"
+   },
    "s": {
     "Winter-Chess-Setup.exe": 85675596,
     "Winter-Chess.apk": 102457041
@@ -227,6 +311,10 @@
    },
    "b": 9,
    "d": "2026-11-06",
+   "h": {
+    "Winter-Chess-Setup.exe": "7469ae500e7aa364cff5fcfd5470cebf5c5fbfd5f5d0478dca3caa9d190a3e3b",
+    "Winter-Chess.apk": "c1a508917d2aad7d5a69a0597576575def51bf11e1912640817ee5b8c833ce6a"
+   },
    "s": {
     "Winter-Chess-Setup.exe": 85675596,
     "Winter-Chess.apk": 102457041
@@ -238,6 +326,9 @@
    },
    "b": 7,
    "d": "2026-11-06",
+   "h": {
+    "winter-expiry.apk": "b2688688555ca4e2aa3b61d0926d0f3f7032c77b75dfbd8a450ae440db365c35"
+   },
    "s": {
     "winter-expiry.apk": 75691794
    }
@@ -253,6 +344,14 @@
    },
    "b": 17,
    "d": "2026-11-16",
+   "h": {
+    "Winter-Hub-Setup.exe": "f5e9a908f16d8c0403e012eaa306da01364dbabeacd372c6c0e13a79e808d8d9",
+    "Winter-Hub-Windows.zip": "7df374c372a46eeb05b41c6142591c12ea0a7c3345ecc97d710a7a3007a22b6c",
+    "Winter-Hub-arm64-v8a.apk": "204a860753cd72ccdbcbd703c633dcd59469031d2068e996274de49c3201fc8c",
+    "Winter-Hub-armeabi-v7a.apk": "7fc5a38de6c6f7c7d12bfb81b63967bb7e3ece2b6bd5d69b1070867b46864639",
+    "Winter-Hub-x86_64.apk": "799f2190ef196c848a3ac3524e070aea31d781187effe195d20dbe7a0cc1fe37",
+    "Winter-Hub.apk": "204a860753cd72ccdbcbd703c633dcd59469031d2068e996274de49c3201fc8c"
+   },
    "s": {
     "Winter-Hub-Setup.exe": 10302700,
     "Winter-Hub-Windows.zip": 11765968,
@@ -273,6 +372,14 @@
    },
    "b": 17,
    "d": "2026-11-16",
+   "h": {
+    "Winter-Hub-Setup.exe": "f5e9a908f16d8c0403e012eaa306da01364dbabeacd372c6c0e13a79e808d8d9",
+    "Winter-Hub-Windows.zip": "7df374c372a46eeb05b41c6142591c12ea0a7c3345ecc97d710a7a3007a22b6c",
+    "Winter-Hub-arm64-v8a.apk": "204a860753cd72ccdbcbd703c633dcd59469031d2068e996274de49c3201fc8c",
+    "Winter-Hub-armeabi-v7a.apk": "7fc5a38de6c6f7c7d12bfb81b63967bb7e3ece2b6bd5d69b1070867b46864639",
+    "Winter-Hub-x86_64.apk": "799f2190ef196c848a3ac3524e070aea31d781187effe195d20dbe7a0cc1fe37",
+    "Winter-Hub.apk": "204a860753cd72ccdbcbd703c633dcd59469031d2068e996274de49c3201fc8c"
+   },
    "s": {
     "Winter-Hub-Setup.exe": 10302700,
     "Winter-Hub-Windows.zip": 11765968,
@@ -289,6 +396,10 @@
    },
    "b": 6,
    "d": "2026-11-06",
+   "h": {
+    "Winter-Language-Setup.exe": "87893b6e82b97f254a4fa0fd9e1f213ce258a62ab12d423190b574898f9d13ca",
+    "Winter-Language.apk": "d2133a6bafd4c2a4fb215ba2eb98b7225bdb5f63b16b2937fe3ed1307743bc0f"
+   },
    "s": {
     "Winter-Language-Setup.exe": 10809801,
     "Winter-Language.apk": 52619765
@@ -301,6 +412,10 @@
    },
    "b": 6,
    "d": "2026-11-06",
+   "h": {
+    "Winter-Language-Setup.exe": "87893b6e82b97f254a4fa0fd9e1f213ce258a62ab12d423190b574898f9d13ca",
+    "Winter-Language.apk": "d2133a6bafd4c2a4fb215ba2eb98b7225bdb5f63b16b2937fe3ed1307743bc0f"
+   },
    "s": {
     "Winter-Language-Setup.exe": 10809801,
     "Winter-Language.apk": 52619765
@@ -313,6 +428,10 @@
    },
    "b": 5,
    "d": "2026-11-06",
+   "h": {
+    "Winter-Mines-Setup.exe": "24b9b9efe5b69c7a39169665584802a1dcff3c36a9cc1239849beacf1547667f",
+    "Winter-Mines.apk": "85e9ccbdd8891fff429cd935e365702db8b68b573d194558fcd11112660623e2"
+   },
    "s": {
     "Winter-Mines-Setup.exe": 10210372,
     "Winter-Mines.apk": 48069135
@@ -325,6 +444,10 @@
    },
    "b": 5,
    "d": "2026-11-06",
+   "h": {
+    "Winter-Mines-Setup.exe": "24b9b9efe5b69c7a39169665584802a1dcff3c36a9cc1239849beacf1547667f",
+    "Winter-Mines.apk": "85e9ccbdd8891fff429cd935e365702db8b68b573d194558fcd11112660623e2"
+   },
    "s": {
     "Winter-Mines-Setup.exe": 10210372,
     "Winter-Mines.apk": 48069135
@@ -337,6 +460,10 @@
    },
    "b": 8,
    "d": "2026-11-06",
+   "h": {
+    "Winter-Music-Setup.exe": "8f7de6a1daf154bbfb1e055ae47e1d5f0400fcab82625104330db41bf1a20917",
+    "Winter-Music.apk": "738c10a8e6d669cd37138f83a85e8ef803598368ac5ad0fe7fd9b5313e5c8214"
+   },
    "s": {
     "Winter-Music-Setup.exe": 10740467,
     "Winter-Music.apk": 53500514
@@ -349,6 +476,10 @@
    },
    "b": 8,
    "d": "2026-11-06",
+   "h": {
+    "Winter-Music-Setup.exe": "8f7de6a1daf154bbfb1e055ae47e1d5f0400fcab82625104330db41bf1a20917",
+    "Winter-Music.apk": "738c10a8e6d669cd37138f83a85e8ef803598368ac5ad0fe7fd9b5313e5c8214"
+   },
    "s": {
     "Winter-Music-Setup.exe": 10740467,
     "Winter-Music.apk": 53500514
@@ -361,6 +492,10 @@
    },
    "b": 8,
    "d": "2026-11-06",
+   "h": {
+    "Winter-Paint-Setup.exe": "dd5ce24ad484088a961e7d95b6f3e454f4cd349fe36bc25445d6e49ffe216fc6",
+    "Winter-Paint.apk": "189026689ba1fb22a130d944e596a24fb93e2a46a3fe712ad88ea42410ce02e8"
+   },
    "s": {
     "Winter-Paint-Setup.exe": 10593283,
     "Winter-Paint.apk": 52328975
@@ -373,6 +508,10 @@
    },
    "b": 8,
    "d": "2026-11-06",
+   "h": {
+    "Winter-Paint-Setup.exe": "dd5ce24ad484088a961e7d95b6f3e454f4cd349fe36bc25445d6e49ffe216fc6",
+    "Winter-Paint.apk": "189026689ba1fb22a130d944e596a24fb93e2a46a3fe712ad88ea42410ce02e8"
+   },
    "s": {
     "Winter-Paint-Setup.exe": 10593283,
     "Winter-Paint.apk": 52328975
@@ -385,6 +524,10 @@
    },
    "b": 13,
    "d": "2026-11-06",
+   "h": {
+    "Winter-Walks-Setup.exe": "10774a9009365c7c0e4fcd16de54234aa64027ad54585259adafd29ae70fadcb",
+    "Winter-Walks.apk": "47ac5d7bca8d89b2197736cf91951b1c42bcabb7d103e65faac54beab9046eb5"
+   },
    "s": {
     "Winter-Walks-Setup.exe": 10783409,
     "Winter-Walks.apk": 53742636
@@ -397,11 +540,15 @@
    },
    "b": 13,
    "d": "2026-11-06",
+   "h": {
+    "Winter-Walks-Setup.exe": "10774a9009365c7c0e4fcd16de54234aa64027ad54585259adafd29ae70fadcb",
+    "Winter-Walks.apk": "47ac5d7bca8d89b2197736cf91951b1c42bcabb7d103e65faac54beab9046eb5"
+   },
    "s": {
     "Winter-Walks-Setup.exe": 10783409,
     "Winter-Walks.apk": 53742636
    }
   }
  },
- "updated": "2026-11-24T11:43:25Z"
+ "updated": "2026-11-24T16:29:18Z"
 }
