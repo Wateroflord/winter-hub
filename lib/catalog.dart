@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
@@ -83,19 +84,27 @@ const hubEntry = AppEntry(
 class Catalog {
   final List<AppEntry> apps;
   final List<NewsItem> hubNews;
-  const Catalog(this.apps, this.hubNews);
 
-  static Catalog parse(Map j) => Catalog(
+  /// Каталог только что скачан из интернета (а не взят из кэша).
+  final bool online;
+  const Catalog(this.apps, this.hubNews, {this.online = false});
+
+  static Catalog parse(Map j, {bool online = false}) => Catalog(
         [for (final a in (j['apps'] as List? ?? const [])) if (a is Map) AppEntry.fromJson(a)],
         NewsItem.parse(j['hubNews']),
+        online: online,
       );
 }
 
-/// Встроенный каталог (если нет интернета при первом запуске).
-const _builtin = r'''{"apps":[
-{"id":"dota","name":"Dota Draft","tagline":"Пики, контрпики и шанс победы в Dota 2","description":"Подсказывает, кого пикать, считает шанс победы. На ПК — оверлей поверх игры.","repo":"Wateroflord/dota-draft","color":"#E04848","icon":"https://raw.githubusercontent.com/Wateroflord/dota-draft/main/assets/icon/icon.png","android":{"package":"com.dotadraft.dota_draft","asset":"Dota-Draft.apk"},"windows":{"asset":"Dota-Draft-Setup.exe","appId":"{8F3C2A51-5D7B-4E1A-9C64-2B7D1E9A0F11}","exe":"Dota Draft\\dota_draft.exe"}},
-{"id":"kbju","name":"КБЖУ Трекер","tagline":"Калории и БЖУ по фото еды","description":"Фото еды — и ИИ считает калории и БЖУ. Вес, вода, привычки, тренировки.","repo":"Wateroflord/kbju-tracker","color":"#5B9DFF","icon":"https://raw.githubusercontent.com/Wateroflord/kbju-tracker/main/assets/icon/icon.png","android":{"package":"com.kbju.kbju_tracker","asset":"KBJU-Tracker.apk"},"windows":{"asset":"KBJU-Tracker-Setup.exe","appId":"{3C1B7E62-9A4D-4F8B-B2E7-6D0A5C9F1E24}","exe":"KBJU Tracker\\kbju_tracker.exe"}}
-]}''';
+/// Встроенный каталог (если нет интернета при первом запуске) — копия catalog.json,
+/// которая попадает в приложение при сборке (assets в pubspec.yaml).
+Future<Map> _builtin() async {
+  try {
+    return jsonDecode(await rootBundle.loadString('catalog.json')) as Map;
+  } catch (_) {
+    return const {'apps': []};
+  }
+}
 
 Future<File?> _cacheFile(String name) async {
   try {
@@ -129,12 +138,12 @@ Future<Catalog> loadCatalog({bool online = true}) async {
       if (r.statusCode == 200) {
         final j = jsonDecode(utf8.decode(r.bodyBytes)) as Map;
         await writeCache('catalog.json', j);
-        return Catalog.parse(j);
+        return Catalog.parse(j, online: true);
       }
     } catch (_) {}
   }
   final c = await readCache('catalog.json');
-  return Catalog.parse(c ?? jsonDecode(_builtin) as Map);
+  return Catalog.parse(c ?? await _builtin());
 }
 
 /// Последний выпуск приложения на GitHub.
@@ -143,18 +152,47 @@ class Release {
   final String date;
   final Map<String, String> assets; // имя → ссылка
   final Map<String, int> sizes;
-  const Release(this.build, this.date, this.assets, this.sizes);
 
-  Map<String, dynamic> toJson() => {'b': build, 'd': date, 'a': assets, 's': sizes};
+  /// SHA-256 файлов (имя → hex). GitHub считает его сам для каждого файла релиза.
+  final Map<String, String> hashes;
+  const Release(this.build, this.date, this.assets, this.sizes, [this.hashes = const {}]);
+
+  Map<String, dynamic> toJson() => {'b': build, 'd': date, 'a': assets, 's': sizes, 'h': hashes};
   static Release fromJson(Map j) => Release(
         (j['b'] as num?)?.toInt() ?? 0,
         '${j['d'] ?? ''}',
         {for (final e in ((j['a'] as Map?) ?? const {}).entries) '${e.key}': '${e.value}'},
-        {for (final e in ((j['s'] as Map?) ?? const {}).entries) '${e.key}': (e.value as num).toInt()},
+        {for (final e in ((j['s'] as Map?) ?? const {}).entries) if (e.value is num) '${e.key}': (e.value as num).toInt()},
+        {for (final e in ((j['h'] as Map?) ?? const {}).entries) if (e.value is String) '${e.key}': '${e.value}'},
       );
 }
 
-const _versionsUrl = 'https://raw.githubusercontent.com/$hubRepo/main/versions.json';
+/// «sha256:abc…» из ответа GitHub → «abc…». Пустая строка — хэша нет.
+String digestHex(Object? d) {
+  final s = '${d ?? ''}'.trim().toLowerCase();
+  if (!s.startsWith('sha256:')) return '';
+  final h = s.substring(7);
+  return RegExp(r'^[0-9a-f]{64}$').hasMatch(h) ? h : '';
+}
+
+/// Сводка лежит в ветке data (одна запись, без истории). Старые сборки хаба читают main —
+/// туда сводка попадает, только когда выходят новые сборки.
+const versionsUrls = [
+  'https://raw.githubusercontent.com/$hubRepo/data/versions.json',
+  'https://raw.githubusercontent.com/$hubRepo/main/versions.json',
+];
+
+/// Скачать versions.json как есть (null — нет связи).
+Future<Map?> fetchVersionsJson({Duration timeout = const Duration(seconds: 12)}) async {
+  final t = DateTime.now().millisecondsSinceEpoch ~/ 60000;
+  for (final u in versionsUrls) {
+    try {
+      final r = await http.get(Uri.parse('$u?t=$t')).timeout(timeout);
+      if (r.statusCode == 200) return jsonDecode(utf8.decode(r.bodyBytes)) as Map;
+    } catch (_) {}
+  }
+  return null;
+}
 
 /// Сводка свежих сборок всех приложений (ключ «repo|файл»).
 /// Её раз в 15 минут собирает GitHub Actions в репозитории хаба, поэтому хаб
@@ -176,25 +214,21 @@ class Versions {
 }
 
 Future<Versions?> loadVersions() async {
-  try {
-    final r = await http
-        .get(Uri.parse('$_versionsUrl?t=${DateTime.now().millisecondsSinceEpoch ~/ 60000}'))
-        .timeout(const Duration(seconds: 12));
-    if (r.statusCode == 200) return Versions.parse(jsonDecode(utf8.decode(r.bodyBytes)) as Map);
-  } catch (_) {}
-  return null;
+  final j = await fetchVersionsJson();
+  return j == null ? null : Versions.parse(j);
 }
 
 /// Ищем свежий выпуск через GitHub API, где уже есть нужный файл
 /// (Windows-файлы появляются на несколько минут позже APK).
-/// Запрос условный (ETag): если ничего не изменилось, GitHub отвечает 304,
-/// и такой ответ не тратит лимит запросов.
+/// Запрос условный (ETag): если ничего не изменилось, GitHub отвечает 304 и не присылает
+/// список заново. Лимит (60 запросов в час без ключа) такой ответ всё равно тратит —
+/// поэтому хаб спрашивает API только про приложения, которые сам ставит.
 Future<Release?> latestRelease(String repo, String? asset) async {
   final cacheName = 'rel_${repo.replaceAll('/', '_')}_$asset.json';
-  final etagName = 'etag_${repo.replaceAll('/', '_')}.json';
+  final etagName = 'etag2_${repo.replaceAll('/', '_')}.json';
   try {
     final etag = (await readCache(etagName))?['etag']?.toString();
-    final cachedList = await readCache('list_${repo.replaceAll('/', '_')}.json');
+    final cachedList = await readCache('list2_${repo.replaceAll('/', '_')}.json');
     final r = await http.get(Uri.parse('https://api.github.com/repos/$repo/releases?per_page=5'), headers: {
       'Accept': 'application/vnd.github+json',
       if (etag != null && cachedList != null) 'If-None-Match': etag,
@@ -207,7 +241,7 @@ Future<Release?> latestRelease(String repo, String? asset) async {
       final tag = r.headers['etag'];
       if (tag != null) {
         await writeCache(etagName, {'etag': tag});
-        await writeCache('list_${repo.replaceAll('/', '_')}.json', {'l': _slim(list)});
+        await writeCache('list2_${repo.replaceAll('/', '_')}.json', {'l': _slim(list)});
       }
     } else {
       throw Exception('HTTP ${r.statusCode}');
@@ -234,7 +268,7 @@ List _slim(List list) => [
           'prerelease': rel['prerelease'],
           'assets': [
             for (final a in (rel['assets'] as List? ?? const []).whereType<Map>())
-              {'name': a['name'], 'browser_download_url': a['browser_download_url'], 'size': a['size']},
+              {'name': a['name'], 'browser_download_url': a['browser_download_url'], 'size': a['size'], 'digest': a['digest']},
           ],
         },
     ];
@@ -243,15 +277,17 @@ List _slim(List list) => [
 Release? pickRelease(List list, String? asset) {
   for (final rel in list.whereType<Map>()) {
     if (rel['draft'] == true || rel['prerelease'] == true) continue;
-    final assets = <String, String>{}, sizes = <String, int>{};
+    final assets = <String, String>{}, sizes = <String, int>{}, hashes = <String, String>{};
     for (final a in (rel['assets'] as List? ?? const []).whereType<Map>()) {
       assets['${a['name']}'] = '${a['browser_download_url']}';
       sizes['${a['name']}'] = (a['size'] as num?)?.toInt() ?? 0;
+      final h = digestHex(a['digest']);
+      if (h.isNotEmpty) hashes['${a['name']}'] = h;
     }
     if (asset != null && !assets.containsKey(asset)) continue;
     final tag = '${rel['tag_name'] ?? ''}';
     final b = int.tryParse(RegExp(r'(\d+)$').firstMatch(tag)?.group(1) ?? '') ?? 0;
-    return Release(b, '${rel['published_at'] ?? ''}'.split('T').first, assets, sizes);
+    return Release(b, '${rel['published_at'] ?? ''}'.split('T').first, assets, sizes, hashes);
   }
   return null;
 }

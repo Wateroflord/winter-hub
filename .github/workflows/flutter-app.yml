@@ -160,11 +160,30 @@ jobs:
       - name: Sign APKs
         env:
           WINTER_SIGNING: ${{ secrets.WINTER_SIGNING }}
+          # Выпуск без постоянного ключа запрещён (тестовая сборка — можно, с предупреждением).
+          WINTER_REQUIRE_KEY: ${{ inputs.publish && '1' || '' }}
         run: |
           for f in dist/*.apk; do python3 .winter/ci/sign_apk.py "$f"; done
           # Старое имя файла = версия для arm64 (почти все телефоны).
           cp "dist/${{ inputs.asset }}-arm64-v8a.apk" "dist/${{ inputs.asset }}.apk"
           ls -la dist
+      - name: Save pubspec.lock
+        # Версия Flutter зафиксирована, а версии пакетов — нет: новая версия какого-нибудь пакета
+        # могла сломать сборку всех приложений разом. После удачной сборки бот кладёт pubspec.lock
+        # в репозиторий, и следующие сборки берут ровно те же версии. Коммит бота сборку заново не запускает.
+        if: inputs.publish && github.ref == 'refs/heads/main'
+        continue-on-error: true
+        run: |
+          [ -f pubspec.lock ] || exit 0
+          if git ls-files --error-unmatch pubspec.lock >/dev/null 2>&1 && git diff --quiet -- pubspec.lock; then
+            echo "pubspec.lock не изменился"; exit 0
+          fi
+          git config user.name "winter-hub-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -f pubspec.lock
+          git commit -q -m "pubspec.lock: версии пакетов сборки ${{ github.run_number }}"
+          for i in 1 2 3; do git pull -q --rebase --autostash origin main && git push -q origin HEAD:main && exit 0; sleep 5; done
+          echo "::warning title=pubspec.lock::Не удалось сохранить pubspec.lock — попробую в следующей сборке"
       - name: Extra files
         if: inputs.extra_artifact != ''
         uses: actions/download-artifact@v4

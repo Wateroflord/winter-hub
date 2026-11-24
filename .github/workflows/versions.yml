@@ -1,7 +1,12 @@
 name: Update versions.json
 
-# Каждые 15 минут (GitHub иногда запускает с опозданием) записывает свежие сборки всех приложений в versions.json,
-# чтобы хаб делал 1 запрос вместо 13 к GitHub API.
+# Записывает свежие сборки всех приложений в versions.json, чтобы хаб делал 1 запрос вместо десятка к GitHub API.
+# По расписанию — каждые 15 минут (GitHub часто запускает с опозданием на несколько часов).
+#
+# Куда пишется:
+#  - ветка data — всегда, одним коммитом без истории (её читает хаб с 18-й сборки);
+#  - main — только когда вышли новые сборки (для старых версий хаба и проверки на эмуляторе).
+#    Так в истории main больше нет коммитов «Update versions.json» каждые несколько часов.
 on:
   schedule:
     - cron: '7,22,37,52 * * * *'
@@ -26,15 +31,39 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
       - name: Build versions.json
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: python3 ci/make_versions.py
-      - name: Commit
         run: |
-          git diff --quiet -- versions.json && git ls-files --error-unmatch versions.json >/dev/null 2>&1 && exit 0
+          # Прошлая сводка: из ветки data, а если её ещё нет — из main.
+          if git fetch -q --depth=1 origin data 2>/dev/null && git show FETCH_HEAD:versions.json > prev.json 2>/dev/null; then
+            echo "Прошлая сводка — из ветки data"
+          else
+            cp versions.json prev.json 2>/dev/null || echo '{}' > prev.json
+          fi
+          python3 ci/make_versions.py new.json prev.json
+      - name: Publish to branch data
+        run: |
           git config user.name "winter-hub-bot"
           git config user.email "actions@users.noreply.github.com"
+          blob=$(git hash-object -w new.json)
+          tree=$(printf '100644 blob %s\tversions.json\n' "$blob" | git mktree)
+          commit=$(git commit-tree "$tree" -m "versions.json")
+          git push -q -f origin "$commit:refs/heads/data"
+          echo "Ветка data обновлена"
+      - name: Publish to main (only when builds changed)
+        run: |
+          same=$(python3 -c "
+          import json
+          def r(p):
+              try: return json.load(open(p, encoding='utf-8')).get('releases', {})
+              except Exception: return None
+          print('1' if r('new.json') == r('versions.json') else '0')")
+          if [ "$same" = "1" ]; then echo "Новых сборок нет — main не трогаю"; exit 0; fi
+          cp new.json versions.json
           git add versions.json
-          git commit -m "Update versions.json"
-          for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 5; done
+          git commit -q -m "Update versions.json"
+          for i in 1 2 3; do git pull -q --rebase origin main && git push -q && exit 0; sleep 5; done
+          exit 1

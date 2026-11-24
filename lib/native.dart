@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:io';
 
+import 'package:crypto/crypto.dart';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
@@ -160,27 +162,139 @@ Future<String?> uninstall(AppEntry a) async {
   }
 }
 
-/// Скачать файл с прогрессом.
-Future<File> download(String url, String name, void Function(double) progress) async {
-  final dir = await getTemporaryDirectory();
-  final f = File('${dir.path}${Platform.pathSeparator}$name');
-  final client = http.Client();
+/// Скачивание отменили кнопкой «Отмена».
+class DownloadCancelled implements Exception {
+  const DownloadCancelled();
+  @override
+  String toString() => 'Отменено';
+}
+
+/// Понятная ошибка скачивания (текст сразу для пользователя).
+class DownloadError implements Exception {
+  final String message;
+
+  /// Файл не совпал по размеру или контрольной сумме (возможно, сводка версий устарела).
+  final bool mismatch;
+  const DownloadError(this.message, {this.mismatch = false});
+  @override
+  String toString() => message;
+}
+
+/// Ручка для отмены скачивания.
+class DownloadCancel {
+  http.Client? _client;
+  bool cancelled = false;
+  void cancel() {
+    cancelled = true;
+    _client?.close();
+  }
+}
+
+/// Папка для скачанных установщиков (её хаб сам чистит).
+Future<Directory> downloadsDir() async {
+  final d = Directory('${(await getTemporaryDirectory()).path}${Platform.pathSeparator}winter-hub-downloads');
+  await d.create(recursive: true);
+  return d;
+}
+
+/// Удалить старые скачанные установщики. [legacyNames] — файлы, которые старые версии хаба
+/// клали прямо во временную папку.
+Future<void> cleanDownloads({Iterable<String> legacyNames = const []}) async {
+  final now = DateTime.now();
   try {
-    final res = await client.send(http.Request('GET', Uri.parse(url)));
-    if (res.statusCode != 200) throw Exception('HTTP ${res.statusCode}');
-    final total = res.contentLength ?? 0;
-    final sink = f.openWrite();
+    final d = await downloadsDir();
+    await for (final f in d.list()) {
+      if (f is! File) continue;
+      // Свежий файл может прямо сейчас ставиться — его не трогаем.
+      final age = now.difference(await f.lastModified());
+      if (age > const Duration(minutes: 10)) await f.delete();
+    }
+  } catch (_) {}
+  try {
+    final tmp = await getTemporaryDirectory();
+    for (final n in legacyNames) {
+      final f = File('${tmp.path}${Platform.pathSeparator}$n');
+      if (await f.exists()) await f.delete();
+    }
+  } catch (_) {}
+}
+
+/// Скачать файл с прогрессом.
+///
+/// [size] и [sha256Hex] — что должно получиться (из сводки версий); если файл не совпал,
+/// он удаляется и возвращается ошибка — недокачанный или битый установщик не запустится.
+/// Если связь пропала (20 секунд нет данных) — ошибка, а не вечное «Скачиваю…».
+Future<File> download(
+  String url,
+  String name,
+  void Function(double) progress, {
+  int size = 0,
+  String sha256Hex = '',
+  DownloadCancel? cancel,
+}) async {
+  final dir = await downloadsDir();
+  final f = File('${dir.path}${Platform.pathSeparator}$name');
+  final part = File('${f.path}.part');
+  final client = http.Client();
+  cancel?._client = client;
+  IOSink? sink;
+  try {
+    final http.StreamedResponse res;
+    try {
+      res = await client.send(http.Request('GET', Uri.parse(url))).timeout(const Duration(seconds: 25));
+    } on TimeoutException {
+      throw const DownloadError('Сервер GitHub не отвечает — проверь интернет и попробуй ещё раз');
+    }
+    if (res.statusCode != 200) throw DownloadError('Не удалось скачать (ошибка ${res.statusCode}) — попробуй через пару минут');
+    final total = res.contentLength ?? size;
+    sink = part.openWrite();
+    final digest = _DigestSink();
+    final hasher = sha256.startChunkedConversion(digest);
     var got = 0;
-    await for (final chunk in res.stream) {
+    await for (final chunk in res.stream.timeout(const Duration(seconds: 20))) {
       sink.add(chunk);
+      hasher.add(chunk);
       got += chunk.length;
-      if (total > 0) progress(got / total);
+      if (total > 0) progress((got / total).clamp(0.0, 1.0));
     }
     await sink.close();
-    return f;
+    sink = null;
+    hasher.close();
+    if (size > 0 && got != size) {
+      throw DownloadError('Файл скачался не полностью (${_mb(got)} из ${_mb(size)}) — попробуй ещё раз', mismatch: true);
+    }
+    if (sha256Hex.isNotEmpty && digest.value.toString() != sha256Hex.toLowerCase()) {
+      throw const DownloadError('Файл скачался с ошибкой (не совпала контрольная сумма) — попробуй ещё раз', mismatch: true);
+    }
+    if (await f.exists()) await f.delete();
+    return await part.rename(f.path);
+  } on TimeoutException {
+    if (cancel?.cancelled ?? false) throw const DownloadCancelled();
+    throw const DownloadError('Связь пропала во время скачивания — попробуй ещё раз');
+  } catch (e) {
+    if (cancel?.cancelled ?? false) throw const DownloadCancelled();
+    if (e is DownloadError) rethrow;
+    throw DownloadError('Не удалось скачать: ${e is SocketException || e is http.ClientException ? 'нет связи с интернетом' : e}');
   } finally {
     client.close();
+    try {
+      await sink?.close();
+    } catch (_) {}
+    try {
+      if (await part.exists()) await part.delete();
+    } catch (_) {}
   }
+}
+
+String _mb(int bytes) => '${(bytes / 1048576).toStringAsFixed(1)} МБ';
+
+class _DigestSink implements Sink<Digest> {
+  Digest? _v;
+  Digest get value => _v!;
+  @override
+  void add(Digest data) => _v = data;
+  @override
+  void close() {}
 }
 
 /// Установить скачанный файл. На телефоне откроется системное окно установки.
@@ -197,6 +311,9 @@ Future<String?> installFile(File f, {bool silent = true}) async {
     }
     final p = await Process.start(f.path, [if (silent) ...['/VERYSILENT', '/SUPPRESSMSGBOXES', '/NORESTART']]);
     final code = await p.exitCode;
+    try {
+      await f.delete();
+    } catch (_) {}
     return code == 0 ? null : 'Установка не завершилась (код $code)';
   } catch (e) {
     return '$e';

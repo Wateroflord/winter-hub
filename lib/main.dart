@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'catalog.dart';
 import 'hub_state.dart';
+import 'icon_cache.dart';
 import 'native.dart';
 import 'snow.dart';
 import 'theme.dart';
@@ -65,10 +66,46 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     if (state == AppLifecycleState.resumed) hub.onResume();
   }
 
-  void _toast(String? msg) {
+  void _toast(String? msg, {VoidCallback? retry}) {
     if (msg == null || !mounted) return;
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+    final m = ScaffoldMessenger.of(context);
+    m.hideCurrentSnackBar();
+    m.showSnackBar(SnackBar(
+      content: Text(msg),
+      duration: Duration(seconds: retry == null ? 4 : 8),
+      action: retry == null ? null : SnackBarAction(label: 'Повторить', textColor: W.ice, onPressed: retry),
+    ));
   }
+
+  /// Установить/обновить; при ошибке скачивания — кнопка «Повторить».
+  Future<void> _install(AppEntry a) async {
+    final err = await hub.install(a);
+    final retry = err != null && err != 'Скачивание отменено' && !err.startsWith('Разреши');
+    _toast(err, retry: retry ? () => _install(a) : null);
+  }
+
+  Future<void> _updateHub() async {
+    final err = await hub.updateHub();
+    _toast(err, retry: err != null && err != 'Скачивание отменено' ? _updateHub : null);
+  }
+
+  /// Текст и полоска прогресса (+ «Отмена», пока идёт скачивание).
+  Widget _jobRow(String id, Job job) => Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        Row(children: [
+          Expanded(child: Text(job.text, style: W.small.copyWith(color: W.ice))),
+          if (job.canCancel)
+            TextButton(
+              style: TextButton.styleFrom(foregroundColor: W.muted, visualDensity: VisualDensity.compact),
+              onPressed: () => hub.cancel(id),
+              child: const Text('Отмена'),
+            ),
+        ]),
+        const SizedBox(height: 6),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(4),
+          child: LinearProgressIndicator(value: job.progress, minHeight: 6, backgroundColor: W.surface2),
+        ),
+      ]);
 
   @override
   Widget build(BuildContext context) {
@@ -169,22 +206,18 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       padding: const EdgeInsets.only(top: 14),
       child: _Glass(
         borderColor: W.ice,
-        child: Row(children: [
-          const Icon(Icons.system_update, color: W.ice),
-          const SizedBox(width: 10),
-          Expanded(
-            child: Text(
-              job?.text ?? 'Вышла новая версия хаба (сборка ${hub.hubRelease!.build})',
-              style: W.body,
-            ),
-          ),
-          if (job == null)
-            FilledButton(
-              style: FilledButton.styleFrom(backgroundColor: W.ice, foregroundColor: W.bg),
-              onPressed: () async => _toast(await hub.updateHub()),
-              child: const Text('Обновить'),
-            ),
-        ]),
+        child: job != null
+            ? _jobRow('hub', job)
+            : Row(children: [
+                const Icon(Icons.system_update, color: W.ice),
+                const SizedBox(width: 10),
+                Expanded(child: Text('Вышла новая версия хаба (сборка ${hub.hubRelease!.build})', style: W.body)),
+                FilledButton(
+                  style: FilledButton.styleFrom(backgroundColor: W.ice, foregroundColor: W.bg),
+                  onPressed: _updateHub,
+                  child: const Text('Обновить'),
+                ),
+              ]),
       ),
     );
   }
@@ -224,12 +257,10 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             child: Row(children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(14),
-                child: Image.network(
-                  a.icon,
-                  width: 60,
-                  height: 60,
-                  fit: BoxFit.cover,
-                  errorBuilder: (_, __, ___) => Container(
+                child: CachedIcon(
+                  url: a.icon,
+                  size: 60,
+                  fallback: Container(
                     width: 60,
                     height: 60,
                     color: color.withValues(alpha: 0.25),
@@ -264,19 +295,14 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             ),
             const SizedBox(height: 10),
           ],
-          if (job != null) ...[
-            Text(job.text, style: W.small.copyWith(color: W.ice)),
-            const SizedBox(height: 6),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(4),
-              child: LinearProgressIndicator(value: job.progress, minHeight: 6, backgroundColor: W.surface2),
-            ),
-          ] else
+          if (job != null)
+            _jobRow(a.id, job)
+          else
             Wrap(spacing: 8, runSpacing: 8, children: [
               if (inst == null && available)
                 _btn(Icons.download, 'Установить${size > 0 ? ' · ${(size / 1048576).toStringAsFixed(0)} МБ' : ''}', W.ice,
-                    () async => _toast(await hub.install(a)), filled: true),
-              if (update && available) _btn(Icons.system_update_alt, 'Обновить', W.warn, () async => _toast(await hub.install(a)), filled: true),
+                    () => _install(a), filled: true),
+              if (update && available) _btn(Icons.system_update_alt, 'Обновить', W.warn, () => _install(a), filled: true),
               if (inst != null) _btn(Icons.play_arrow_rounded, 'Открыть', W.good, () async => _toast(await launch(a))),
               if (inst != null)
                 _btn(Icons.delete_outline, 'Удалить', W.bad, () async {

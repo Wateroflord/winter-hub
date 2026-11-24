@@ -1,5 +1,5 @@
 name: winter_hub
-description: Winter Hub — установка и обновление Dota Draft и КБЖУ Трекера.
+description: Winter Hub — установка и обновление приложений Winter.
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -12,6 +12,7 @@ dependencies:
   winter_core:
     path: packages/winter_core
   http: ^1.2.2
+  crypto: ^3.0.6
   android_alarm_manager_plus: '>=4.0.0 <6.0.0'
   flutter_local_notifications: ^19.0.0
   path_provider: ^2.1.4
@@ -24,6 +25,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  # Встроенная копия каталога — на случай первого запуска без интернета.
+  assets:
+    - catalog.json
 
 flutter_launcher_icons:
   android: true

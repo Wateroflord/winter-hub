@@ -5,9 +5,9 @@ debug-ключ, поэтому каждая сборка была подписа
 не вставало поверх старой версии. Теперь APK подписывается одним постоянным
 секретным ключом (секрет WINTER_SIGNING).
 
-Если секрет не задан, APK подписывается старым публичным ключом
-(legacy/shared-old.keystore) — подпись хотя бы постоянная, но в сборке
-появляется предупреждение. Когда секрет добавят, новый ключ подписывается
+Если секрет не задан, тестовая сборка подписывается старым публичным ключом
+(legacy/shared-old.keystore) с предупреждением, а выпуск (WINTER_REQUIRE_KEY=1)
+останавливается с ошибкой. Когда секрет добавят, новый ключ подписывается
 «со сменой ключа» (APK Signature Scheme v3, key rotation): версии со старым
 ключом обновятся без удаления, а APK только со старым публичным ключом
 поверх уже не установится.
@@ -59,13 +59,18 @@ def main():
     if not os.path.exists(old_ks):
         print(f"::error title=sign::нет старого ключа {legacy}")
         sys.exit(1)
+    blob = os.environ.get("WINTER_SIGNING", "").strip()
+    if not blob and os.environ.get("WINTER_REQUIRE_KEY"):
+        # Выпуск для друзей не должен уйти подписанным публичным ключом: такой APK может подделать кто угодно.
+        print("::error title=Подпись::Секрет WINTER_SIGNING не задан в этом репозитории — выпуск остановлен. "
+              "Запусти в winter-hub workflow «Sync signing secret» (Actions → Run workflow) или добавь секрет вручную.")
+        sys.exit(1)
     tool = apksigner()
     env = dict(os.environ, OLD_PASS=OLD_PASS)
     tmp = tempfile.mkdtemp()
     out_apk = os.path.join(tmp, "signed.apk")
     old = ["--ks", old_ks, "--ks-key-alias", OLD_ALIAS, "--ks-pass", "env:OLD_PASS", "--key-pass", "env:OLD_PASS"]
 
-    blob = os.environ.get("WINTER_SIGNING", "").strip()
     if not blob:
         print("::warning title=Подпись::Секрет WINTER_SIGNING не задан — APK подписан старым публичным ключом. "
               "Добавь секрет в Settings → Secrets and variables → Actions.")

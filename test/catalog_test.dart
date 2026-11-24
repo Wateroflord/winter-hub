@@ -15,7 +15,28 @@ void main() {
       expect(a.androidAsset != null || a.winAsset != null, isTrue, reason: a.id);
       if (a.androidAsset != null) expect(a.androidPackage, isNotNull, reason: a.id);
       if (a.winAsset != null) expect(a.winExe, isNotNull, reason: a.id);
+      // По appId хаб находит установленную Windows-программу в реестре.
+      if (a.winAsset != null && a.mergedInto == null) expect(a.winAppId, isNotNull, reason: a.id);
     }
+  });
+
+  test('хэш файла из ответа GitHub', () {
+    const h = '204a860753cd72ccdbcbd703c633dcd59469031d2068e996274de49c3201fc8c';
+    expect(digestHex('sha256:$h'), h);
+    expect(digestHex('SHA256:${h.toUpperCase()}'), h);
+    expect(digestHex(null), '');
+    expect(digestHex('md5:abc'), '');
+    expect(digestHex('sha256:123'), '');
+    final r = pickRelease([
+      {'tag_name': 'build-5', 'assets': [
+        {'name': 'A.apk', 'browser_download_url': 'u', 'size': 3, 'digest': 'sha256:$h'},
+        {'name': 'B.exe', 'browser_download_url': 'w', 'size': 4, 'digest': null},
+      ]},
+    ], 'A.apk')!;
+    expect(r.hashes, {'A.apk': h});
+    // Сохранение в кэш и обратно (и старый формат без хэшей).
+    expect(Release.fromJson(r.toJson()).hashes, {'A.apk': h});
+    expect(Release.fromJson({'b': 1, 'a': {'x': 'y'}, 's': {'x': 2}}).hashes, isEmpty);
   });
 
   test('pickRelease берёт свежий выпуск, где есть нужный файл', () {
@@ -49,6 +70,7 @@ void main() {
     final r = v.of('Wateroflord/winter-mines', 'Winter-Mines.apk')!;
     expect(r.build, 3);
     expect(r.sizes['Winter-Mines.apk'], 10);
+    expect(r.hashes, isEmpty);
     expect(v.of('Wateroflord/winter-mines', null), isNull);
   });
 

@@ -10,7 +10,10 @@ const hubBuild = int.fromEnvironment('BUILD', defaultValue: 0);
 class Job {
   final String text;
   final double? progress;
-  const Job(this.text, [this.progress]);
+
+  /// Можно ли сейчас нажать «Отмена» (только пока идёт скачивание).
+  final bool canCancel;
+  const Job(this.text, [this.progress, this.canCancel = false]);
 }
 
 class HubState extends ChangeNotifier {
@@ -18,6 +21,7 @@ class HubState extends ChangeNotifier {
   final Map<String, Release?> releases = {};
   final Map<String, int?> installed = {};
   final Map<String, Job> jobs = {};
+  final Map<String, DownloadCancel> _cancels = {};
 
   /// Обновления, запущенные на телефоне: id → ожидаемая сборка.
   final Map<String, int> _pending = {};
@@ -86,6 +90,12 @@ class HubState extends ChangeNotifier {
     catalog = await loadCatalog(online: false);
     loading = catalog.apps.isEmpty;
     notifyListeners();
+    await cleanDownloads(legacyNames: [
+      for (final a in [...catalog.apps, hubEntry]) ...[
+        if (assetOf(a) != null) assetOf(a)!,
+        if (assetOf(a) != null) for (final x in apkAbis) HubState.abiAsset(assetOf(a)!, x),
+      ],
+    ]);
     await refreshInstalled();
     await refresh();
   }
@@ -124,14 +134,17 @@ class HubState extends ChangeNotifier {
       return direct.build >= fromSummary.build ? direct : fromSummary;
     }
 
-    final list = await Future.wait([for (final a in catalog.apps) get(a)]);
-    var anyOnline = false;
+    // Приложения, ставшие плагинами, хаб больше не ставит и не обновляет — про них
+    // не спрашиваем GitHub (без ключа там лимит 60 запросов в час на всех в одной сети).
+    final list = await Future.wait([
+      for (final a in catalog.apps) a.mergedInto == null ? get(a) : Future<Release?>.value(null),
+    ]);
     for (var i = 0; i < catalog.apps.length; i++) {
       releases[catalog.apps[i].id] = list[i];
-      anyOnline = anyOnline || list[i] != null;
     }
     hubRelease = await get(hubEntry);
-    offline = !anyOnline;
+    // Раньше «нет связи» почти не показывалось: данные всегда находились в кэше.
+    offline = !catalog.online && v == null;
     loading = false;
     await refreshInstalled();
   }
@@ -172,20 +185,46 @@ class HubState extends ChangeNotifier {
     final r = releases[a.id];
     final asset = downloadAsset(a, r);
     final url = asset == null ? null : r?.assets[asset];
-    if (url == null) return 'Файл для этой системы ещё не готов — попробуй через пару минут';
+    if (url == null || r == null) return 'Файл для этой системы ещё не готов — попробуй через пару минут';
+    final cancel = _cancels[a.id] = DownloadCancel();
     try {
-      _job(a.id, const Job('Скачиваю…', 0));
-      final f = await download(url, asset!, (p) => _job(a.id, Job('Скачиваю… ${(p * 100).round()}%', p)));
+      _job(a.id, const Job('Скачиваю…', 0, true));
+      final f = await download(
+        url,
+        asset!,
+        (p) => _job(a.id, Job(_progressText('Скачиваю…', p, r.sizes[asset] ?? 0), p, true)),
+        size: r.sizes[asset] ?? 0,
+        sha256Hex: r.hashes[asset] ?? '',
+        cancel: cancel,
+      );
       _job(a.id, const Job('Устанавливаю…'));
-      if (isAndroid && installed[a.id] != null && r != null) _pending[a.id] = r.build;
+      if (isAndroid && installed[a.id] != null) _pending[a.id] = r.build;
       final err = await installFile(f);
       return err;
+    } on DownloadCancelled {
+      return 'Скачивание отменено';
+    } on DownloadError catch (e) {
+      // Файл на GitHub могли перезалить, а сводка ещё старая — берём данные прямо из GitHub,
+      // чтобы «Повторить» скачало правильный файл.
+      if (e.mismatch) releases[a.id] = await latestRelease(a.repo, assetOf(a)) ?? r;
+      return e.message;
     } catch (e) {
-      return 'Не удалось скачать: $e';
+      return '$e';
     } finally {
+      _cancels.remove(a.id);
       _job(a.id, null);
       await refreshInstalled();
     }
+  }
+
+  /// Нажали «Отмена» во время скачивания.
+  void cancel(String id) => _cancels[id]?.cancel();
+
+  static String _progressText(String what, double p, int size) {
+    final pct = '${(p * 100).round()}%';
+    if (size <= 0) return '$what $pct';
+    final mb = size / 1048576;
+    return '$what $pct · ${(mb * p).toStringAsFixed(1)} из ${mb.toStringAsFixed(1)} МБ';
   }
 
   Future<String?> remove(AppEntry a) async {
@@ -203,14 +242,30 @@ class HubState extends ChangeNotifier {
     final asset = downloadAsset(hubEntry, hubRelease);
     final url = asset == null ? null : hubRelease?.assets[asset];
     if (url == null) return 'Обновление ещё не готово';
+    final r = hubRelease!;
+    final cancel = _cancels['hub'] = DownloadCancel();
     try {
-      _job('hub', const Job('Скачиваю обновление…', 0));
-      final f = await download(url, asset!, (p) => _job('hub', Job('Скачиваю обновление… ${(p * 100).round()}%', p)));
+      _job('hub', const Job('Скачиваю обновление…', 0, true));
+      final f = await download(
+        url,
+        asset!,
+        (p) => _job('hub', Job(_progressText('Скачиваю обновление…', p, r.sizes[asset] ?? 0), p, true)),
+        size: r.sizes[asset] ?? 0,
+        sha256Hex: r.hashes[asset] ?? '',
+        cancel: cancel,
+      );
+      _job('hub', const Job('Устанавливаю…'));
       await runSelfInstaller(f);
       return null;
+    } on DownloadCancelled {
+      return 'Скачивание отменено';
+    } on DownloadError catch (e) {
+      if (e.mismatch) hubRelease = await latestRelease(hubEntry.repo, assetOf(hubEntry)) ?? r;
+      return e.message;
     } catch (e) {
       return '$e';
     } finally {
+      _cancels.remove('hub');
       _job('hub', null);
     }
   }

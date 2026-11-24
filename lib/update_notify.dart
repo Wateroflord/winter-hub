@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:http/http.dart' as http;
 
 import 'catalog.dart';
 
@@ -65,9 +62,8 @@ class UpdateNotify {
   static Future<void> check() async {
     final installed = await readCache('installed_builds.json');
     if (installed == null) return;
-    final r = await http.get(Uri.parse('https://raw.githubusercontent.com/$hubRepo/main/versions.json')).timeout(const Duration(seconds: 20));
-    if (r.statusCode != 200) return;
-    final versions = jsonDecode(utf8.decode(r.bodyBytes)) as Map;
+    final versions = await fetchVersionsJson(timeout: const Duration(seconds: 20));
+    if (versions == null) return;
     final notified = Map<String, dynamic>.from(await readCache('notified_builds.json') ?? const {});
     final names = outdated(installed, versions, notified);
     if (names.isEmpty) return;
