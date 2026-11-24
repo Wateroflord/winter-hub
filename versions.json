@@ -122,34 +122,8 @@
   },
   "Wateroflord/kbju-tracker|KBJU-Tracker-Setup.exe": {
    "a": {
-    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-38/KBJU-Tracker-Setup.exe",
-    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-38/KBJU-Tracker-Windows.zip",
-    "KBJU-Tracker-arm64-v8a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-38/KBJU-Tracker-arm64-v8a.apk",
-    "KBJU-Tracker-armeabi-v7a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-38/KBJU-Tracker-armeabi-v7a.apk",
-    "KBJU-Tracker-x86_64.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-38/KBJU-Tracker-x86_64.apk",
-    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-38/KBJU-Tracker.apk"
-   },
-   "b": 38,
-   "d": "2026-11-24",
-   "h": {
-    "KBJU-Tracker-Setup.exe": "0675b695367377c5ba142d9fc43f35bcc1f58129686600f213a778a72bf32999",
-    "KBJU-Tracker-Windows.zip": "845c0a17d6b2e23819367208d855be378831ed8cd4cc1b53a4dd5a3df65f685f",
-    "KBJU-Tracker-arm64-v8a.apk": "ca476ce3227853a7a8d975a8a5b8709c80e908594480e9a47c7e40f6055795ed",
-    "KBJU-Tracker-armeabi-v7a.apk": "48a85b6de456d3f22d1c7cb0e6c83231d0b19e2dab7e6a2e64e5c4ab045de02b",
-    "KBJU-Tracker-x86_64.apk": "cb9408c2c69e96f579ae6631a12d592122d9e73d0ac6361401b36fa39d8188b2",
-    "KBJU-Tracker.apk": "ca476ce3227853a7a8d975a8a5b8709c80e908594480e9a47c7e40f6055795ed"
-   },
-   "s": {
-    "KBJU-Tracker-Setup.exe": 88700659,
-    "KBJU-Tracker-Windows.zip": 97050853,
-    "KBJU-Tracker-arm64-v8a.apk": 114035561,
-    "KBJU-Tracker-armeabi-v7a.apk": 33164078,
-    "KBJU-Tracker-x86_64.apk": 35015430,
-    "KBJU-Tracker.apk": 114035561
-   }
-  },
-  "Wateroflord/kbju-tracker|KBJU-Tracker.apk": {
-   "a": {
+    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-40/KBJU-Tracker-Setup.exe",
+    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-40/KBJU-Tracker-Windows.zip",
     "KBJU-Tracker-arm64-v8a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-40/KBJU-Tracker-arm64-v8a.apk",
     "KBJU-Tracker-armeabi-v7a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-40/KBJU-Tracker-armeabi-v7a.apk",
     "KBJU-Tracker-x86_64.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-40/KBJU-Tracker-x86_64.apk",
@@ -158,12 +132,44 @@
    "b": 40,
    "d": "2026-11-24",
    "h": {
+    "KBJU-Tracker-Setup.exe": "1783e1f031c27f9234d9407850328941612d7d1ea637cd5f3d918b4cc1e8f895",
+    "KBJU-Tracker-Windows.zip": "e4fb2693d87775011c97345b6fcbd41404712888cd7e886f16f5db3572d36cb2",
     "KBJU-Tracker-arm64-v8a.apk": "a00f371e0041c2f923e4f94e1cde24ab40801a15f9dc94606e2ebb130fea5911",
     "KBJU-Tracker-armeabi-v7a.apk": "8239d3867fc38a891c13a8eedc56ae524908500a40e14f0215aafd57a6f24572",
     "KBJU-Tracker-x86_64.apk": "bc43472ec45868785644d10b9fd2b59e8cb18dff90dae7992fdd87ee020ac73b",
     "KBJU-Tracker.apk": "a00f371e0041c2f923e4f94e1cde24ab40801a15f9dc94606e2ebb130fea5911"
    },
    "s": {
+    "KBJU-Tracker-Setup.exe": 88714239,
+    "KBJU-Tracker-Windows.zip": 97072388,
+    "KBJU-Tracker-arm64-v8a.apk": 114047849,
+    "KBJU-Tracker-armeabi-v7a.apk": 33180462,
+    "KBJU-Tracker-x86_64.apk": 35031814,
+    "KBJU-Tracker.apk": 114047849
+   }
+  },
+  "Wateroflord/kbju-tracker|KBJU-Tracker.apk": {
+   "a": {
+    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-40/KBJU-Tracker-Setup.exe",
+    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-40/KBJU-Tracker-Windows.zip",
+    "KBJU-Tracker-arm64-v8a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-40/KBJU-Tracker-arm64-v8a.apk",
+    "KBJU-Tracker-armeabi-v7a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-40/KBJU-Tracker-armeabi-v7a.apk",
+    "KBJU-Tracker-x86_64.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-40/KBJU-Tracker-x86_64.apk",
+    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-40/KBJU-Tracker.apk"
+   },
+   "b": 40,
+   "d": "2026-11-24",
+   "h": {
+    "KBJU-Tracker-Setup.exe": "1783e1f031c27f9234d9407850328941612d7d1ea637cd5f3d918b4cc1e8f895",
+    "KBJU-Tracker-Windows.zip": "e4fb2693d87775011c97345b6fcbd41404712888cd7e886f16f5db3572d36cb2",
+    "KBJU-Tracker-arm64-v8a.apk": "a00f371e0041c2f923e4f94e1cde24ab40801a15f9dc94606e2ebb130fea5911",
+    "KBJU-Tracker-armeabi-v7a.apk": "8239d3867fc38a891c13a8eedc56ae524908500a40e14f0215aafd57a6f24572",
+    "KBJU-Tracker-x86_64.apk": "bc43472ec45868785644d10b9fd2b59e8cb18dff90dae7992fdd87ee020ac73b",
+    "KBJU-Tracker.apk": "a00f371e0041c2f923e4f94e1cde24ab40801a15f9dc94606e2ebb130fea5911"
+   },
+   "s": {
+    "KBJU-Tracker-Setup.exe": 88714239,
+    "KBJU-Tracker-Windows.zip": 97072388,
     "KBJU-Tracker-arm64-v8a.apk": 114047849,
     "KBJU-Tracker-armeabi-v7a.apk": 33180462,
     "KBJU-Tracker-x86_64.apk": 35031814,
@@ -590,5 +596,5 @@
    }
   }
  },
- "updated": "2026-11-24T21:25:57Z"
+ "updated": "2026-11-24T21:33:54Z"
 }
