@@ -4,8 +4,10 @@
 #  - Android: отдельный APK под каждый тип процессора (arm64-v8a, armeabi-v7a, x86_64)
 #    + <asset>.apk — копия arm64 под старым именем (для старых версий хаба и ссылок);
 #  - подпись каждого APK постоянным ключом (секрет WINTER_SIGNING);
+#  - проверка на эмуляторе Android 14: если приложение падает при запуске, релиза не будет;
 #  - релиз build-N на GitHub;
-#  - Windows: установщик <asset>-Setup.exe и архив <asset>-Windows.zip.
+#  - Windows: установщик <asset>-Setup.exe и архив <asset>-Windows.zip (собираются параллельно,
+#    в релиз попадают после проверки).
 #
 # Исправил здесь — исправилось во всех приложениях.
 # Пример вызова — README в папке ci/.
@@ -184,20 +186,73 @@ jobs:
           git commit -q -m "pubspec.lock: версии пакетов сборки ${{ github.run_number }}"
           for i in 1 2 3; do git pull -q --rebase --autostash origin main && git push -q origin HEAD:main && exit 0; sleep 5; done
           echo "::warning title=pubspec.lock::Не удалось сохранить pubspec.lock — попробую в следующей сборке"
-      - name: Extra files
-        if: inputs.extra_artifact != ''
-        uses: actions/download-artifact@v4
+      - name: APKs for the next jobs
+        uses: actions/upload-artifact@v4
         with:
-          name: ${{ inputs.extra_artifact }}
-          path: dist
+          name: apks
+          path: dist/*
       - name: Files (test build, no release)
         if: ${{ !inputs.publish }}
         uses: actions/upload-artifact@v4
         with:
           name: android-test
           path: dist/*
+
+  # Проверка перед выпуском: x86_64-версия ставится на эмулятор Android 14 и 25 секунд не падает.
+  emulator:
+    needs: android
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Shared CI tools (winter-hub/ci)
+        uses: actions/checkout@v4
+        with:
+          repository: Wateroflord/winter-hub
+          ref: ${{ inputs.hub_ref }}
+          path: .winter
+          sparse-checkout: /ci/
+          sparse-checkout-cone-mode: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: apks
+          path: dist
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Start the app on Android 14
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          arch: x86_64
+          target: google_apis
+          disable-animations: true
+          script: bash .winter/ci/launch_check.sh "dist/${{ inputs.asset }}-x86_64.apk"
+      - name: Screenshot and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: launch-check
+          path: launch/
+          if-no-files-found: ignore
+
+  release:
+    if: inputs.publish
+    needs: [android, emulator]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: apks
+          path: dist
+      - name: Extra files
+        if: inputs.extra_artifact != ''
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ inputs.extra_artifact }}
+          path: dist
       - name: Release
-        if: inputs.publish
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           EXTRA_NOTES: ${{ inputs.notes }}
@@ -215,15 +270,16 @@ jobs:
               echo
               echo "Windows: \`$A-Setup.exe\` (появится через несколько минут после APK)."
             fi
+            echo
+            echo "Перед выпуском проверено: приложение запускается на Android 14 и не падает."
             if [ -n "$EXTRA_NOTES" ]; then echo; echo "$EXTRA_NOTES"; fi
           } > notes.md
-          gh release create "build-${{ github.run_number }}" dist/* \
+          gh release create "build-${{ github.run_number }}" dist/* -R "${{ github.repository }}" \
             --title "${{ inputs.title }}, сборка ${{ github.run_number }}" \
             --notes-file notes.md --latest
 
   windows:
     if: inputs.windows
-    needs: android
     runs-on: windows-latest
     timeout-minutes: 60
     steps:
@@ -286,16 +342,29 @@ jobs:
       - name: Zip
         shell: pwsh
         run: Compress-Archive -Path build/windows/x64/runner/Release/* -DestinationPath ${{ inputs.asset }}-Windows.zip
-      - name: Files (test build, no release)
-        if: ${{ !inputs.publish }}
+      - name: Windows files
         uses: actions/upload-artifact@v4
         with:
-          name: windows-test
-          path: dist/${{ inputs.asset }}-Setup.exe
+          name: ${{ inputs.publish && 'windows-files' || 'windows-test' }}
+          path: |
+            ${{ inputs.asset }}-Windows.zip
+            dist/${{ inputs.asset }}-Setup.exe
+
+  # В релиз Windows-файлы попадают только после проверки Android-версии на эмуляторе.
+  windows-release:
+    if: inputs.publish && inputs.windows
+    needs: [release, windows]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: windows-files
+          path: win
       - name: Attach to the release
-        if: inputs.publish
-        shell: pwsh
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload "build-${{ github.run_number }}" ${{ inputs.asset }}-Windows.zip dist/${{ inputs.asset }}-Setup.exe --clobber
+          ls -laR win
+          zip=$(find win -name "${{ inputs.asset }}-Windows.zip" | head -1)
+          setup=$(find win -name "${{ inputs.asset }}-Setup.exe" | head -1)
+          gh release upload "build-${{ github.run_number }}" -R "${{ github.repository }}" --clobber "$zip" "$setup"

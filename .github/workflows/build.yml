@@ -38,3 +38,5 @@ jobs:
       win_size: '900, 820'
       core_tests: true
       publish: ${{ github.event_name != 'workflow_dispatch' || inputs.publish }}
+      # Общие скрипты ci/ — из той же ветки (на main это main, на тестовой ветке — она).
+      hub_ref: ${{ github.ref_name }}
