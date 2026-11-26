@@ -1,6 +1,10 @@
 {
   "hubNews": [
     {
+      "date": "2026-11-26",
+      "text": "Новое приложение: Winter VPN — своя сеть для друзей, как Radmin. Winter Chat и игры по IP без «белого» IP и проброса портов. Winter Chat: видео прямо в чате, настройки (аккаунт, звуки, «Не беспокоить», фон, микрофон и камера)."
+    },
+    {
       "date": "2026-11-24",
       "text": "Сервер Winter Chat теперь ставится из хаба на ПК: «Winter Chat Server» — установил, и сервер готов, без архивов и чёрного окна. Был сервер из архива? Выключи его и скопируй папку winter-chat-data в %LOCALAPPDATA%\\Programs\\Winter Chat Server."
     },
@@ -167,6 +171,30 @@
         {
           "date": "2026-11-24",
           "text": "Первая версия установщика: поставил — и сервер готов. Брандмауэр, автозапуск в фоне, кнопка «Выключить» в панели."
+        }
+      ]
+    },
+    {
+      "id": "vpn",
+      "name": "Winter VPN",
+      "tagline": "Своя сеть для друзей: чат и игры без белого IP",
+      "description": "Как Radmin VPN: Winter Chat, игры по IP и файлы напрямую — без «белого» IP и проброса портов. Владелец создаёт сеть (вход через Google, Microsoft или GitHub) и рассылает приглашение, друг входит одним тапом. На ПК установщик один раз спросит «Разрешить вносить изменения?» — это для службы VPN. Основано на открытом коде Tailscale.",
+      "repo": "Wateroflord/winter-vpn",
+      "color": "#7FD8FF",
+      "icon": "https://raw.githubusercontent.com/Wateroflord/winter-vpn/main/assets/icon/icon.png",
+      "android": {
+        "package": "com.winterhub.vpn",
+        "asset": "Winter-VPN.apk"
+      },
+      "windows": {
+        "asset": "Winter-VPN-Setup.exe",
+        "appId": "{2D7E6830-68F9-413B-9D5B-DE1B041F7366}",
+        "exe": "Winter VPN\\winter_vpn.exe"
+      },
+      "news": [
+        {
+          "date": "2026-11-26",
+          "text": "Первая версия: создать сеть, пригласить друга (на телефоне — одним тапом по ссылке), список устройств и проверка связи. Winter Chat сам переключается на адрес сервера в Winter VPN."
         }
       ]
     },
