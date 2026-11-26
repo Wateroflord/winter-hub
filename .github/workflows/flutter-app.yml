@@ -151,10 +151,22 @@ jobs:
       - name: Build APKs (по одному на тип процессора)
         run: |
           set -o pipefail
-          flutter build apk --release --split-per-abi \
-            --dart-define=BUILD=${{ github.run_number }} \
-            --build-number=${{ github.run_number }} --build-name=1.0.${{ github.run_number }} 2>&1 | tee build.txt \
-            || { python3 .winter/ci/annotate.py build.txt "build"; exit 1; }
+          # Maven / Gradle иногда отвечают «429 Too Many Requests» — это не ошибка в коде, просто ждём и пробуем снова.
+          ok=
+          for attempt in 1 2 3; do
+            if flutter build apk --release --split-per-abi \
+                --dart-define=BUILD=${{ github.run_number }} \
+                --build-number=${{ github.run_number }} --build-name=1.0.${{ github.run_number }} 2>&1 | tee build.txt; then
+              ok=1; break
+            fi
+            if [ "$attempt" -lt 3 ] && grep -qE "status code (429|5[0-9][0-9])|Could not (GET|HEAD) |Connection reset|Read timed out|Connect timed out" build.txt; then
+              echo "::warning title=Сеть::Сервер пакетов не ответил (попытка $attempt) — повторю через $((attempt * 60)) с"
+              sleep $((attempt * 60))
+              continue
+            fi
+            break
+          done
+          [ -n "$ok" ] || { python3 .winter/ci/annotate.py build.txt "build"; exit 1; }
           mkdir -p dist
           for abi in arm64-v8a armeabi-v7a x86_64; do
             cp "build/app/outputs/flutter-apk/app-$abi-release.apk" "dist/${{ inputs.asset }}-$abi.apk"
