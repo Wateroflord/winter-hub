@@ -563,6 +563,56 @@
     "Winter-Paint.apk": 52328975
    }
   },
+  "Wateroflord/winter-vpn|Winter-VPN-Setup.exe": {
+   "a": {
+    "Winter-VPN-Setup.exe": "https://github.com/Wateroflord/winter-vpn/releases/download/build-4/Winter-VPN-Setup.exe",
+    "Winter-VPN-arm64-v8a.apk": "https://github.com/Wateroflord/winter-vpn/releases/download/build-4/Winter-VPN-arm64-v8a.apk",
+    "Winter-VPN-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-vpn/releases/download/build-4/Winter-VPN-armeabi-v7a.apk",
+    "Winter-VPN-x86_64.apk": "https://github.com/Wateroflord/winter-vpn/releases/download/build-4/Winter-VPN-x86_64.apk",
+    "Winter-VPN.apk": "https://github.com/Wateroflord/winter-vpn/releases/download/build-4/Winter-VPN.apk"
+   },
+   "b": 4,
+   "d": "2026-11-26",
+   "h": {
+    "Winter-VPN-Setup.exe": "0f5fd465cd6639ac092d71b751e52570303884beaf15309bf4a963cbea200654",
+    "Winter-VPN-arm64-v8a.apk": "feab37a4270cb9e79890effb28c067e131452f7d73dd0c0493af5fcaa602f1d1",
+    "Winter-VPN-armeabi-v7a.apk": "a171221ba154de75972371c33f7853a1f43c5a1e05e0553ae05fa0880744b538",
+    "Winter-VPN-x86_64.apk": "ae90d5919aebee39f94c26983a01aeed5bd64b8449de873dcb26e8970ebcde21",
+    "Winter-VPN.apk": "feab37a4270cb9e79890effb28c067e131452f7d73dd0c0493af5fcaa602f1d1"
+   },
+   "s": {
+    "Winter-VPN-Setup.exe": 23085863,
+    "Winter-VPN-arm64-v8a.apk": 33228693,
+    "Winter-VPN-armeabi-v7a.apk": 39577497,
+    "Winter-VPN-x86_64.apk": 43620239,
+    "Winter-VPN.apk": 33228693
+   }
+  },
+  "Wateroflord/winter-vpn|Winter-VPN.apk": {
+   "a": {
+    "Winter-VPN-Setup.exe": "https://github.com/Wateroflord/winter-vpn/releases/download/build-4/Winter-VPN-Setup.exe",
+    "Winter-VPN-arm64-v8a.apk": "https://github.com/Wateroflord/winter-vpn/releases/download/build-4/Winter-VPN-arm64-v8a.apk",
+    "Winter-VPN-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-vpn/releases/download/build-4/Winter-VPN-armeabi-v7a.apk",
+    "Winter-VPN-x86_64.apk": "https://github.com/Wateroflord/winter-vpn/releases/download/build-4/Winter-VPN-x86_64.apk",
+    "Winter-VPN.apk": "https://github.com/Wateroflord/winter-vpn/releases/download/build-4/Winter-VPN.apk"
+   },
+   "b": 4,
+   "d": "2026-11-26",
+   "h": {
+    "Winter-VPN-Setup.exe": "0f5fd465cd6639ac092d71b751e52570303884beaf15309bf4a963cbea200654",
+    "Winter-VPN-arm64-v8a.apk": "feab37a4270cb9e79890effb28c067e131452f7d73dd0c0493af5fcaa602f1d1",
+    "Winter-VPN-armeabi-v7a.apk": "a171221ba154de75972371c33f7853a1f43c5a1e05e0553ae05fa0880744b538",
+    "Winter-VPN-x86_64.apk": "ae90d5919aebee39f94c26983a01aeed5bd64b8449de873dcb26e8970ebcde21",
+    "Winter-VPN.apk": "feab37a4270cb9e79890effb28c067e131452f7d73dd0c0493af5fcaa602f1d1"
+   },
+   "s": {
+    "Winter-VPN-Setup.exe": 23085863,
+    "Winter-VPN-arm64-v8a.apk": 33228693,
+    "Winter-VPN-armeabi-v7a.apk": 39577497,
+    "Winter-VPN-x86_64.apk": 43620239,
+    "Winter-VPN.apk": 33228693
+   }
+  },
   "Wateroflord/winter-walks|Winter-Walks-Setup.exe": {
    "a": {
     "Winter-Walks-Setup.exe": "https://github.com/Wateroflord/winter-walks/releases/download/build-13/Winter-Walks-Setup.exe",
@@ -596,5 +646,5 @@
    }
   }
  },
- "updated": "2026-11-24T21:33:54Z"
+ "updated": "2026-11-26T01:13:11Z"
 }
