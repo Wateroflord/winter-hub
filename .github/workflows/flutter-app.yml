@@ -159,7 +159,7 @@ jobs:
                 --build-number=${{ github.run_number }} --build-name=1.0.${{ github.run_number }} 2>&1 | tee build.txt; then
               ok=1; break
             fi
-            if [ "$attempt" -lt 3 ] && grep -qE "status code (429|5[0-9][0-9])|Could not (GET|HEAD) |Connection reset|Read timed out|Connect timed out" build.txt; then
+            if [ "$attempt" -lt 3 ] && grep -qE "(status|response) code:? (429|5[0-9][0-9])|Could not (GET|HEAD) |Connection reset|Read timed out|Connect timed out" build.txt; then
               echo "::warning title=Сеть::Сервер пакетов не ответил (попытка $attempt) — повторю через $((attempt * 60)) с"
               sleep $((attempt * 60))
               continue
