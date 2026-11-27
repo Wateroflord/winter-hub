@@ -16,6 +16,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: Wateroflord/winter-hub
+          ref: main
           path: .winter
           sparse-checkout: /ci/
           sparse-checkout-cone-mode: false
