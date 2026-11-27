@@ -1,0 +1,41 @@
+name: winter_sprites
+description: Winter Sprites — нарезка спрайт-листов, предпросмотр анимации, палитра и сборка листа.
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  winter_core:
+    git:
+      url: https://github.com/Wateroflord/winter-hub.git
+      path: packages/winter_core
+      ref: 6acc5e6a1e8fced63bf9b174ff7fcfdc2af97d7e
+  file_picker: ^10.3.0
+  image: ^4.2.0
+  path_provider: ^2.1.4
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_launcher_icons: ^0.14.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/icon/
+
+flutter_launcher_icons:
+  android: true
+  ios: false
+  image_path: "assets/icon/icon.png"
+  adaptive_icon_background: "#0A1020"
+  adaptive_icon_foreground: "assets/icon/icon_fg.png"
+  min_sdk_android: 21
+  windows:
+    generate: true
+    image_path: "assets/icon/icon.png"
+    icon_size: 256

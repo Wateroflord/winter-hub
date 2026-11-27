@@ -1,0 +1,32 @@
+# Сборка — общая для всех приложений Winter: winter-hub/.github/workflows/flutter-app.yml
+# (APK под каждый процессор, подпись, релиз, Windows-установщик).
+name: Build
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'README.md'
+      - '.github/workflows/check.yml'
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: 'Выпустить релиз (выключи, чтобы только проверить сборку)'
+        type: boolean
+        default: true
+
+permissions:
+  contents: write
+
+jobs:
+  app:
+    uses: Wateroflord/winter-hub/.github/workflows/flutter-app.yml@main
+    secrets: inherit
+    with:
+      project: winter_sprites
+      org: com.winterhub
+      asset: Winter-Sprites
+      title: Winter Sprites
+      win_title: Winter Sprites
+      win_size: '1280, 820'
+      publish: ${{ github.event_name != 'workflow_dispatch' || inputs.publish }}
