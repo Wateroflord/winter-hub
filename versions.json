@@ -437,15 +437,15 @@
   },
   "Wateroflord/winter-jarvis|Jarvis-Setup.exe": {
    "a": {
-    "Jarvis-Setup.exe": "https://github.com/Wateroflord/winter-jarvis/releases/download/build-1/Jarvis-Setup.exe"
+    "Jarvis-Setup.exe": "https://github.com/Wateroflord/winter-jarvis/releases/download/build-2/Jarvis-Setup.exe"
    },
-   "b": 1,
+   "b": 2,
    "d": "2026-11-27",
    "h": {
-    "Jarvis-Setup.exe": "c2f5469d35f45d9646c35364663311ba23185628566e026b8557e72514aa3cce"
+    "Jarvis-Setup.exe": "53caebdc1c7a917a783b92a32d97901e2ffa7a3769becd7db8b50c25b35f7ec5"
    },
    "s": {
-    "Jarvis-Setup.exe": 125963880
+    "Jarvis-Setup.exe": 125524480
    }
   },
   "Wateroflord/winter-language|Winter-Language-Setup.exe": {
@@ -659,5 +659,5 @@
    }
   }
  },
- "updated": "2026-11-27T23:16:03Z"
+ "updated": "2026-11-27T23:44:24Z"
 }
