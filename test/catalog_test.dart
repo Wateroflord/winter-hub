@@ -59,6 +59,18 @@ void main() {
     expect(pickRelease([{'tag_name': 'v1.0.42', 'assets': [{'name': 'a.apk', 'browser_download_url': 'x'}]}], 'a.apk')!.build, 42);
   });
 
+  test('pickRelease: build-14 новее build-9, хотя GitHub отдаёт build-9 первым', () {
+    final list = [
+      {'tag_name': 'build-9', 'published_at': '2026-11-28T12:29:14Z', 'assets': [
+        {'name': 'J.exe', 'browser_download_url': 'u9'},
+      ]},
+      {'tag_name': 'build-14', 'published_at': '2026-11-28T13:18:12Z', 'assets': [
+        {'name': 'J.exe', 'browser_download_url': 'u14'},
+      ]},
+    ];
+    expect(pickRelease(list, 'J.exe')!.build, 14);
+  });
+
   test('versions.json: формат совпадает с Release', () {
     final v = Versions.parse({
       'updated': '2026-11-05T12:00:00Z',

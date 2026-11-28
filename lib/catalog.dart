@@ -229,7 +229,7 @@ Future<Release?> latestRelease(String repo, String? asset) async {
   try {
     final etag = (await readCache(etagName))?['etag']?.toString();
     final cachedList = await readCache('list2_${repo.replaceAll('/', '_')}.json');
-    final r = await http.get(Uri.parse('https://api.github.com/repos/$repo/releases?per_page=5'), headers: {
+    final r = await http.get(Uri.parse('https://api.github.com/repos/$repo/releases?per_page=30'), headers: {
       'Accept': 'application/vnd.github+json',
       if (etag != null && cachedList != null) 'If-None-Match': etag,
     }).timeout(const Duration(seconds: 15));
@@ -275,7 +275,10 @@ List _slim(List list) => [
 
 /// Самый свежий выпуск, в котором есть нужный файл.
 Release? pickRelease(List list, String? asset) {
-  for (final rel in list.whereType<Map>()) {
+  // GitHub сортирует релизы по тегу как по строке («build-9» выше «build-14»), поэтому свежие — по дате публикации.
+  final rels = list.whereType<Map>().toList()
+    ..sort((a, b) => '${b['published_at'] ?? ''}'.compareTo('${a['published_at'] ?? ''}'));
+  for (final rel in rels) {
     if (rel['draft'] == true || rel['prerelease'] == true) continue;
     final assets = <String, String>{}, sizes = <String, int>{}, hashes = <String, String>{};
     for (final a in (rel['assets'] as List? ?? const []).whereType<Map>()) {
