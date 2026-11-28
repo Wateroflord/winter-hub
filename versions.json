@@ -122,56 +122,56 @@
   },
   "Wateroflord/kbju-tracker|KBJU-Tracker-Setup.exe": {
    "a": {
-    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-49/KBJU-Tracker-Setup.exe",
-    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-49/KBJU-Tracker-Windows.zip",
-    "KBJU-Tracker-arm64-v8a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-49/KBJU-Tracker-arm64-v8a.apk",
-    "KBJU-Tracker-armeabi-v7a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-49/KBJU-Tracker-armeabi-v7a.apk",
-    "KBJU-Tracker-x86_64.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-49/KBJU-Tracker-x86_64.apk",
-    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-49/KBJU-Tracker.apk"
+    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-50/KBJU-Tracker-Setup.exe",
+    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-50/KBJU-Tracker-Windows.zip",
+    "KBJU-Tracker-arm64-v8a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-50/KBJU-Tracker-arm64-v8a.apk",
+    "KBJU-Tracker-armeabi-v7a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-50/KBJU-Tracker-armeabi-v7a.apk",
+    "KBJU-Tracker-x86_64.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-50/KBJU-Tracker-x86_64.apk",
+    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-50/KBJU-Tracker.apk"
    },
-   "b": 49,
-   "d": "2026-11-27",
+   "b": 50,
+   "d": "2026-11-28",
    "h": {
-    "KBJU-Tracker-Setup.exe": "6fa6a2e42d1f58b7d57530dee113c3d40af30fcd32a06b7a7df20621c4c0a6fe",
-    "KBJU-Tracker-Windows.zip": "42ed1a41027ea9c7479d966eb9bd93dbe4479b3bce552b203684b760f452a4a0",
-    "KBJU-Tracker-arm64-v8a.apk": "8b1836b190d1fec122fa623d912c3797f8db6fce1eb7015243aa94555d12204e",
-    "KBJU-Tracker-armeabi-v7a.apk": "a230559a31ef7c125a90ae1ca3575461e110d6482e596b1e27d9449ee97ab735",
-    "KBJU-Tracker-x86_64.apk": "2ffe2e6bc7c7bf0f680472f9c2f31afd2694cbc3f64c906208bcfb668093e4a0",
-    "KBJU-Tracker.apk": "8b1836b190d1fec122fa623d912c3797f8db6fce1eb7015243aa94555d12204e"
+    "KBJU-Tracker-Setup.exe": "7031533363e25ab428538b363c895feba77511eb192b7de89ad8684330397da4",
+    "KBJU-Tracker-Windows.zip": "6d4a1cae9a4667a8bcde9d28d27f00ee26fea6f53f2dc7c940226680f28d001f",
+    "KBJU-Tracker-arm64-v8a.apk": "5e2cf30f09f683b3780f12a2fa68f3e3d7485522a6759f15f2ad2df5a12cfcb9",
+    "KBJU-Tracker-armeabi-v7a.apk": "101d14b60a64c4e0a62bf02135cb74fdfdd27114d4286934fb58d4ea40480d51",
+    "KBJU-Tracker-x86_64.apk": "ef3def0978862911071e97149b4dff8f816a2b0dbfcff7e57dbcc471143a2994",
+    "KBJU-Tracker.apk": "5e2cf30f09f683b3780f12a2fa68f3e3d7485522a6759f15f2ad2df5a12cfcb9"
    },
    "s": {
-    "KBJU-Tracker-Setup.exe": 89053909,
-    "KBJU-Tracker-Windows.zip": 97570154,
+    "KBJU-Tracker-Setup.exe": 89057913,
+    "KBJU-Tracker-Windows.zip": 97571727,
     "KBJU-Tracker-arm64-v8a.apk": 35016214,
-    "KBJU-Tracker-armeabi-v7a.apk": 33672667,
+    "KBJU-Tracker-armeabi-v7a.apk": 33676763,
     "KBJU-Tracker-x86_64.apk": 35954171,
     "KBJU-Tracker.apk": 35016214
    }
   },
   "Wateroflord/kbju-tracker|KBJU-Tracker.apk": {
    "a": {
-    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-49/KBJU-Tracker-Setup.exe",
-    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-49/KBJU-Tracker-Windows.zip",
-    "KBJU-Tracker-arm64-v8a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-49/KBJU-Tracker-arm64-v8a.apk",
-    "KBJU-Tracker-armeabi-v7a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-49/KBJU-Tracker-armeabi-v7a.apk",
-    "KBJU-Tracker-x86_64.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-49/KBJU-Tracker-x86_64.apk",
-    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-49/KBJU-Tracker.apk"
+    "KBJU-Tracker-Setup.exe": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-50/KBJU-Tracker-Setup.exe",
+    "KBJU-Tracker-Windows.zip": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-50/KBJU-Tracker-Windows.zip",
+    "KBJU-Tracker-arm64-v8a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-50/KBJU-Tracker-arm64-v8a.apk",
+    "KBJU-Tracker-armeabi-v7a.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-50/KBJU-Tracker-armeabi-v7a.apk",
+    "KBJU-Tracker-x86_64.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-50/KBJU-Tracker-x86_64.apk",
+    "KBJU-Tracker.apk": "https://github.com/Wateroflord/kbju-tracker/releases/download/build-50/KBJU-Tracker.apk"
    },
-   "b": 49,
-   "d": "2026-11-27",
+   "b": 50,
+   "d": "2026-11-28",
    "h": {
-    "KBJU-Tracker-Setup.exe": "6fa6a2e42d1f58b7d57530dee113c3d40af30fcd32a06b7a7df20621c4c0a6fe",
-    "KBJU-Tracker-Windows.zip": "42ed1a41027ea9c7479d966eb9bd93dbe4479b3bce552b203684b760f452a4a0",
-    "KBJU-Tracker-arm64-v8a.apk": "8b1836b190d1fec122fa623d912c3797f8db6fce1eb7015243aa94555d12204e",
-    "KBJU-Tracker-armeabi-v7a.apk": "a230559a31ef7c125a90ae1ca3575461e110d6482e596b1e27d9449ee97ab735",
-    "KBJU-Tracker-x86_64.apk": "2ffe2e6bc7c7bf0f680472f9c2f31afd2694cbc3f64c906208bcfb668093e4a0",
-    "KBJU-Tracker.apk": "8b1836b190d1fec122fa623d912c3797f8db6fce1eb7015243aa94555d12204e"
+    "KBJU-Tracker-Setup.exe": "7031533363e25ab428538b363c895feba77511eb192b7de89ad8684330397da4",
+    "KBJU-Tracker-Windows.zip": "6d4a1cae9a4667a8bcde9d28d27f00ee26fea6f53f2dc7c940226680f28d001f",
+    "KBJU-Tracker-arm64-v8a.apk": "5e2cf30f09f683b3780f12a2fa68f3e3d7485522a6759f15f2ad2df5a12cfcb9",
+    "KBJU-Tracker-armeabi-v7a.apk": "101d14b60a64c4e0a62bf02135cb74fdfdd27114d4286934fb58d4ea40480d51",
+    "KBJU-Tracker-x86_64.apk": "ef3def0978862911071e97149b4dff8f816a2b0dbfcff7e57dbcc471143a2994",
+    "KBJU-Tracker.apk": "5e2cf30f09f683b3780f12a2fa68f3e3d7485522a6759f15f2ad2df5a12cfcb9"
    },
    "s": {
-    "KBJU-Tracker-Setup.exe": 89053909,
-    "KBJU-Tracker-Windows.zip": 97570154,
+    "KBJU-Tracker-Setup.exe": 89057913,
+    "KBJU-Tracker-Windows.zip": 97571727,
     "KBJU-Tracker-arm64-v8a.apk": 35016214,
-    "KBJU-Tracker-armeabi-v7a.apk": 33672667,
+    "KBJU-Tracker-armeabi-v7a.apk": 33676763,
     "KBJU-Tracker-x86_64.apk": 35954171,
     "KBJU-Tracker.apk": 35016214
    }
@@ -216,122 +216,122 @@
   },
   "Wateroflord/winter-chat|Winter-Chat-Server-Setup.exe": {
    "a": {
-    "Winter-Chat-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Linux.tar.gz",
-    "Winter-Chat-Server-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Server-Linux.tar.gz",
-    "Winter-Chat-Server-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Server-Setup.exe",
-    "Winter-Chat-Server-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Server-Windows.zip",
-    "Winter-Chat-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Setup.exe",
-    "Winter-Chat-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Windows.zip",
-    "Winter-Chat-arm64-v8a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-arm64-v8a.apk",
-    "Winter-Chat-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-armeabi-v7a.apk",
-    "Winter-Chat-x86_64.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-x86_64.apk",
-    "Winter-Chat.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat.apk"
+    "Winter-Chat-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Linux.tar.gz",
+    "Winter-Chat-Server-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Server-Linux.tar.gz",
+    "Winter-Chat-Server-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Server-Setup.exe",
+    "Winter-Chat-Server-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Server-Windows.zip",
+    "Winter-Chat-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Setup.exe",
+    "Winter-Chat-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Windows.zip",
+    "Winter-Chat-arm64-v8a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-arm64-v8a.apk",
+    "Winter-Chat-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-armeabi-v7a.apk",
+    "Winter-Chat-x86_64.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-x86_64.apk",
+    "Winter-Chat.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat.apk"
    },
-   "b": 36,
+   "b": 37,
    "d": "2026-11-27",
    "h": {
-    "Winter-Chat-Linux.tar.gz": "fbdb6b39caef6aa42042158dad5e8b6e0f4b134a3bc45a2bd140344cc1e43eed",
-    "Winter-Chat-Server-Linux.tar.gz": "4981b8900684e818db0362371942ccfa8c27bf39de11d6864357531b4b4b3890",
-    "Winter-Chat-Server-Setup.exe": "68aad539c23b28034dcfac5292c24a6a822ca195bd288dbdd2ff743a62985fc3",
-    "Winter-Chat-Server-Windows.zip": "eb4aebef12e296dfd230fe05373f205e446d2ab2f860bdf297adb1c3524faa77",
-    "Winter-Chat-Setup.exe": "15048d3ea9b1544622aa7deb4f86d392b8c41ddd2a406e9d1e77cd69e7a76785",
-    "Winter-Chat-Windows.zip": "5ce6cd44ba4afe47a416a060d09ca2e3326194d7164c7cceb379ca149f3ec9d3",
-    "Winter-Chat-arm64-v8a.apk": "27bc26fa63e58fec543ecb4ac46cb78763a41e63daf6a9c5280fd7b60e3c27db",
-    "Winter-Chat-armeabi-v7a.apk": "efd136e688b2b27ebb1c9eda16fe2c3225825ced327b9abad60c0f0c4a4b23d3",
-    "Winter-Chat-x86_64.apk": "b1540f5a56da60457b6c0d36de89c40347cb51e7e3ad2b6fa0c7dffd8644d9c3",
-    "Winter-Chat.apk": "27bc26fa63e58fec543ecb4ac46cb78763a41e63daf6a9c5280fd7b60e3c27db"
+    "Winter-Chat-Linux.tar.gz": "79b76639de45366d1a6685e33007986a7164a2407ccbd981dfdcf8fedd9d2e50",
+    "Winter-Chat-Server-Linux.tar.gz": "519b51c21aec324d1e608b1d57c9f99c3e17ae56690951fd21f91b531a5802dc",
+    "Winter-Chat-Server-Setup.exe": "10700a7b9a528fd7f2f6f7f9cb7434f6137f3c17247f7b2d07fa5ebf3b78e078",
+    "Winter-Chat-Server-Windows.zip": "fb6d49f88e8278eb31df968de8a3dce873da206dee406bd68b96d0b0b14dad73",
+    "Winter-Chat-Setup.exe": "e74a814fd052747c460b077013a534eaaeedbfab622ccc792b1eecdd2832ec65",
+    "Winter-Chat-Windows.zip": "9a6878c51af4a7da99d29ba5c3fe48c71f4e4b8c88f7a7ca681dc241a9920f9e",
+    "Winter-Chat-arm64-v8a.apk": "1d4e3aac70e9328dd4a5fa4efb027f07b62c3bdc2f3bf431db18b08d96b06ec4",
+    "Winter-Chat-armeabi-v7a.apk": "133e13d9916336cc9b5da9e4f720fb4d58891ac238d6dae445510b4359d63958",
+    "Winter-Chat-x86_64.apk": "fee5afe094e3934523fed14967893ad3d61d12c1789aa15b4b5cbef3d0a8283a",
+    "Winter-Chat.apk": "1d4e3aac70e9328dd4a5fa4efb027f07b62c3bdc2f3bf431db18b08d96b06ec4"
    },
    "s": {
-    "Winter-Chat-Linux.tar.gz": 22862593,
-    "Winter-Chat-Server-Linux.tar.gz": 29093203,
-    "Winter-Chat-Server-Setup.exe": 22948799,
-    "Winter-Chat-Server-Windows.zip": 29330134,
-    "Winter-Chat-Setup.exe": 33245228,
-    "Winter-Chat-Windows.zip": 45121112,
-    "Winter-Chat-arm64-v8a.apk": 50642072,
-    "Winter-Chat-armeabi-v7a.apk": 41540778,
+    "Winter-Chat-Linux.tar.gz": 22871915,
+    "Winter-Chat-Server-Linux.tar.gz": 29096992,
+    "Winter-Chat-Server-Setup.exe": 22955997,
+    "Winter-Chat-Server-Windows.zip": 29333272,
+    "Winter-Chat-Setup.exe": 33248353,
+    "Winter-Chat-Windows.zip": 45128331,
+    "Winter-Chat-arm64-v8a.apk": 50707608,
+    "Winter-Chat-armeabi-v7a.apk": 41557162,
     "Winter-Chat-x86_64.apk": 59968637,
-    "Winter-Chat.apk": 50642072
+    "Winter-Chat.apk": 50707608
    }
   },
   "Wateroflord/winter-chat|Winter-Chat-Setup.exe": {
    "a": {
-    "Winter-Chat-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Linux.tar.gz",
-    "Winter-Chat-Server-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Server-Linux.tar.gz",
-    "Winter-Chat-Server-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Server-Setup.exe",
-    "Winter-Chat-Server-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Server-Windows.zip",
-    "Winter-Chat-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Setup.exe",
-    "Winter-Chat-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Windows.zip",
-    "Winter-Chat-arm64-v8a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-arm64-v8a.apk",
-    "Winter-Chat-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-armeabi-v7a.apk",
-    "Winter-Chat-x86_64.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-x86_64.apk",
-    "Winter-Chat.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat.apk"
+    "Winter-Chat-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Linux.tar.gz",
+    "Winter-Chat-Server-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Server-Linux.tar.gz",
+    "Winter-Chat-Server-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Server-Setup.exe",
+    "Winter-Chat-Server-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Server-Windows.zip",
+    "Winter-Chat-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Setup.exe",
+    "Winter-Chat-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Windows.zip",
+    "Winter-Chat-arm64-v8a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-arm64-v8a.apk",
+    "Winter-Chat-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-armeabi-v7a.apk",
+    "Winter-Chat-x86_64.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-x86_64.apk",
+    "Winter-Chat.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat.apk"
    },
-   "b": 36,
+   "b": 37,
    "d": "2026-11-27",
    "h": {
-    "Winter-Chat-Linux.tar.gz": "fbdb6b39caef6aa42042158dad5e8b6e0f4b134a3bc45a2bd140344cc1e43eed",
-    "Winter-Chat-Server-Linux.tar.gz": "4981b8900684e818db0362371942ccfa8c27bf39de11d6864357531b4b4b3890",
-    "Winter-Chat-Server-Setup.exe": "68aad539c23b28034dcfac5292c24a6a822ca195bd288dbdd2ff743a62985fc3",
-    "Winter-Chat-Server-Windows.zip": "eb4aebef12e296dfd230fe05373f205e446d2ab2f860bdf297adb1c3524faa77",
-    "Winter-Chat-Setup.exe": "15048d3ea9b1544622aa7deb4f86d392b8c41ddd2a406e9d1e77cd69e7a76785",
-    "Winter-Chat-Windows.zip": "5ce6cd44ba4afe47a416a060d09ca2e3326194d7164c7cceb379ca149f3ec9d3",
-    "Winter-Chat-arm64-v8a.apk": "27bc26fa63e58fec543ecb4ac46cb78763a41e63daf6a9c5280fd7b60e3c27db",
-    "Winter-Chat-armeabi-v7a.apk": "efd136e688b2b27ebb1c9eda16fe2c3225825ced327b9abad60c0f0c4a4b23d3",
-    "Winter-Chat-x86_64.apk": "b1540f5a56da60457b6c0d36de89c40347cb51e7e3ad2b6fa0c7dffd8644d9c3",
-    "Winter-Chat.apk": "27bc26fa63e58fec543ecb4ac46cb78763a41e63daf6a9c5280fd7b60e3c27db"
+    "Winter-Chat-Linux.tar.gz": "79b76639de45366d1a6685e33007986a7164a2407ccbd981dfdcf8fedd9d2e50",
+    "Winter-Chat-Server-Linux.tar.gz": "519b51c21aec324d1e608b1d57c9f99c3e17ae56690951fd21f91b531a5802dc",
+    "Winter-Chat-Server-Setup.exe": "10700a7b9a528fd7f2f6f7f9cb7434f6137f3c17247f7b2d07fa5ebf3b78e078",
+    "Winter-Chat-Server-Windows.zip": "fb6d49f88e8278eb31df968de8a3dce873da206dee406bd68b96d0b0b14dad73",
+    "Winter-Chat-Setup.exe": "e74a814fd052747c460b077013a534eaaeedbfab622ccc792b1eecdd2832ec65",
+    "Winter-Chat-Windows.zip": "9a6878c51af4a7da99d29ba5c3fe48c71f4e4b8c88f7a7ca681dc241a9920f9e",
+    "Winter-Chat-arm64-v8a.apk": "1d4e3aac70e9328dd4a5fa4efb027f07b62c3bdc2f3bf431db18b08d96b06ec4",
+    "Winter-Chat-armeabi-v7a.apk": "133e13d9916336cc9b5da9e4f720fb4d58891ac238d6dae445510b4359d63958",
+    "Winter-Chat-x86_64.apk": "fee5afe094e3934523fed14967893ad3d61d12c1789aa15b4b5cbef3d0a8283a",
+    "Winter-Chat.apk": "1d4e3aac70e9328dd4a5fa4efb027f07b62c3bdc2f3bf431db18b08d96b06ec4"
    },
    "s": {
-    "Winter-Chat-Linux.tar.gz": 22862593,
-    "Winter-Chat-Server-Linux.tar.gz": 29093203,
-    "Winter-Chat-Server-Setup.exe": 22948799,
-    "Winter-Chat-Server-Windows.zip": 29330134,
-    "Winter-Chat-Setup.exe": 33245228,
-    "Winter-Chat-Windows.zip": 45121112,
-    "Winter-Chat-arm64-v8a.apk": 50642072,
-    "Winter-Chat-armeabi-v7a.apk": 41540778,
+    "Winter-Chat-Linux.tar.gz": 22871915,
+    "Winter-Chat-Server-Linux.tar.gz": 29096992,
+    "Winter-Chat-Server-Setup.exe": 22955997,
+    "Winter-Chat-Server-Windows.zip": 29333272,
+    "Winter-Chat-Setup.exe": 33248353,
+    "Winter-Chat-Windows.zip": 45128331,
+    "Winter-Chat-arm64-v8a.apk": 50707608,
+    "Winter-Chat-armeabi-v7a.apk": 41557162,
     "Winter-Chat-x86_64.apk": 59968637,
-    "Winter-Chat.apk": 50642072
+    "Winter-Chat.apk": 50707608
    }
   },
   "Wateroflord/winter-chat|Winter-Chat.apk": {
    "a": {
-    "Winter-Chat-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Linux.tar.gz",
-    "Winter-Chat-Server-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Server-Linux.tar.gz",
-    "Winter-Chat-Server-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Server-Setup.exe",
-    "Winter-Chat-Server-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Server-Windows.zip",
-    "Winter-Chat-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Setup.exe",
-    "Winter-Chat-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-Windows.zip",
-    "Winter-Chat-arm64-v8a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-arm64-v8a.apk",
-    "Winter-Chat-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-armeabi-v7a.apk",
-    "Winter-Chat-x86_64.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat-x86_64.apk",
-    "Winter-Chat.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-36/Winter-Chat.apk"
+    "Winter-Chat-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Linux.tar.gz",
+    "Winter-Chat-Server-Linux.tar.gz": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Server-Linux.tar.gz",
+    "Winter-Chat-Server-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Server-Setup.exe",
+    "Winter-Chat-Server-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Server-Windows.zip",
+    "Winter-Chat-Setup.exe": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Setup.exe",
+    "Winter-Chat-Windows.zip": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-Windows.zip",
+    "Winter-Chat-arm64-v8a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-arm64-v8a.apk",
+    "Winter-Chat-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-armeabi-v7a.apk",
+    "Winter-Chat-x86_64.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat-x86_64.apk",
+    "Winter-Chat.apk": "https://github.com/Wateroflord/winter-chat/releases/download/build-37/Winter-Chat.apk"
    },
-   "b": 36,
+   "b": 37,
    "d": "2026-11-27",
    "h": {
-    "Winter-Chat-Linux.tar.gz": "fbdb6b39caef6aa42042158dad5e8b6e0f4b134a3bc45a2bd140344cc1e43eed",
-    "Winter-Chat-Server-Linux.tar.gz": "4981b8900684e818db0362371942ccfa8c27bf39de11d6864357531b4b4b3890",
-    "Winter-Chat-Server-Setup.exe": "68aad539c23b28034dcfac5292c24a6a822ca195bd288dbdd2ff743a62985fc3",
-    "Winter-Chat-Server-Windows.zip": "eb4aebef12e296dfd230fe05373f205e446d2ab2f860bdf297adb1c3524faa77",
-    "Winter-Chat-Setup.exe": "15048d3ea9b1544622aa7deb4f86d392b8c41ddd2a406e9d1e77cd69e7a76785",
-    "Winter-Chat-Windows.zip": "5ce6cd44ba4afe47a416a060d09ca2e3326194d7164c7cceb379ca149f3ec9d3",
-    "Winter-Chat-arm64-v8a.apk": "27bc26fa63e58fec543ecb4ac46cb78763a41e63daf6a9c5280fd7b60e3c27db",
-    "Winter-Chat-armeabi-v7a.apk": "efd136e688b2b27ebb1c9eda16fe2c3225825ced327b9abad60c0f0c4a4b23d3",
-    "Winter-Chat-x86_64.apk": "b1540f5a56da60457b6c0d36de89c40347cb51e7e3ad2b6fa0c7dffd8644d9c3",
-    "Winter-Chat.apk": "27bc26fa63e58fec543ecb4ac46cb78763a41e63daf6a9c5280fd7b60e3c27db"
+    "Winter-Chat-Linux.tar.gz": "79b76639de45366d1a6685e33007986a7164a2407ccbd981dfdcf8fedd9d2e50",
+    "Winter-Chat-Server-Linux.tar.gz": "519b51c21aec324d1e608b1d57c9f99c3e17ae56690951fd21f91b531a5802dc",
+    "Winter-Chat-Server-Setup.exe": "10700a7b9a528fd7f2f6f7f9cb7434f6137f3c17247f7b2d07fa5ebf3b78e078",
+    "Winter-Chat-Server-Windows.zip": "fb6d49f88e8278eb31df968de8a3dce873da206dee406bd68b96d0b0b14dad73",
+    "Winter-Chat-Setup.exe": "e74a814fd052747c460b077013a534eaaeedbfab622ccc792b1eecdd2832ec65",
+    "Winter-Chat-Windows.zip": "9a6878c51af4a7da99d29ba5c3fe48c71f4e4b8c88f7a7ca681dc241a9920f9e",
+    "Winter-Chat-arm64-v8a.apk": "1d4e3aac70e9328dd4a5fa4efb027f07b62c3bdc2f3bf431db18b08d96b06ec4",
+    "Winter-Chat-armeabi-v7a.apk": "133e13d9916336cc9b5da9e4f720fb4d58891ac238d6dae445510b4359d63958",
+    "Winter-Chat-x86_64.apk": "fee5afe094e3934523fed14967893ad3d61d12c1789aa15b4b5cbef3d0a8283a",
+    "Winter-Chat.apk": "1d4e3aac70e9328dd4a5fa4efb027f07b62c3bdc2f3bf431db18b08d96b06ec4"
    },
    "s": {
-    "Winter-Chat-Linux.tar.gz": 22862593,
-    "Winter-Chat-Server-Linux.tar.gz": 29093203,
-    "Winter-Chat-Server-Setup.exe": 22948799,
-    "Winter-Chat-Server-Windows.zip": 29330134,
-    "Winter-Chat-Setup.exe": 33245228,
-    "Winter-Chat-Windows.zip": 45121112,
-    "Winter-Chat-arm64-v8a.apk": 50642072,
-    "Winter-Chat-armeabi-v7a.apk": 41540778,
+    "Winter-Chat-Linux.tar.gz": 22871915,
+    "Winter-Chat-Server-Linux.tar.gz": 29096992,
+    "Winter-Chat-Server-Setup.exe": 22955997,
+    "Winter-Chat-Server-Windows.zip": 29333272,
+    "Winter-Chat-Setup.exe": 33248353,
+    "Winter-Chat-Windows.zip": 45128331,
+    "Winter-Chat-arm64-v8a.apk": 50707608,
+    "Winter-Chat-armeabi-v7a.apk": 41557162,
     "Winter-Chat-x86_64.apk": 59968637,
-    "Winter-Chat.apk": 50642072
+    "Winter-Chat.apk": 50707608
    }
   },
   "Wateroflord/winter-chess|Winter-Chess-Setup.exe": {
@@ -437,15 +437,15 @@
   },
   "Wateroflord/winter-jarvis|Jarvis-Setup.exe": {
    "a": {
-    "Jarvis-Setup.exe": "https://github.com/Wateroflord/winter-jarvis/releases/download/build-2/Jarvis-Setup.exe"
+    "Jarvis-Setup.exe": "https://github.com/Wateroflord/winter-jarvis/releases/download/build-4/Jarvis-Setup.exe"
    },
-   "b": 2,
-   "d": "2026-11-27",
+   "b": 4,
+   "d": "2026-11-28",
    "h": {
-    "Jarvis-Setup.exe": "53caebdc1c7a917a783b92a32d97901e2ffa7a3769becd7db8b50c25b35f7ec5"
+    "Jarvis-Setup.exe": "d8827fc01083e642a93a0152f98cdbde5bea436332fd2b09b17afea3a4dcaaf1"
    },
    "s": {
-    "Jarvis-Setup.exe": 125524480
+    "Jarvis-Setup.exe": 125545458
    }
   },
   "Wateroflord/winter-language|Winter-Language-Setup.exe": {
@@ -659,5 +659,5 @@
    }
   }
  },
- "updated": "2026-11-27T23:44:24Z"
+ "updated": "2026-11-28T00:15:17Z"
 }
