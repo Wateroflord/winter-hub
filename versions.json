@@ -576,6 +576,34 @@
     "Winter-Paint.apk": 52328975
    }
   },
+  "Wateroflord/winter-sprites|Winter-Sprites-Setup.exe": {
+   "a": {
+    "Winter-Sprites-Setup.exe": "https://github.com/Wateroflord/winter-sprites/releases/download/build-1/Winter-Sprites-Setup.exe",
+    "Winter-Sprites-Windows.zip": "https://github.com/Wateroflord/winter-sprites/releases/download/build-1/Winter-Sprites-Windows.zip",
+    "Winter-Sprites-arm64-v8a.apk": "https://github.com/Wateroflord/winter-sprites/releases/download/build-1/Winter-Sprites-arm64-v8a.apk",
+    "Winter-Sprites-armeabi-v7a.apk": "https://github.com/Wateroflord/winter-sprites/releases/download/build-1/Winter-Sprites-armeabi-v7a.apk",
+    "Winter-Sprites-x86_64.apk": "https://github.com/Wateroflord/winter-sprites/releases/download/build-1/Winter-Sprites-x86_64.apk",
+    "Winter-Sprites.apk": "https://github.com/Wateroflord/winter-sprites/releases/download/build-1/Winter-Sprites.apk"
+   },
+   "b": 1,
+   "d": "2026-11-28",
+   "h": {
+    "Winter-Sprites-Setup.exe": "8df63e74e3bf1fbecbd4d1157b930b21da932395d204faaa6b8eddc7b09da926",
+    "Winter-Sprites-Windows.zip": "5f271a9425121e1129bd4edf4809421c7bb73e0455944395323ef17813fff642",
+    "Winter-Sprites-arm64-v8a.apk": "a5fccec8e8233a38aa608b32271a688db1ec41ab94ec3b1b3099325af99c2371",
+    "Winter-Sprites-armeabi-v7a.apk": "cf1b2972a5c0488d2cf2ef4a40d96c97821a9963bf84ca5c12b3b081e11cbaa1",
+    "Winter-Sprites-x86_64.apk": "a4042643b32bfb50ade4acf148a957e693b61acddd7288d03d517f6668ec9b1e",
+    "Winter-Sprites.apk": "a5fccec8e8233a38aa608b32271a688db1ec41ab94ec3b1b3099325af99c2371"
+   },
+   "s": {
+    "Winter-Sprites-Setup.exe": 10824170,
+    "Winter-Sprites-Windows.zip": 12552146,
+    "Winter-Sprites-arm64-v8a.apk": 19176157,
+    "Winter-Sprites-armeabi-v7a.apk": 16874211,
+    "Winter-Sprites-x86_64.apk": 20667092,
+    "Winter-Sprites.apk": 19176157
+   }
+  },
   "Wateroflord/winter-vpn|Winter-VPN-Setup.exe": {
    "a": {
     "Winter-VPN-Setup.exe": "https://github.com/Wateroflord/winter-vpn/releases/download/build-5/Winter-VPN-Setup.exe",
@@ -659,5 +687,5 @@
    }
   }
  },
- "updated": "2026-11-28T00:15:17Z"
+ "updated": "2026-11-28T01:30:09Z"
 }
