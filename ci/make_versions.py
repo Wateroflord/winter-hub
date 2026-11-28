@@ -21,7 +21,7 @@ token = os.environ.get("GH_TOKEN", "")
 
 
 def releases(repo):
-    req = urllib.request.Request(f"https://api.github.com/repos/{repo}/releases?per_page=10",
+    req = urllib.request.Request(f"https://api.github.com/repos/{repo}/releases?per_page=100",
                                  headers={"Accept": "application/vnd.github+json", "User-Agent": "winter-hub-versions",
                                           **({"Authorization": f"Bearer {token}"} if token else {})})
     with urllib.request.urlopen(req, timeout=30) as r:
