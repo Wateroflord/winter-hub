@@ -36,8 +36,13 @@ def digest_hex(d):
     return h if re.fullmatch(r"[0-9a-f]{64}", h) else ""
 
 
+def _order(rel):
+    # GitHub отдаёт релизы по имени тега как строке («build-9» выше «build-14») — сортируем сами: свежие первыми
+    return rel.get("published_at") or rel.get("created_at") or ""
+
+
 def pick(rels, asset):
-    for rel in rels:
+    for rel in sorted(rels, key=_order, reverse=True):
         if rel.get("draft") or rel.get("prerelease"):
             continue
         files = rel.get("assets", [])
